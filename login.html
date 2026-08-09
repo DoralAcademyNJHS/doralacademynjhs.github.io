@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login / Sign Up - Doral Academy NJHS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+    </nav>
+
+    <h1>Login / Sign Up</h1>
+    <p>Member access for Doral Academy NJHS</p>
+  </header>
+
+  <section class="auth-box">
+    <h2>Create Account</h2>
+
+    <input type="text" id="signupName" placeholder="Full Name">
+    <input type="email" id="signupEmail" placeholder="Email">
+    <input type="password" id="signupPassword" placeholder="Password">
+
+    <button onclick="signUp()">Sign Up</button>
+
+    <hr>
+
+    <h2>Login</h2>
+
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+    <button onclick="logout()">Logout</button>
+
+    <p id="authMessage" class="auth-message"></p>
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
