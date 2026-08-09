@@ -271,3 +271,24 @@ p, li {
     padding: 8px 13px;
   }
 }
+
+.board-poster-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.board-poster-gallery img {
+  width: 100%;
+  max-width: 850px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 35, 70, 0.18);
+  transition: all 0.25s ease;
+}
+
+.board-poster-gallery img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 35, 70, 0.25);
+}
