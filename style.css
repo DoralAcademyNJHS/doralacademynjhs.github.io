@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -6,56 +6,88 @@ html {
 
 body {
   font-family: 'Lora', Georgia, serif;
-  background-color: #f4f7fb;
+  background: linear-gradient(180deg, #eef4fb 0%, #f7f9fc 100%);
   color: #222;
   margin: 0;
   padding: 0;
   line-height: 1.7;
 }
 
+/* HEADER */
 header {
-  background-color: #003366;
+  background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
   color: white;
-  padding: 95px 25px 50px 25px;
+  padding: 105px 25px 55px 25px;
   text-align: center;
   position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
 }
 
+/* MAIN NAV BUTTONS */
 .top-nav {
   position: absolute;
-  top: 18px;
-  right: 24px;
+  top: 22px;
+  right: 190px;
   display: flex;
-  gap: 9px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 850px;
+  max-width: 950px;
 }
 
 .top-nav a {
   color: white;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
-  padding: 8px 13px;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: all 0.25s ease;
 }
 
 .top-nav a:hover {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.92);
   color: #003366;
   transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.22);
 }
 
+/* SPECIAL LOGIN BUTTON */
+.auth-button {
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  z-index: 999;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 11px 19px;
+  border-radius: 999px;
+  color: #002b55;
+  background: linear-gradient(135deg, #ffffff 0%, #f8e7a1 100%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+}
+
+.auth-button:hover {
+  background: linear-gradient(135deg, #fff7cf 0%, #ffffff 100%);
+  color: #001f3f;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* TITLE AREA */
 .hero-title-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  max-width: 950px;
+  gap: 32px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -65,7 +97,7 @@ header {
 
 header h1 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 46px;
+  font-size: 50px;
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
@@ -85,33 +117,38 @@ header p {
 
 .njhs-logo {
   background-color: white;
-  padding: 5px;
+  padding: 6px;
   border-radius: 50%;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
 }
 
 .doral-logo {
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
 }
 
+/* CONTENT SECTIONS */
 section {
-  background: white;
-  margin: 25px auto;
-  padding: 25px;
-  max-width: 850px;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  margin: 28px auto;
+  padding: 28px;
+  max-width: 880px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
 }
 
 h2 {
   font-family: 'Playfair Display', Georgia, serif;
   color: #003366;
-  font-size: 28px;
+  font-size: 30px;
+  margin-top: 0;
 }
 
 p, li {
   font-size: 17px;
 }
 
+/* BOARD PAGE */
 .board-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -121,9 +158,11 @@ p, li {
 
 .board-card {
   text-align: center;
-  background-color: #f4f7fb;
-  padding: 20px;
-  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  padding: 22px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 51, 102, 0.1);
+  box-shadow: 0 5px 14px rgba(0, 35, 70, 0.08);
 }
 
 .photo-placeholder {
@@ -139,15 +178,67 @@ p, li {
   font-weight: bold;
 }
 
-@media (max-width: 900px) {
+/* LOGIN PAGE */
+.auth-box {
+  background: white;
+  margin: 30px auto;
+  padding: 32px;
+  max-width: 460px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 7px 20px rgba(0, 35, 70, 0.12);
+}
+
+.auth-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #c8d3df;
+  border-radius: 9px;
+  font-size: 15px;
+  font-family: 'Lora', Georgia, serif;
+}
+
+.auth-box button {
+  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  margin: 10px 5px 0 5px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.auth-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 51, 102, 0.25);
+}
+
+.auth-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* MOBILE */
+@media (max-width: 950px) {
   header {
-    padding-top: 135px;
+    padding-top: 155px;
   }
 
   .top-nav {
     left: 15px;
     right: 15px;
+    top: 62px;
     justify-content: center;
+  }
+
+  .auth-button {
+    top: 12px;
+    right: 12px;
   }
 }
 
@@ -172,5 +263,10 @@ p, li {
   .top-nav a {
     font-size: 12px;
     padding: 7px 10px;
+  }
+
+  .auth-button {
+    font-size: 12px;
+    padding: 8px 13px;
   }
 }
