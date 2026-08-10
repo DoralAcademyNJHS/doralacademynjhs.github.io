@@ -227,3 +227,6 @@ p, li {
     height: 200px;
   }
 }
+.member-card {
+  background: linear-gradient(180deg, #f3f9ff 0%, #dfefff 100%);
+}
