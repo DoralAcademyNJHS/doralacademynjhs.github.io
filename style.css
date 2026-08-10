@@ -285,3 +285,14 @@ p, li {
     height: 190px;
   }
 }
+.member-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.contact-info {
+  font-size: 14px;
+  color: #003366;
+  font-weight: 600;
+}
