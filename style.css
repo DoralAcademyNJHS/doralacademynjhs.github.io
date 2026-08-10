@@ -13,7 +13,6 @@ body {
   line-height: 1.7;
 }
 
-/* HEADER */
 header {
   background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
   color: white;
@@ -23,7 +22,6 @@ header {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
 }
 
-/* NAV BUTTONS */
 .top-nav {
   position: absolute;
   top: 22px;
@@ -56,7 +54,6 @@ header {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-/* HOME TITLE AREA */
 .hero-title-row {
   display: flex;
   align-items: center;
@@ -84,7 +81,6 @@ header p {
   opacity: 0.95;
 }
 
-/* HOME LOGOS */
 .home-logo {
   object-fit: contain;
   flex-shrink: 0;
@@ -106,7 +102,6 @@ header p {
   filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
 }
 
-/* CONTENT SECTIONS */
 section {
   background: rgba(255, 255, 255, 0.92);
   margin: 28px auto;
@@ -128,7 +123,6 @@ p, li {
   font-size: 17px;
 }
 
-/* CURRENT BOARD GRID */
 .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
@@ -194,7 +188,6 @@ p, li {
   font-style: italic;
 }
 
-/* LOGIN PAGE, ONLY IF YOU KEEP LOGIN.HTML */
 .auth-box {
   background: white;
   margin: 30px auto;
@@ -239,7 +232,6 @@ p, li {
   color: #003366;
 }
 
-/* MOBILE */
 @media (max-width: 950px) {
   header {
     padding-top: 155px;
