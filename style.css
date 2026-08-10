@@ -177,51 +177,6 @@ p, li {
   font-style: italic;
 }
 
-/* LOGIN PAGE, ONLY IF YOU KEEP LOGIN.HTML */
-.auth-box {
-  background: white;
-  margin: 30px auto;
-  padding: 32px;
-  max-width: 460px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 7px 20px rgba(0, 35, 70, 0.12);
-}
-
-.auth-box input {
-  width: 90%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #c8d3df;
-  border-radius: 9px;
-  font-size: 15px;
-  font-family: 'Lora', Georgia, serif;
-}
-
-.auth-box button {
-  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  margin: 10px 5px 0 5px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.auth-box button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 51, 102, 0.25);
-}
-
-.auth-message {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #003366;
-}
-
 /* MOBILE */
 @media (max-width: 950px) {
   header {
