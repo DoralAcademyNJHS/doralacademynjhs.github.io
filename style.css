@@ -149,36 +149,6 @@ p, li {
   font-size: 17px;
 }
 
-/* BOARD PAGE */
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
-}
-
-.board-card {
-  text-align: center;
-  background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
-  padding: 22px;
-  border-radius: 15px;
-  border: 1px solid rgba(0, 51, 102, 0.1);
-  box-shadow: 0 5px 14px rgba(0, 35, 70, 0.08);
-}
-
-.photo-placeholder {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto 15px auto;
-  border-radius: 50%;
-  background-color: #d9e3f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #003366;
-  font-weight: bold;
-}
-
 /* LOGIN PAGE */
 .auth-box {
   background: white;
@@ -222,6 +192,59 @@ p, li {
   margin-top: 15px;
   font-weight: bold;
   color: #003366;
+}
+
+/* CURRENT BOARD PHOTO CARDS */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 240px));
+  gap: 28px;
+  justify-content: center;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.single-member {
+  grid-template-columns: 240px;
+}
+
+.member-card {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 51, 102, 0.12);
+  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.1);
+  transition: all 0.25s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0, 35, 70, 0.18);
+}
+
+.member-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.member-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #003366;
+  font-size: 22px;
+  margin: 8px 0 4px 0;
+}
+
+.member-card p {
+  margin: 0;
+  font-size: 15px;
+  color: #345;
+  font-style: italic;
 }
 
 /* MOBILE */
@@ -270,67 +293,13 @@ p, li {
     font-size: 12px;
     padding: 8px 13px;
   }
-}
 
-.board-poster-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  align-items: center;
-  margin-top: 25px;
-}
+  .member-grid,
+  .single-member {
+    grid-template-columns: 220px;
+  }
 
-.board-poster-gallery img {
-  width: 100%;
-  max-width: 850px;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0, 35, 70, 0.18);
-  transition: all 0.25s ease;
+  .member-card img {
+    height: 210px;
+  }
 }
-
-.board-poster-gallery img:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 35, 70, 0.25);
-}
-/* CLEAN CURRENT BOARD PHOTO SIZING */
-
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 240px));
-  gap: 26px;
-  justify-content: center;
-  align-items: start;
-  margin-top: 20px;
-}
-
-.single-member {
-  grid-template-columns: 240px;
-}
-
-.member-card {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(0, 51, 102, 0.12);
-  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.1);
-  transition: all 0.25s ease;
-}
-
-.member-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 26px rgba(0, 35, 70, 0.18);
-}
-
-.member-card img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 14px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.member-card h3 {
- 
