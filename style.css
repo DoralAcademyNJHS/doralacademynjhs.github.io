@@ -47,3 +47,50 @@
   color: #345;
   font-style: italic;
 }
+/* FIX HOME PAGE LOGO SIZING */
+
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.home-logo {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.njhs-logo {
+  width: 90px;
+  height: 90px;
+  background-color: white;
+  padding: 6px;
+  border-radius: 50%;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+}
+
+.doral-logo {
+  width: auto;
+  height: 90px;
+  max-width: 130px;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+}
+
+@media (max-width: 700px) {
+  .hero-title-row {
+    gap: 14px;
+  }
+
+  .njhs-logo {
+    width: 62px;
+    height: 62px;
+  }
+
+  .doral-logo {
+    height: 62px;
+    max-width: 95px;
+  }
+}
