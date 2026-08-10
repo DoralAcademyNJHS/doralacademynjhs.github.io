@@ -285,3 +285,29 @@ p, li {
     height: 190px;
   }
 }
+.contact-info {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: #003366;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.2px;
+}
+
+.member-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.member-card-link:hover {
+  text-decoration: none;
+}
+
+.member-card-link:hover .contact-info {
+  background: #001f3f;
+}
