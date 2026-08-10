@@ -230,3 +230,12 @@ p, li {
 .member-card {
   background: #eaf4ff;
 }
+.board-light-blue {
+  background: #eaf4ff;
+  padding: 28px;
+  border-radius: 20px;
+}
+
+.board-light-blue .member-card {
+  background: #f7fbff;
+}
