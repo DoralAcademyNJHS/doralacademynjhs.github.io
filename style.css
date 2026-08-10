@@ -1,217 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+/* CLEAN CURRENT BOARD GRID */
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Lora', Georgia, serif;
-  background: linear-gradient(180deg, #eef4fb 0%, #f7f9fc 100%);
-  color: #222;
-  margin: 0;
-  padding: 0;
-  line-height: 1.7;
-}
-
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
-  color: white;
-  padding: 105px 25px 55px 25px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
-}
-
-/* MAIN NAV BUTTONS */
-.top-nav {
-  position: absolute;
-  top: 22px;
-  right: 190px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  max-width: 950px;
-}
-
-.top-nav a {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 9px 14px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
-}
-
-.top-nav a:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-}
-
-/* SPECIAL LOGIN BUTTON */
-.auth-button {
-  position: fixed;
-  top: 12px;
-  right: 14px;
-  z-index: 999;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 800;
-  padding: 10px 16px;
-  border-radius: 999px;
-  color: #f8e7a1;
-  background: transparent;
-  border: 1px solid transparent;
-  letter-spacing: 0.2px;
-  transition: all 0.25s ease;
-}
-
-.auth-button:hover {
-  color: #002b55;
-  background: linear-gradient(135deg, #ffffff 0%, #f8e7a1 100%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
-}
-
-/* TITLE AREA */
-.hero-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  max-width: 980px;
-  margin: 0 auto;
-}
-
-.title-text {
-  text-align: center;
-}
-
-header h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 50px;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-header p {
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0;
-  opacity: 0.95;
-}
-
-.home-logo {
-  width: 95px;
-  height: 95px;
-  object-fit: contain;
-}
-
-.njhs-logo {
-  background-color: white;
-  padding: 6px;
-  border-radius: 50%;
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
-}
-
-.doral-logo {
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
-}
-
-/* CONTENT SECTIONS */
-section {
-  background: rgba(255, 255, 255, 0.92);
-  margin: 28px auto;
-  padding: 28px;
-  max-width: 880px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 51, 102, 0.08);
-  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
-}
-
-h2 {
-  font-family: 'Playfair Display', Georgia, serif;
-  color: #003366;
-  font-size: 30px;
-  margin-top: 0;
-}
-
-p, li {
-  font-size: 17px;
-}
-
-/* LOGIN PAGE */
-.auth-box {
-  background: white;
-  margin: 30px auto;
-  padding: 32px;
-  max-width: 460px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 7px 20px rgba(0, 35, 70, 0.12);
-}
-
-.auth-box input {
-  width: 90%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #c8d3df;
-  border-radius: 9px;
-  font-size: 15px;
-  font-family: 'Lora', Georgia, serif;
-}
-
-.auth-box button {
-  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  margin: 10px 5px 0 5px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.auth-box button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 51, 102, 0.25);
-}
-
-.auth-message {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #003366;
-}
-
-/* CURRENT BOARD PHOTO CARDS */
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 240px));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
+  gap: 24px;
   justify-content: center;
   align-items: start;
-  margin-top: 20px;
-}
-
-.single-member {
-  grid-template-columns: 240px;
+  margin-top: 25px;
 }
 
 .member-card {
   text-align: center;
-  background: rgba(255, 255, 255, 0.94);
-  padding: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 14px;
   border-radius: 18px;
   border: 1px solid rgba(0, 51, 102, 0.12);
   box-shadow: 0 6px 18px rgba(0, 35, 70, 0.1);
@@ -225,7 +26,7 @@ p, li {
 
 .member-card img {
   width: 100%;
-  height: 220px;
+  height: 210px;
   object-fit: cover;
   object-position: center;
   border-radius: 14px;
@@ -236,7 +37,7 @@ p, li {
 .member-card h3 {
   font-family: 'Playfair Display', Georgia, serif;
   color: #003366;
-  font-size: 22px;
+  font-size: 21px;
   margin: 8px 0 4px 0;
 }
 
@@ -245,61 +46,4 @@ p, li {
   font-size: 15px;
   color: #345;
   font-style: italic;
-}
-
-/* MOBILE */
-@media (max-width: 950px) {
-  header {
-    padding-top: 155px;
-  }
-
-  .top-nav {
-    left: 15px;
-    right: 15px;
-    top: 62px;
-    justify-content: center;
-  }
-
-  .auth-button {
-    top: 12px;
-    right: 12px;
-  }
-}
-
-@media (max-width: 700px) {
-  .hero-title-row {
-    gap: 14px;
-  }
-
-  .home-logo {
-    width: 65px;
-    height: 65px;
-  }
-
-  header h1 {
-    font-size: 34px;
-  }
-
-  header p {
-    font-size: 15px;
-  }
-
-  .top-nav a {
-    font-size: 12px;
-    padding: 7px 10px;
-  }
-
-  .auth-button {
-    font-size: 12px;
-    padding: 8px 13px;
-  }
-
-  .member-grid,
-  .single-member {
-    grid-template-columns: 220px;
-  }
-
-  .member-card img {
-    height: 210px;
-  }
 }
