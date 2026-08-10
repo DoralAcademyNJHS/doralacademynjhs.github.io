@@ -1,6 +1,134 @@
-/* CLEAN CURRENT BOARD GRID */
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: linear-gradient(180deg, #eef4fb 0%, #f7f9fc 100%);
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
+  color: white;
+  padding: 105px 25px 55px 25px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* NAV BUTTONS */
+.top-nav {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 950px;
+}
+
+.top-nav a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.top-nav a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* HOME TITLE AREA */
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.title-text {
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 50px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  opacity: 0.95;
+}
+
+/* HOME LOGOS */
+.home-logo {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.njhs-logo {
+  width: 90px;
+  height: 90px;
+  background-color: white;
+  padding: 6px;
+  border-radius: 50%;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+}
+
+.doral-logo {
+  width: auto;
+  height: 90px;
+  max-width: 130px;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+}
+
+/* CONTENT SECTIONS */
+section {
+  background: rgba(255, 255, 255, 0.92);
+  margin: 28px auto;
+  padding: 28px;
+  max-width: 880px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
+}
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #003366;
+  font-size: 30px;
+  margin-top: 0;
+}
+
+p, li {
+  font-size: 17px;
+}
+
+/* CURRENT BOARD GRID */
 .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
@@ -48,36 +176,64 @@
   color: #345;
   font-style: italic;
 }
-/* FIX HOME PAGE LOGO SIZING */
 
-.hero-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  max-width: 980px;
-  margin: 0 auto;
+/* LOGIN PAGE, ONLY IF YOU KEEP LOGIN.HTML */
+.auth-box {
+  background: white;
+  margin: 30px auto;
+  padding: 32px;
+  max-width: 460px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 7px 20px rgba(0, 35, 70, 0.12);
 }
 
-.home-logo {
-  object-fit: contain;
-  flex-shrink: 0;
+.auth-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #c8d3df;
+  border-radius: 9px;
+  font-size: 15px;
+  font-family: 'Lora', Georgia, serif;
 }
 
-.njhs-logo {
-  width: 90px;
-  height: 90px;
-  background-color: white;
-  padding: 6px;
-  border-radius: 50%;
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+.auth-box button {
+  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  margin: 10px 5px 0 5px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.doral-logo {
-  width: auto;
-  height: 90px;
-  max-width: 130px;
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+.auth-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 51, 102, 0.25);
+}
+
+.auth-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* MOBILE */
+@media (max-width: 950px) {
+  header {
+    padding-top: 155px;
+  }
+
+  .top-nav {
+    left: 15px;
+    right: 15px;
+    top: 62px;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 700px) {
@@ -93,5 +249,26 @@
   .doral-logo {
     height: 62px;
     max-width: 95px;
+  }
+
+  header h1 {
+    font-size: 34px;
+  }
+
+  header p {
+    font-size: 15px;
+  }
+
+  .top-nav a {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+
+  .member-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 210px));
+  }
+
+  .member-card img {
+    height: 200px;
   }
 }
