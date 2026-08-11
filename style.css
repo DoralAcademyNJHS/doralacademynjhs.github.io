@@ -362,4 +362,59 @@ li {
 
 .whatsapp-button:hover {
   background-color: #1ebe5d;
+}section.njhs-meeting-box {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  background: linear-gradient(135deg, #002b55, #003d73) !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 28px !important;
+  padding: 24px 40px !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.meeting-title {
+  font-size: 28px;
+  font-weight: 700;
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  padding-right: 28px;
+  min-width: 230px;
+  text-align: center;
+}
+
+.meeting-info {
+  max-width: 720px;
+}
+
+.meeting-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.meeting-info a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  section.njhs-meeting-box {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 22px !important;
+  }
+
+  .meeting-title {
+    border-right: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    padding-right: 0;
+    padding-bottom: 12px;
+    min-width: auto;
+  }
 }
