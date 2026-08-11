@@ -25,12 +25,14 @@ header {
 .top-nav {
   position: absolute;
   top: 22px;
-  right: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   max-width: 950px;
+  width: 90%;
 }
 
 .top-nav a {
@@ -119,14 +121,15 @@ h2 {
   margin-top: 0;
 }
 
-p, li {
+p,
+li {
   font-size: 17px;
 }
 
 .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
-  gap: 24px;
+  gap: 28px;
   justify-content: center;
   align-items: stretch;
   margin-top: 25px;
@@ -139,7 +142,9 @@ p, li {
 }
 
 .member-card {
-  height: 330px;
+  min-height: 380px;
+  height: 100%;
+  box-sizing: border-box;
   text-align: center;
   background: #f7fbff;
   padding: 14px;
@@ -173,7 +178,7 @@ p, li {
   color: #003366;
   font-size: 21px;
   min-height: 52px;
-  margin: 10px 0 4px 0;
+  margin: 10px 0 6px 0;
   line-height: 1.15;
   display: flex;
   align-items: center;
@@ -182,10 +187,57 @@ p, li {
 }
 
 .member-card p {
-  margin: auto 0 0 0;
+  margin: 3px 0;
   font-size: 15px;
   color: #345;
   font-style: italic;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.phone-button {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background-color: #003366;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.whatsapp-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.whatsapp-icon {
+  width: 19px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.phone-button:hover {
+  background-color: #001f3f;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
 }
 
 .auth-box {
@@ -238,10 +290,11 @@ p, li {
   }
 
   .top-nav {
-    left: 15px;
-    right: 15px;
     top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
     justify-content: center;
+    width: 90%;
   }
 }
 
@@ -278,7 +331,7 @@ p, li {
   }
 
   .member-card {
-    height: 320px;
+    min-height: 370px;
   }
 
   .member-card img {
