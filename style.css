@@ -418,3 +418,94 @@ li {
     min-width: auto;
   }
 }
+.home-header {
+  background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
+  color: white;
+  padding: 105px 35px 60px 35px;
+  text-align: center;
+  position: relative;
+}
+
+.club-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.club-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 360px;
+  justify-content: center;
+}
+
+.club-logo {
+  width: 90px;
+  height: 90px;
+  background: white;
+  border-radius: 50%;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.club-left h1 {
+  font-size: 46px;
+  margin: 0;
+  color: white;
+  line-height: 1.1;
+}
+
+.club-left p {
+  font-size: 25px;
+  margin: 5px 0 0 0;
+  font-style: italic;
+  color: white;
+}
+
+.club-divider {
+  width: 3px;
+  height: 135px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.meeting-info {
+  text-align: left;
+  max-width: 560px;
+}
+
+.meeting-info p {
+  color: white;
+  font-size: 16px;
+  line-height: 1.35;
+  margin: 5px 0;
+}
+
+.meeting-info a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .club-hero {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .club-divider {
+    width: 80%;
+    height: 2px;
+  }
+
+  .club-left {
+    min-width: auto;
+  }
+
+  .meeting-info {
+    text-align: center;
+  }
+}
