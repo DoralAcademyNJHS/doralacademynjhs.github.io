@@ -292,6 +292,23 @@ li {
 .phone-button:hover {
   background-color: #001f3f;
 }
+.whatsapp-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.whatsapp-icon {
+  width: 19px;
+  height: 22px;
+  fill: currentColor;
+}
 
 .whatsapp-button:hover {
   background-color: #1ebe5d;
