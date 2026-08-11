@@ -250,4 +250,46 @@ li {
     height: 190px;
   }
 }
+.contact-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
 
+.phone-button {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background-color: #003366;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.whatsapp-button {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-button:hover {
+  background-color: #001f3f;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+}
