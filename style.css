@@ -23,12 +23,14 @@ header {
 .top-nav {
   position: absolute;
   top: 22px;
-  right: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   max-width: 950px;
+  width: 90%;
 }
 
 .top-nav a {
@@ -203,10 +205,12 @@ li {
   }
 
   .top-nav {
-    left: 15px;
-    right: 15px;
+    left: 50%;
+    right: auto;
     top: 62px;
+    transform: translateX(-50%);
     justify-content: center;
+    width: 90%;
   }
 }
 
