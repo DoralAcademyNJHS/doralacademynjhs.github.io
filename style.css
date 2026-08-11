@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   background: linear-gradient(180deg, #eef4fb 0%, #f7f9fc 100%);
   color: #222;
   margin: 0;
@@ -23,36 +25,33 @@ header {
 .top-nav {
   position: absolute;
   top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 24px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
   max-width: 950px;
-  width: 90%;
 }
 
 .top-nav a {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
   padding: 9px 14px;
   border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.top-nav a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-header h1 {
-  font-size: 50px;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-header p {
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0;
+  backdrop-filter: blur(8px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
 .hero-title-row {
@@ -68,6 +67,20 @@ header p {
   text-align: center;
 }
 
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 50px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  opacity: 0.95;
+}
+
 .home-logo {
   object-fit: contain;
   flex-shrink: 0;
@@ -79,33 +92,44 @@ header p {
   background-color: white;
   padding: 6px;
   border-radius: 50%;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
 }
 
 .doral-logo {
   width: auto;
   height: 90px;
   max-width: 130px;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
 }
 
 section {
-  background: white;
+  background: rgba(255, 255, 255, 0.92);
   margin: 28px auto;
   padding: 28px;
-  max-width: 900px;
+  max-width: 880px;
   border-radius: 16px;
   border: 1px solid rgba(0, 51, 102, 0.08);
   box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
 }
 
 h2 {
+  font-family: 'Playfair Display', Georgia, serif;
   color: #003366;
   font-size: 30px;
   margin-top: 0;
 }
 
-p,
-li {
+p, li {
   font-size: 17px;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 25px;
 }
 
 .board-light-blue {
@@ -114,35 +138,23 @@ li {
   border-radius: 20px;
 }
 
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
-  gap: 28px;
-  justify-content: center;
-  align-items: stretch;
-  margin-top: 25px;
-}
-
-.member-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  height: 100%;
-}
-
 .member-card {
-  min-height: 380px;
-  height: 100%;
-  box-sizing: border-box;
+  height: 330px;
   text-align: center;
   background: #f7fbff;
   padding: 14px;
   border-radius: 18px;
   border: 1px solid rgba(0, 51, 102, 0.12);
   box-shadow: 0 6px 18px rgba(0, 35, 70, 0.1);
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0, 35, 70, 0.18);
 }
 
 .member-card img {
@@ -157,10 +169,11 @@ li {
 }
 
 .member-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
   color: #003366;
   font-size: 21px;
   min-height: 52px;
-  margin: 10px 0 6px 0;
+  margin: 10px 0 4px 0;
   line-height: 1.15;
   display: flex;
   align-items: center;
@@ -169,34 +182,54 @@ li {
 }
 
 .member-card p {
-  margin: 3px 0;
+  margin: auto 0 0 0;
   font-size: 15px;
   color: #345;
   font-style: italic;
 }
 
-.contact-info {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  background-color: #003366;
+.auth-box {
+  background: white;
+  margin: 30px auto;
+  padding: 32px;
+  max-width: 460px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 7px 20px rgba(0, 35, 70, 0.12);
+}
+
+.auth-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #c8d3df;
+  border-radius: 9px;
+  font-size: 15px;
+  font-family: 'Lora', Georgia, serif;
+}
+
+.auth-box button {
+  background: linear-gradient(135deg, #003366 0%, #00509e 100%);
   color: white;
-  font-size: 13px;
-  font-weight: 700;
-  font-style: normal;
-  text-decoration: none;
+  border: none;
+  padding: 12px 22px;
+  margin: 10px 5px 0 5px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.role {
-  font-weight: 600;
-  color: #345;
+.auth-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 51, 102, 0.25);
 }
 
-.grade-note {
-  font-size: 14px;
-  color: #4b5f73;
-  font-style: italic;
+.auth-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #003366;
 }
 
 @media (max-width: 950px) {
@@ -205,12 +238,10 @@ li {
   }
 
   .top-nav {
-    left: 50%;
-    right: auto;
+    left: 15px;
+    right: 15px;
     top: 62px;
-    transform: translateX(-50%);
     justify-content: center;
-    width: 90%;
   }
 }
 
@@ -247,265 +278,10 @@ li {
   }
 
   .member-card {
-    min-height: 370px;
+    height: 320px;
   }
 
   .member-card img {
     height: 190px;
-  }
-}
-.contact-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.phone-button {
-  display: inline-block;
-  padding: 7px 12px;
-  border-radius: 6px;
-  background-color: #003366;
-  color: white;
-  font-family: Georgia, serif;
-  font-size: 13px;
-  font-weight: 700;
-  font-style: normal;
-  text-decoration: none;
-}
-
-.whatsapp-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #25D366;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.whatsapp-icon {
-  width: 19px;
-  height: 22px;
-  fill: currentColor;
-}
-
-.phone-button:hover {
-  background-color: #001f3f;
-}
-.whatsapp-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #25D366;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.whatsapp-icon {
-  width: 19px;
-  height: 22px;
-  fill: currentColor;
-}
-.njhs-meeting-box {
-  background: linear-gradient(135deg, #002b55, #003d73);
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 28px 34px;
-  border-radius: 18px;
-  max-width: 950px;
-  margin: 30px auto;
-  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.18);
-}
-
-.meeting-title {
-  font-size: 28px;
-  font-weight: 700;
-  border-right: 2px solid rgba(255, 255, 255, 0.6);
-  padding-right: 28px;
-  min-width: 230px;
-}
-
-.meeting-info p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.meeting-info a {
-  color: white;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-@media (max-width: 700px) {
-  .njhs-meeting-box {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .meeting-title {
-    border-right: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-    padding-right: 0;
-    padding-bottom: 14px;
-    min-width: auto;
-  }
-}
-
-.whatsapp-button:hover {
-  background-color: #1ebe5d;
-}section.njhs-meeting-box {
-  max-width: none !important;
-  width: 100% !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  box-sizing: border-box !important;
-  background: linear-gradient(135deg, #002b55, #003d73) !important;
-  color: white !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 28px !important;
-  padding: 24px 40px !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-.meeting-title {
-  font-size: 28px;
-  font-weight: 700;
-  border-right: 2px solid rgba(255, 255, 255, 0.6);
-  padding-right: 28px;
-  min-width: 230px;
-  text-align: center;
-}
-
-.meeting-info {
-  max-width: 720px;
-}
-
-.meeting-info p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.meeting-info a {
-  color: white;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-@media (max-width: 700px) {
-  section.njhs-meeting-box {
-    flex-direction: column !important;
-    text-align: center !important;
-    padding: 22px !important;
-  }
-
-  .meeting-title {
-    border-right: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-    padding-right: 0;
-    padding-bottom: 12px;
-    min-width: auto;
-  }
-}
-.home-header {
-  background: linear-gradient(135deg, #002b55 0%, #003d73 55%, #002b55 100%);
-  color: white;
-  padding: 105px 35px 60px 35px;
-  text-align: center;
-  position: relative;
-}
-
-.club-hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 35px;
-  max-width: 1050px;
-  margin: 0 auto;
-}
-
-.club-left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-width: 360px;
-  justify-content: center;
-}
-
-.club-logo {
-  width: 90px;
-  height: 90px;
-  background: white;
-  border-radius: 50%;
-  padding: 6px;
-  object-fit: contain;
-}
-
-.club-left h1 {
-  font-size: 46px;
-  margin: 0;
-  color: white;
-  line-height: 1.1;
-}
-
-.club-left p {
-  font-size: 25px;
-  margin: 5px 0 0 0;
-  font-style: italic;
-  color: white;
-}
-
-.club-divider {
-  width: 3px;
-  height: 135px;
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.meeting-info {
-  text-align: left;
-  max-width: 560px;
-}
-
-.meeting-info p {
-  color: white;
-  font-size: 16px;
-  line-height: 1.35;
-  margin: 5px 0;
-}
-
-.meeting-info a {
-  color: white;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-@media (max-width: 800px) {
-  .club-hero {
-    flex-direction: column;
-    gap: 22px;
-  }
-
-  .club-divider {
-    width: 80%;
-    height: 2px;
-  }
-
-  .club-left {
-    min-width: auto;
-  }
-
-  .meeting-info {
-    text-align: center;
   }
 }
