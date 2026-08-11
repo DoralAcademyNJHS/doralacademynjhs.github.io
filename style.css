@@ -339,3 +339,50 @@ p, li {
   font-style: normal;
   text-decoration: none;
 }
+.member-grid {
+  gap: 28px !important;
+  align-items: stretch !important;
+}
+
+.member-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block !important;
+  height: 100% !important;
+}
+
+.member-card-link:hover {
+  text-decoration: none !important;
+}
+
+.member-card {
+  min-height: 380px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  justify-content: flex-start !important;
+}
+
+.member-card h3 {
+  margin: 10px 0 6px 0 !important;
+}
+
+.member-card p {
+  margin: 3px 0 !important;
+}
+
+.contact-info {
+  display: inline-block !important;
+  margin-top: 10px !important;
+  padding: 7px 12px !important;
+  border-radius: 6px !important;
+  background-color: #003366 !important;
+  color: white !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+}
+
+.member-card-link:hover .contact-info {
+  background-color: #001f3f !important;
+}
