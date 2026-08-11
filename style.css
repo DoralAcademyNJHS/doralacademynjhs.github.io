@@ -250,34 +250,4 @@ li {
     height: 190px;
   }
 }
-.contact-dropdown {
-  margin-top: 10px;
-  text-align: center;
-}
 
-.contact-dropdown summary {
-  display: inline-block;
-  padding: 7px 14px;
-  border-radius: 6px;
-  background-color: #003366;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  font-style: normal;
-  cursor: pointer;
-  list-style: none;
-}
-
-.phone-link {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  background-color: #eaf4ff;
-  color: #003366;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  font-style: normal;
-  border: 1px solid #003366;
-}
