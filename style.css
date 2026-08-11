@@ -311,3 +311,31 @@ p, li {
 .member-card-link:hover .contact-info {
   background: #001f3f;
 }
+.member-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.member-card-link:hover {
+  text-decoration: none;
+}
+
+.member-card {
+  min-height: 370px;
+  box-sizing: border-box;
+}
+
+.contact-info {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background-color: #003366;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+}
