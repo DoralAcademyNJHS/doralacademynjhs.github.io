@@ -338,3 +338,28 @@ li {
     height: 190px;
   }
 }
+
+.phone-button {
+  display: inline-block;
+  min-width: 115px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background-color: #003366;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+}
+
+.phone-button:hover {
+  background-color: #001f3f;
+  font-size: 0;
+}
+
+.phone-button:hover::after {
+  content: attr(data-phone);
+  font-size: 13px;
+}
