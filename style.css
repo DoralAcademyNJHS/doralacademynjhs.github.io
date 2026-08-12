@@ -126,13 +126,20 @@ li {
   font-size: 17px;
 }
 
+.board-section {
+  max-width: 1150px;
+}
+
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 220px));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 28px;
   justify-content: center;
   align-items: stretch;
   margin-top: 25px;
+  background: #eaf4ff;
+  padding: 28px;
+  border-radius: 20px;
 }
 
 .board-light-blue {
@@ -142,7 +149,7 @@ li {
 }
 
 .member-card {
-  min-height: 380px;
+  min-height: 385px;
   height: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -154,6 +161,7 @@ li {
   transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -164,7 +172,7 @@ li {
 
 .member-card img {
   width: 100%;
-  height: 200px;
+  height: 210px;
   object-fit: cover;
   object-position: center;
   border-radius: 14px;
@@ -177,8 +185,8 @@ li {
   font-family: 'Playfair Display', Georgia, serif;
   color: #003366;
   font-size: 21px;
-  min-height: 52px;
-  margin: 10px 0 6px 0;
+  min-height: 50px;
+  margin: 8px 0 6px 0;
   line-height: 1.15;
   display: flex;
   align-items: center;
@@ -201,19 +209,6 @@ li {
   margin-top: 10px;
 }
 
-.phone-button {
-  display: inline-block;
-  padding: 7px 12px;
-  border-radius: 6px;
-  background-color: #003366;
-  color: white;
-  font-family: Georgia, serif;
-  font-size: 13px;
-  font-weight: 700;
-  font-style: normal;
-  text-decoration: none;
-}
-
 .whatsapp-button {
   width: 32px;
   height: 32px;
@@ -224,6 +219,7 @@ li {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .whatsapp-icon {
@@ -232,12 +228,41 @@ li {
   fill: currentColor;
 }
 
-.phone-button:hover {
-  background-color: #001f3f;
-}
-
 .whatsapp-button:hover {
   background-color: #1ebe5d;
+}
+
+.phone-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 118px !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: 6px !important;
+  background-color: #003366 !important;
+  color: white !important;
+  font-family: Georgia, serif !important;
+  font-size: 0 !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.phone-button::before {
+  content: "Contact";
+  font-size: 13px;
+}
+
+.phone-button:hover {
+  background-color: #001f3f !important;
+}
+
+.phone-button:hover::before {
+  content: attr(data-phone);
+  font-size: 13px;
 }
 
 .auth-box {
@@ -337,29 +362,4 @@ li {
   .member-card img {
     height: 190px;
   }
-}
-
-.phone-button {
-  display: inline-block;
-  min-width: 115px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  background-color: #003366;
-  color: white;
-  font-family: Georgia, serif;
-  font-size: 13px;
-  font-weight: 700;
-  font-style: normal;
-  text-decoration: none;
-  text-align: center;
-}
-
-.phone-button:hover {
-  background-color: #001f3f;
-  font-size: 0;
-}
-
-.phone-button:hover::after {
-  content: attr(data-phone);
-  font-size: 13px;
 }
