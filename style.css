@@ -163,6 +163,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  overflow: visible;
 }
 
 .member-card:hover {
@@ -207,6 +208,8 @@ li {
   align-items: center;
   gap: 8px;
   margin-top: 10px;
+  position: relative;
+  overflow: visible;
 }
 
 .whatsapp-button {
@@ -233,6 +236,7 @@ li {
 }
 
 .phone-button {
+  position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -243,26 +247,57 @@ li {
   background-color: #003366 !important;
   color: white !important;
   font-family: Georgia, serif !important;
-  font-size: 0 !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   font-style: normal !important;
   text-decoration: none !important;
   text-align: center !important;
   box-sizing: border-box !important;
+  overflow: visible !important;
 }
 
 .phone-button::before {
-  content: "Contact";
-  font-size: 13px;
+  content: attr(data-phone);
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background-color: #003366;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.phone-button::after {
+  content: "";
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  border-width: 7px 7px 0 7px;
+  border-style: solid;
+  border-color: #003366 transparent transparent transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .phone-button:hover {
   background-color: #001f3f !important;
 }
 
-.phone-button:hover::before {
-  content: attr(data-phone);
-  font-size: 13px;
+.phone-button:hover::before,
+.phone-button:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .auth-box {
