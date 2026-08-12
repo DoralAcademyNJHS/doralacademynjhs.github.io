@@ -149,7 +149,7 @@ li {
 }
 
 .member-card {
-  min-height: 385px;
+  min-height: 430px;
   height: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -193,6 +193,7 @@ li {
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .member-card p {
@@ -200,14 +201,17 @@ li {
   font-size: 15px;
   color: #345;
   font-style: italic;
+  flex-shrink: 0;
 }
 
 .contact-row {
+  margin-top: auto;
+  padding-top: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  width: 100%;
   position: relative;
   overflow: visible;
 }
@@ -391,7 +395,7 @@ li {
   }
 
   .member-card {
-    min-height: 370px;
+    min-height: 410px;
   }
 
   .member-card img {
