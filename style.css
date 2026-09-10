@@ -428,3 +428,12 @@ li {
   margin-top: 26px;
   margin-bottom: 8px;
 }
+.values-image {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 20px auto 30px auto;
+  border-radius: 14px;
+  object-fit: contain;
+}
