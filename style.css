@@ -528,3 +528,12 @@ li {
     font-size: 18px;
   }
 }
+
+.staff-photo {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  margin-bottom: 35px;
+}
