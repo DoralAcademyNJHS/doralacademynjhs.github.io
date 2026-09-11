@@ -520,3 +520,13 @@ li {
     font-size: 18px;
   }
 }
+
+.powerpoint-cover {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  margin: 0 auto 22px auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 35, 70, 0.14);
+}
