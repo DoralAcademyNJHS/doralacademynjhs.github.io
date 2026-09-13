@@ -4,6 +4,34 @@
   <title>Contact Us - Doral Academy NJHS</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
+
+  <style>
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      background: #f7fbff;
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 51, 102, 0.12);
+      box-shadow: 0 5px 14px rgba(0, 35, 70, 0.08);
+      font-size: 18px;
+    }
+
+    .contact-link {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .contact-link:hover {
+      color: #001f3f;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,12 +42,36 @@
     </nav>
 
     <h1>Contact Us</h1>
-    <p>Get in touch with Doral Academy NJHS</p>
+    <p>Doral Academy National Junior Honor Society</p>
   </header>
 
   <section>
-    <h2>Contact Us</h2>
-    <p>Email: njhsdoralacademy@gmail.com</p>
+    <h2>Contact Information</h2>
+
+    <div class="contact-list">
+
+      <div class="contact-item">
+        <strong>Email:</strong>
+        <a href="mailto:njhsdoralacademy@gmail.com" class="contact-link">
+          njhsdoralacademy@gmail.com
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <strong>Instagram:</strong>
+        <a href="https://www.instagram.com/doralnjhs/" target="_blank" class="contact-link">
+          @doralnjhs
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <strong>Linktree:</strong>
+        <a href="https://linktr.ee/doralacademynjhs" target="_blank" class="contact-link">
+          Doral Academy NJHS Linktree
+        </a>
+      </div>
+
+    </div>
   </section>
 
 </body>
