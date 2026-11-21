@@ -530,3 +530,28 @@ li {
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 35, 70, 0.14);
 }
+
+/* Navigation buttons - clean rectangular hover */
+
+.top-nav a {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transition: background-color 0.25s ease, color 0.25s ease !important;
+}
+
+.top-nav a:hover {
+  background-color: #001a36 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.top-nav a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
