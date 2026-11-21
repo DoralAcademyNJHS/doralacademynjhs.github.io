@@ -1,9 +1,81 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Doral Academy NJHS</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
+
+  <style>
+    .about-expandable {
+      margin: 22px 0;
+      border: 1px solid #d5e3f0;
+      border-radius: 14px;
+      background: #f7fbff;
+      overflow: hidden;
+    }
+
+    .about-expandable summary {
+      padding: 20px 24px;
+      cursor: pointer;
+      color: #003366;
+      font-size: 22px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .about-expandable summary:hover {
+      background: #e2f0ff;
+    }
+
+    .about-expandable summary:focus-visible {
+      outline: 2px solid #003366;
+      outline-offset: -4px;
+    }
+
+    .about-expandable[open] summary {
+      background: #eaf4ff;
+    }
+
+    .about-expandable-content {
+      padding: 8px 24px 24px;
+    }
+
+    .about-expandable-content p {
+      margin: 16px 0;
+      line-height: 1.8;
+    }
+
+    .about-expandable-content h3 {
+      color: #003366;
+      font-size: 22px;
+      margin-top: 25px;
+      margin-bottom: 8px;
+    }
+
+    .about-values-image {
+      display: block;
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      margin: 20px auto 28px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .about-expandable summary {
+        font-size: 19px;
+        padding: 16px;
+      }
+
+      .about-expandable-content {
+        padding: 8px 16px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -18,23 +90,191 @@
   </header>
 
   <section>
+
     <h2>Mission Statement</h2>
 
     <p>
-      The National Honor Society (NHS) and National Junior Honor Society (NJHS)
-      are the nation's premier organizations established to recognize outstanding
-      high school and middle level students. More than just an honor roll, NHS
-      and NJHS serve to honor those students who have demonstrated excellence in
-      the areas of Scholarship, Leadership, Service, and Character, and Citizenship
-      for NJHS. These characteristics have been associated with membership in the
-      organization since their beginnings in 1921 and 1929.
+      The National Honor Society (NHS) and National Junior Honor Society
+      (NJHS) are the nation's premier organizations established to
+      recognize outstanding high school and middle level students.
+      More than just an honor roll, NHS and NJHS serve to honor those
+      students who have demonstrated excellence in the areas of
+      Scholarship, Leadership, Service, and Character (and Citizenship
+      for NJHS). These characteristics have been associated with
+      membership in the organization since their beginnings in 1921
+      and 1929.
     </p>
 
     <p>
-      Today, it is estimated that more than one million students participate in
-      activities of the NHS and NJHS. NHS and NJHS chapters are found in all 50
-      states, the District of Columbia, Puerto Rico, many U.S. Territories, and
-      Canada. Chapter membership not only recognizes students for their
-      accomplishments, but challenges them to develop further through active
-      involevement in school activities and community service.
+      Today, it is estimated that more than one million students
+      participate in activities of the NHS and NJHS. NHS and NJHS
+      chapters are found in all 50 states, the District of Columbia,
+      Puerto Rico, many U.S. Territories, and Canada. Chapter
+      membership not only recognizes students for their
+      accomplishments, but challenges them to develop further
+      through active involvement in school activities and
+      community service.
     </p>
+
+  </section>
+
+  <section>
+
+    <h2>Learn More About NJHS</h2>
+
+    <p>
+      Explore the values and history behind the
+      National Junior Honor Society.
+    </p>
+
+    <!-- OUR VALUES -->
+
+    <details class="about-expandable">
+      <summary>Our Values</summary>
+
+      <div class="about-expandable-content">
+
+        <img src="njhs-values.png"
+             alt="NJHS Values"
+             class="about-values-image">
+
+        <p>
+          NJHS is more than just an honor roll. The Honor Society
+          chapter establishes rules for membership that are based
+          upon a student's NHS/NJHS outstanding performance in
+          the areas of scholarship, service, leadership, and
+          character (plus citizenship for NJHS). These criteria
+          for selection form the foundation upon which the
+          organization and its activities are built.
+        </p>
+
+        <h3>Scholarship</h3>
+
+        <p>
+          Students who have a standard of excellence, or a higher
+          cumulative average set by the local school's Faculty
+          Council, meet the scholarship requirement for membership.
+          These students are then eligible for consideration on
+          the basis of service, leadership, and character
+          (and citizenship for NJHS).
+        </p>
+
+        <h3>Service</h3>
+
+        <p>
+          This quality is defined through the voluntary
+          contributions made by a student to the school or
+          community, done without compensation and with a
+          positive, courteous, and enthusiastic spirit.
+        </p>
+
+        <h3>Leadership</h3>
+
+        <p>
+          Student leaders are those who are resourceful,
+          good problem solvers, promoters of school activities,
+          idea-contributors, dependable, and persons who
+          exemplify positive attitudes about life.
+          Leadership experiences can be drawn from school
+          or community activities while working with or
+          for others.
+        </p>
+
+        <h3>Character</h3>
+
+        <p>
+          The student of good character upholds principles
+          of morality and ethics, is cooperative, demonstrates
+          high standards of honesty and reliability, shows
+          courtesy, concern, and respect for others, and
+          generally maintains a good and clean lifestyle.
+        </p>
+
+        <h3>Citizenship</h3>
+
+        <p>
+          The student who demonstrates citizenship understands
+          the importance of civic involvement, has a high
+          regard for freedom, justice, and democracy, and
+          demonstrates mature participation and responsibility
+          through involvement with such activities as scouting,
+          community organizations, and school clubs.
+        </p>
+
+      </div>
+    </details>
+
+    <!-- HISTORY -->
+
+    <details class="about-expandable">
+      <summary>History of NJHS</summary>
+
+      <div class="about-expandable-content">
+
+        <p>
+          The National Junior Honor Society (NJHS) was
+          established in 1929.
+        </p>
+
+        <p>
+          In 1921, NASSP officially established the National
+          Honor Society. Though many local and regional honor
+          societies existed prior to 1921, no nationwide
+          organization had been founded. Under the leadership
+          of Dr. Edward Rynearson, principal of the Fifth
+          Avenue High School, Pittsburgh, Pa., the organization
+          grew from the original Alpha Chapter at the Fifth
+          Avenue School to more than 1,000 chapters by 1930.
+          Equipped with a constitution, an emblem and motto,
+          and a group of dedicated principals as coordinators,
+          the new NHS organization quickly developed into one
+          of the country's leading educational groups.
+        </p>
+
+        <p>
+          Four main purposes have guided chapters of NJHS
+          from the beginning: "To create enthusiasm for
+          scholarship, to stimulate a desire to render service,
+          to promote leadership, and to develop character in
+          the students of secondary schools."
+          (from the NJHS Constitution)
+          These purposes also translate into the criteria used
+          for membership selection in each local chapter.
+        </p>
+
+        <p>
+          In 1929, the NASSP turned its attention to middle
+          level schools and expanded the scope of its concern
+          for recognizing outstanding students by establishing
+          the National Junior Honor Society (NJHS).
+          With its own constitution and handbook, NJHS has
+          established criteria that parallel the emphases
+          found in the NHS with an added purpose to encourage
+          citizenship. (Additional information on establishing
+          a chapter of the NJHS is available upon request
+          from the NASSP Department of Student Activities.)
+        </p>
+
+        <p>
+          Both the NHS and NJHS are sponsored and supervised
+          by NASSP which appoints a National Council -
+          the controlling body of NHS. In addition, National
+          Council members also serve as the selection committee
+          for the prestigious NHS Scholarship which has been
+          administered annually in schools with NHS chapters
+          since 1946.
+        </p>
+
+        <p>
+          The day-to-day administration of NHS national
+          concerns is handled by the NASSP Department
+          of Student Activities, headquartered in Reston, VA.
+        </p>
+
+      </div>
+    </details>
+
+  </section>
+
+</body>
+</html>
