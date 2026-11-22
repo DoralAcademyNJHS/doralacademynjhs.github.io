@@ -555,3 +555,93 @@ li {
   outline: 2px solid white;
   outline-offset: 3px;
 }
+
+
+/* ===================================
+   HOMEPAGE - LARGE NJHS WATERMARK
+   =================================== */
+
+.home-page .home-header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.home-page .home-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("njhs-circle-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 620px auto;
+
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep the navigation, text, and logos above the watermark */
+
+.home-page .home-header .hero-title-row {
+  position: relative;
+  z-index: 1;
+}
+
+.home-page .home-header .top-nav a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Smaller watermark on phones */
+
+@media (max-width: 700px) {
+  .home-page .home-header::before {
+    background-size: 340px auto;
+  }
+}
+
+
+/* ===================================
+   CALENDAR - DECEMBER 2 ONLY
+   =================================== */
+
+/* Remove the watermark from the entire calendar */
+
+.njhs-calendar-page .calendar-content::before {
+  display: none !important;
+}
+
+/* Watermark inside the December 2 square */
+
+.njhs-calendar-page .calendar-day.watermark-day {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* NJHS logo inside that square */
+
+.njhs-calendar-page .calendar-day.watermark-day::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("njhs-circle-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep 2A and NJHS text readable */
+
+.njhs-calendar-page .calendar-day.watermark-day > span {
+  position: relative;
+  z-index: 1;
+}
