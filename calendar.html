@@ -1,12 +1,386 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendar - Doral Academy NJHS</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
+
+  <style>
+    /* Calendar page styling */
+
+    .school-calendar-page .calendar-section {
+      max-width: 1240px;
+      box-sizing: border-box;
+    }
+
+    .school-calendar-page .calendar-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .school-calendar-page .calendar-toolbar h2 {
+      margin: 0;
+    }
+
+    .school-calendar-page .calendar-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .school-calendar-page .calendar-nav button {
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 15px;
+      background: #003366;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 15px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .school-calendar-page .calendar-nav button:hover {
+      background: #001a36;
+    }
+
+    .school-calendar-page button:focus-visible {
+      outline: 3px solid #3aa5ff;
+      outline-offset: 2px;
+    }
+
+    .school-calendar-page .calendar-instructions {
+      margin: 0 0 20px;
+      font-size: 16px;
+    }
+
+    .school-calendar-page .months {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .school-calendar-page .month {
+      min-width: 0;
+      border: 2px solid #202020;
+      background: white;
+      font-family: Arial, Helvetica, sans-serif;
+      box-shadow: 0 4px 12px rgba(0, 35, 70, 0.10);
+    }
+
+    .school-calendar-page .month-title {
+      background: #808080;
+      color: #fff;
+      font-weight: 800;
+      font-size: clamp(16px, 1.8vw, 24px);
+      line-height: 1.2;
+      padding: 10px 5px;
+      text-align: center;
+      border-bottom: 2px solid #202020;
+      text-transform: uppercase;
+    }
+
+    .school-calendar-page .month-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .school-calendar-page .weekday,
+    .school-calendar-page .school-day,
+    .school-calendar-page .blank-day {
+      box-sizing: border-box;
+      min-width: 0;
+      border-right: 1px solid #202020;
+      border-bottom: 1px solid #202020;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .school-calendar-page .month-grid > :nth-child(5n) {
+      border-right: 0;
+    }
+
+    .school-calendar-page .weekday {
+      min-height: 39px;
+      background: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      color: #000;
+    }
+
+    .school-calendar-page .school-day,
+    .school-calendar-page .blank-day {
+      min-height: 58px;
+    }
+
+    .school-calendar-page .school-day {
+      width: 100%;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(16px, 1.75vw, 24px);
+      font-weight: 800;
+      color: #000;
+      border-top: 0;
+      border-left: 0;
+      padding: 4px 2px;
+      cursor: pointer;
+      transition: box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .school-calendar-page .school-day:hover {
+      box-shadow: inset 0 0 0 3px #003366;
+      z-index: 1;
+      filter: brightness(0.96);
+    }
+
+    .school-calendar-page .school-day.selected {
+      box-shadow: inset 0 0 0 4px #003366;
+      z-index: 1;
+    }
+
+    .school-calendar-page .blank-day {
+      background: #fff;
+    }
+
+    /* School calendar colors */
+
+    .school-calendar-page .school-day.planning {
+      background: #00c8ee;
+    }
+
+    .school-calendar-page .school-day.planning-no-opt {
+      background: #c6a0d6;
+    }
+
+    .school-calendar-page .school-day.holiday {
+      background: #91cf50;
+    }
+
+    .school-calendar-page .school-day.recess {
+      background: #ffbf00;
+    }
+
+    .school-calendar-page .school-day.grading {
+      background: #f31111;
+    }
+
+    .school-calendar-page .school-day.early-release {
+      background: #f68ef2;
+    }
+
+    .school-calendar-page .school-day.new-teachers {
+      background: #f7ea00;
+    }
+
+    .school-calendar-page .school-day.meeting::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      right: 5px;
+      width: 7px;
+      height: 7px;
+      background: #003366;
+      border-radius: 50%;
+    }
+
+    /* Selected date details */
+
+    .school-calendar-page .calendar-detail {
+      margin: 23px 0 0;
+      padding: 17px 20px;
+      border-radius: 10px;
+      border-left: 5px solid #003366;
+      background: #eaf4ff;
+      line-height: 1.6;
+    }
+
+    .school-calendar-page .calendar-detail strong {
+      color: #003366;
+      font-size: 18px;
+    }
+
+    .school-calendar-page .calendar-detail p {
+      margin: 5px 0 0;
+      font-size: 15px;
+    }
+
+    /* Calendar legend */
+
+    .school-calendar-page .calendar-legend {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px 22px;
+      align-items: center;
+    }
+
+    .school-calendar-page .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .school-calendar-page .legend-swatch {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #202020;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .school-calendar-page .legend-swatch.planning {
+      background: #00c8ee;
+    }
+
+    .school-calendar-page .legend-swatch.planning-no-opt {
+      background: #c6a0d6;
+    }
+
+    .school-calendar-page .legend-swatch.holiday {
+      background: #91cf50;
+    }
+
+    .school-calendar-page .legend-swatch.recess {
+      background: #ffbf00;
+    }
+
+    .school-calendar-page .legend-swatch.grading {
+      background: #f31111;
+    }
+
+    .school-calendar-page .legend-swatch.early-release {
+      background: #f68ef2;
+    }
+
+    .school-calendar-page .legend-swatch.new-teachers {
+      background: #f7ea00;
+    }
+
+    /* NJHS reminders */
+
+    .school-calendar-page .calendar-reminder {
+      margin-top: 22px;
+      border: 1px solid #d2dfec;
+      background: #f7fbff;
+      border-radius: 12px;
+      padding: 18px 22px;
+    }
+
+    .school-calendar-page .calendar-reminder h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #003366;
+      margin: 0 0 7px;
+      font-size: 23px;
+    }
+
+    .school-calendar-page .calendar-reminder p {
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    .school-calendar-page .calendar-reminder a {
+      color: #004d97;
+    }
+
+    /* Tablet layout */
+
+    @media (max-width: 1040px) {
+      .school-calendar-page .months {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .school-calendar-page .month-title {
+        font-size: 23px;
+      }
+
+      .school-calendar-page .school-day {
+        font-size: 23px;
+      }
+    }
+
+    /* Mobile layout */
+
+    @media (max-width: 700px) {
+      .school-calendar-page section {
+        box-sizing: border-box;
+        margin: 15px 9px;
+        padding: 18px 12px;
+      }
+
+      .school-calendar-page .calendar-toolbar {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .school-calendar-page .calendar-toolbar h2 {
+        width: 100%;
+        font-size: 26px;
+      }
+
+      .school-calendar-page .calendar-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .school-calendar-page .calendar-nav button {
+        font-size: 14px;
+        padding: 10px 13px;
+      }
+
+      .school-calendar-page .months {
+        gap: 20px;
+      }
+
+      .school-calendar-page .school-day,
+      .school-calendar-page .blank-day {
+        min-height: 52px;
+      }
+
+      .school-calendar-page .school-day {
+        font-size: 21px;
+      }
+
+      .school-calendar-page .weekday {
+        font-size: 19px;
+        min-height: 34px;
+      }
+
+      .school-calendar-page .legend-item {
+        font-size: 12px;
+      }
+
+      .school-calendar-page .calendar-detail {
+        padding: 13px 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .school-calendar-page .school-day,
+      .school-calendar-page .calendar-nav button {
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="school-calendar-page">
 
   <header>
     <nav class="top-nav">
@@ -14,15 +388,498 @@
     </nav>
 
     <h1>Calendar</h1>
-    <p>Meetings, service events, and important dates</p>
+    <p>Doral Academy NJHS · 2026–2027</p>
   </header>
 
-  <section>
-    <h2>Calendar</h2>
-    <p>
-      Upcoming meetings, service opportunities, events, and deadlines will be posted here.
-    </p>
-  </section>
+  <main>
+    <section class="calendar-section">
+
+      <div class="calendar-toolbar">
+        <h2>School Calendar</h2>
+
+        <div class="calendar-nav">
+          <button id="previous-month" type="button">
+            ← Previous
+          </button>
+
+          <button id="next-month" type="button">
+            Next →
+          </button>
+        </div>
+      </div>
+
+      <p class="calendar-instructions">
+        Three months are shown at a time.
+        Use the arrows to move one month backward or forward.
+        Select a school day to see its details.
+      </p>
+
+      <div class="months" id="months" aria-live="polite"></div>
+
+      <div class="calendar-detail"
+           id="calendar-detail"
+           aria-live="polite">
+
+        <strong>
+          January 14, 2027 — Deadline (14A)
+        </strong>
+
+        <p>
+          Complete 2 NJHS events and 2 fundraisers by this date.
+        </p>
+      </div>
+
+      <!-- Calendar legend -->
+
+      <div class="calendar-legend">
+
+        <div class="legend-item">
+          <span class="legend-swatch new-teachers"></span>
+          New Teachers Report
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch planning"></span>
+          Teacher Planning Day
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch planning-no-opt"></span>
+          Teacher Planning Day NO OPT
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch holiday"></span>
+          Legal Holiday
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch recess"></span>
+          Recess Day
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch grading"></span>
+          Beginning/End of Grading Period
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-swatch early-release"></span>
+          Early Release Day
+        </div>
+
+      </div>
+
+      <!-- NJHS reminders -->
+
+      <div class="calendar-reminder">
+        <h3>NJHS Reminders</h3>
+
+        <p>
+          <strong>January 14, 2027 (14A):</strong>
+          Deadline to complete 2 events and 2 fundraisers.
+        </p>
+
+        <p>
+          <strong>Club fee:</strong>
+          The $15 club fee deadline has passed.
+        </p>
+
+        <p>
+          Questions?
+          <a href="mailto:njhsdoralacademy@gmail.com">
+            Email NJHS
+          </a>
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    // A/B school day codes from the provided calendars.
+
+    const abCodes = {
+      '2026-11':
+        '2B 4A 5B 6A 9B 10A 12B 13A 16B 17A 18B 19A 20B 30A',
+
+      '2026-12':
+        '1B 2A 3B 4A 7B 8A 9B 10A 11B 14A 15B 16A 17B',
+
+      '2027-01':
+        '4A 5B 6A 7B 8A 11B 12A 13B 14A 19B 20A 21B 22A 25B 26A 27B 28A 29B'
+    };
+
+    // School calendar colors and important dates.
+
+    const schoolEvents = {
+      '2026-11-03': {
+        type: 'planning-no-opt',
+        note: 'Teacher Planning Day — NO OPT'
+      },
+
+      '2026-11-11': {
+        type: 'holiday',
+        note: 'Legal holiday'
+      },
+
+      '2026-11-23': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-11-24': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-11-25': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-11-26': {
+        type: 'holiday',
+        note: 'Legal holiday'
+      },
+
+      '2026-11-27': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-18': {
+        type: 'planning',
+        note: 'Teacher Planning Day'
+      },
+
+      '2026-12-21': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-22': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-23': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-24': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-25': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-28': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-29': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-30': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2026-12-31': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2027-01-01': {
+        type: 'recess',
+        note: 'Recess day'
+      },
+
+      '2027-01-14': {
+        type: 'grading',
+        note: 'NJHS deadline: Complete 2 events and 2 fundraisers. Beginning/end of grading period.'
+      },
+
+      '2027-01-15': {
+        type: 'planning',
+        note: 'Teacher Planning Day'
+      },
+
+      '2027-01-18': {
+        type: 'holiday',
+        note: 'Legal holiday'
+      },
+
+      '2027-01-19': {
+        type: 'grading',
+        note: 'Beginning/end of grading period'
+      }
+    };
+
+    // NJHS chapter dates.
+
+    const chapterEvents = {
+      '2026-12-02': 'NJHS monthly meeting'
+    };
+
+    const codes = {};
+
+    Object.entries(abCodes).forEach(([month, value]) => {
+      value.split(' ').forEach(item => {
+        const parts = item.match(/^(\d+)([AB])$/);
+
+        if (parts) {
+          codes[
+            month + '-' + parts[1].padStart(2, '0')
+          ] = parts[2];
+        }
+      });
+    });
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+
+    const container = document.getElementById('months');
+
+    const detail = document.getElementById('calendar-detail');
+
+    // First three months shown:
+    // November 2026, December 2026, January 2027.
+
+    let firstMonth = new Date(2026, 10, 1);
+
+    let selectedDate = '';
+
+    function dateKey(year, month, day) {
+      return (
+        year + '-' +
+        String(month + 1).padStart(2, '0') + '-' +
+        String(day).padStart(2, '0')
+      );
+    }
+
+    function addMonths(date, count) {
+      return new Date(
+        date.getFullYear(),
+        date.getMonth() + count,
+        1
+      );
+    }
+
+    function showDetails(key, year, month, day) {
+      const schedule = schoolEvents[key];
+      const club = chapterEvents[key];
+      const code = codes[key];
+
+      const heading = document.createElement('strong');
+
+      heading.textContent =
+        monthNames[month] + ' ' + day + ', ' + year +
+        (code ? ' (' + day + code + ')' : '');
+
+      const description = document.createElement('p');
+
+      let message = [];
+
+      if (schedule) {
+        message.push(schedule.note);
+      }
+
+      if (club) {
+        message.push(club);
+      }
+
+      if (!message.length) {
+        message.push(
+          code
+            ? 'Regular school day — ' + code + ' day.'
+            : 'No NJHS activity listed for this date.'
+        );
+      }
+
+      description.textContent = message.join(' • ');
+
+      detail.replaceChildren(heading, description);
+
+      selectedDate = key;
+
+      container.querySelectorAll('.school-day').forEach(button => {
+        const active = button.dataset.date === key;
+
+        button.classList.toggle('selected', active);
+
+        button.setAttribute(
+          'aria-pressed',
+          String(active)
+        );
+      });
+    }
+
+    function buildMonth(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+
+      const monthDiv = document.createElement('div');
+      monthDiv.className = 'month';
+
+      const heading = document.createElement('div');
+      heading.className = 'month-title';
+      heading.textContent = monthNames[month] + ' ' + year;
+
+      monthDiv.appendChild(heading);
+
+      const grid = document.createElement('div');
+      grid.className = 'month-grid';
+
+      grid.setAttribute('role', 'group');
+      grid.setAttribute(
+        'aria-label',
+        monthNames[month] + ' ' + year
+      );
+
+      ['M', 'T', 'W', 'T', 'F'].forEach((label, index) => {
+        const weekday = document.createElement('div');
+
+        weekday.className = 'weekday';
+        weekday.textContent = label;
+
+        weekday.setAttribute(
+          'aria-label',
+          ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][index]
+        );
+
+        grid.appendChild(weekday);
+      });
+
+      const firstWeekday =
+        (new Date(year, month, 1).getDay() + 6) % 7;
+
+      // Monday = 0.
+      // If the month starts on a weekend,
+      // begin with the following Monday.
+
+      const monday =
+        firstWeekday >= 5
+          ? 8 - firstWeekday
+          : 1 - firstWeekday;
+
+      const daysInMonth =
+        new Date(year, month + 1, 0).getDate();
+
+      const weeks =
+        Math.ceil((daysInMonth - monday + 1) / 7);
+
+      for (let week = 0; week < weeks; week++) {
+        for (let weekday = 0; weekday < 5; weekday++) {
+          const day = monday + week * 7 + weekday;
+
+          if (day < 1 || day > daysInMonth) {
+            const empty = document.createElement('div');
+
+            empty.className = 'blank-day';
+            empty.setAttribute('aria-hidden', 'true');
+
+            grid.appendChild(empty);
+            continue;
+          }
+
+          const key = dateKey(year, month, day);
+
+          const schedule = schoolEvents[key] || {};
+
+          const code = codes[key] || '';
+
+          const button = document.createElement('button');
+
+          button.type = 'button';
+          button.className = 'school-day';
+
+          if (schedule.type) {
+            button.classList.add(schedule.type);
+          }
+
+          if (chapterEvents[key]) {
+            button.classList.add('meeting');
+          }
+
+          if (selectedDate === key) {
+            button.classList.add('selected');
+          }
+
+          button.textContent = day + code;
+
+          button.dataset.date = key;
+
+          button.setAttribute(
+            'aria-label',
+            monthNames[month] + ' ' + day + ', ' + year +
+            (code ? ', ' + code + ' day' : '') +
+            (schedule.note ? ', ' + schedule.note : '') +
+            (chapterEvents[key] ? ', ' + chapterEvents[key] : '')
+          );
+
+          button.setAttribute(
+            'aria-pressed',
+            String(selectedDate === key)
+          );
+
+          button.addEventListener('click', () => {
+            showDetails(key, year, month, day);
+          });
+
+          grid.appendChild(button);
+        }
+      }
+
+      monthDiv.appendChild(grid);
+
+      return monthDiv;
+    }
+
+    function renderCalendar() {
+      container.replaceChildren();
+
+      for (let i = 0; i < 3; i++) {
+        container.appendChild(
+          buildMonth(addMonths(firstMonth, i))
+        );
+      }
+    }
+
+    document.getElementById('previous-month')
+      .addEventListener('click', () => {
+        firstMonth = addMonths(firstMonth, -1);
+        renderCalendar();
+      });
+
+    document.getElementById('next-month')
+      .addEventListener('click', () => {
+        firstMonth = addMonths(firstMonth, 1);
+        renderCalendar();
+      });
+
+    renderCalendar();
+  </script>
 
 </body>
 </html>
