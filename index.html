@@ -12,71 +12,53 @@
 
   <style>
 
-    /* HOMEPAGE ONLY */
+    /* HOMEPAGE DESIGN */
 
     .home-page .title-text h1 span {
       display: inline;
     }
 
-    /* LARGE NJHS WATERMARK IN HEADER */
+    /* REMOVE ALL OLD REPEATED WATERMARKS */
 
-    .home-page .home-header {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
+    .home-page .home-header::before,
+    .home-page .watermark-section::before {
+      content: none !important;
+      display: none !important;
     }
 
-    .home-page .home-header::before {
+    /* ONE LARGE WATERMARK BEHIND MAIN CONTENT */
+
+    .home-page main {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .home-page main::before {
       content: "";
       position: absolute;
       inset: 0;
 
       background-image: url("njhs-circle-logo.png");
-      background-position: center;
+      background-position: center center;
       background-repeat: no-repeat;
-      background-size: 570px auto;
+      background-size: 760px auto;
 
-      opacity: 0.22;
-      mix-blend-mode: multiply;
+      opacity: 0.065;
       pointer-events: none;
-      z-index: 0;
-    }
-
-    .home-page .home-header > * {
-      position: relative;
       z-index: 1;
     }
+
+    /* KEEP TEXT READABLE ABOVE WATERMARK */
+
+    .home-page main > section > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* PRESERVE DESKTOP NAVIGATION */
 
     .home-page .home-header .top-nav {
       position: absolute;
-    }
-
-    /* WATERMARK BEHIND HOMEPAGE SECTIONS */
-
-    .home-page .watermark-section {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    .home-page .watermark-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      background-image: url("njhs-circle-logo.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 500px auto;
-
-      opacity: 0.09;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .home-page .watermark-section > * {
-      position: relative;
-      z-index: 1;
     }
 
     /* ANNOUNCEMENT BULLETS */
@@ -96,13 +78,12 @@
       color: #003366;
     }
 
-    .home-page .announcement-list a,
     .home-page .calendar-link {
       color: #004b91;
       font-weight: 600;
     }
 
-    /* MOBILE LAYOUT */
+    /* MOBILE DESIGN */
 
     @media (max-width: 700px) {
 
@@ -112,15 +93,13 @@
         box-sizing: border-box;
       }
 
-      .home-page .home-header::before {
-        background-size: 330px auto;
+      /* SAME SINGLE WATERMARK, SMALLER ON PHONES */
+
+      .home-page main::before {
+        background-size: 360px auto;
       }
 
-      .home-page .watermark-section::before {
-        background-size: 310px auto;
-      }
-
-      /* NAVIGATION: 3 LINKS THEN 2 LINKS */
+      /* NAVIGATION */
 
       .home-page .home-header .top-nav {
         position: relative;
@@ -208,7 +187,7 @@
         margin: 0 auto;
       }
 
-      /* MOBILE CONTENT BOXES */
+      /* CONTENT SECTIONS */
 
       .home-page section {
         box-sizing: border-box;
@@ -236,7 +215,7 @@
 
 <body class="home-page">
 
-  <!-- HEADER -->
+  <!-- HEADER - NO WATERMARK -->
 
   <header class="home-header">
 
@@ -260,9 +239,7 @@
 
       <div class="title-text">
 
-        <h1>
-          Doral Academy <span>NJHS</span>
-        </h1>
+        <h1>Doral Academy <span>NJHS</span></h1>
 
         <p>
           Scholarship • Leadership • Service • Character • Citizenship
@@ -280,28 +257,28 @@
 
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT - ONE BACKGROUND WATERMARK -->
 
   <main>
 
     <!-- WELCOME -->
 
-    <section class="watermark-section">
+    <section>
 
       <h2>Welcome</h2>
 
       <p>
-        Welcome to the Doral Academy National Junior Honor Society
-        website. This site shares chapter announcements, upcoming
-        meetings, service opportunities, leadership updates, and
-        important information for members and families.
+        Welcome to the Doral Academy National Junior Honor
+        Society website. This site shares chapter announcements,
+        upcoming meetings, service opportunities, leadership
+        updates, and important information for members and families.
       </p>
 
     </section>
 
     <!-- ANNOUNCEMENTS -->
 
-    <section class="watermark-section">
+    <section>
 
       <h2>Announcements</h2>
 
@@ -313,8 +290,7 @@
 
         <li>
           <strong>$15 NJHS Club Fee:</strong>
-          Payment was due
-          <strong>November 14, 2026</strong>,
+          Payment was due <strong>November 14, 2026</strong>,
           and the deadline has passed. If you have not paid,
           please contact the NJHS sponsor about next steps.
         </li>
@@ -323,16 +299,14 @@
           <strong>2 Service Events Required:</strong>
           Every member must complete
           <strong>two NJHS events</strong>
-          by
-          <strong>January 14, 2027 (14A)</strong>.
+          by <strong>January 14, 2027 (14A)</strong>.
         </li>
 
         <li>
           <strong>2 Fundraisers Required:</strong>
           Every member must complete
           <strong>two fundraisers</strong>
-          by
-          <strong>January 14, 2027 (14A)</strong>.
+          by <strong>January 14, 2027 (14A)</strong>.
         </li>
 
         <li>
@@ -346,9 +320,8 @@
           NJHS meetings are generally held on the first
           Wednesday of each month from September through May.
           The October meeting was held on
-          <strong>October 14</strong>
-          instead, and there is
-          <strong>no June meeting</strong>.
+          <strong>October 14</strong> instead,
+          and there is <strong>no June meeting</strong>.
         </li>
 
       </ul>
@@ -365,7 +338,7 @@
 
     <!-- CONTACT -->
 
-    <section class="watermark-section">
+    <section>
 
       <h2>Contact</h2>
 
