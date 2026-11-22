@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,9 @@
 
   <style>
 
-    /* ==============================
+    /* =========================
        CALENDAR PAGE
-       ============================== */
+       ========================= */
 
     .njhs-calendar-page {
       overflow-x: hidden;
@@ -26,19 +27,17 @@
       box-sizing: border-box;
       padding: 22px;
       margin: 26px auto;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255,255,255,0.96);
     }
 
-    /* ==============================
-       CALENDAR HEADER AND BUTTONS
-       ============================== */
+    /* CALENDAR HEADER */
 
     .calendar-top {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     .calendar-top h2 {
@@ -47,10 +46,12 @@
 
     .calendar-actions {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
     }
+
+    /* LIGHT INACTIVE BUTTON */
 
     .calendar-actions button {
       font: 700 14px Arial, sans-serif;
@@ -64,14 +65,14 @@
                   color 0.2s ease;
     }
 
-    /* Active button is dark */
+    /* DARK ACTIVE BUTTON */
 
     .calendar-actions button[aria-pressed="true"] {
       background: #003366;
       color: white;
     }
 
-    /* Hover is always darker */
+    /* DARKER HOVER */
 
     .calendar-actions button:hover:not(:disabled) {
       background: #001a36;
@@ -111,9 +112,9 @@
       margin: 13px 0 21px;
     }
 
-    /* ==============================
+    /* =========================
        MONTH GRID
-       ============================== */
+       ========================= */
 
     .school-months {
       display: grid;
@@ -130,7 +131,7 @@
       background: white;
       border: 2px solid #171717;
       min-width: 0;
-      box-shadow: 0 2px 7px rgba(0, 35, 70, 0.05);
+      box-shadow: 0 2px 7px rgba(0,35,70,0.05);
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -198,26 +199,13 @@
       outline-offset: -3px;
     }
 
-    .calendar-day .day-note {
-      font: 800 9px Arial, sans-serif;
-      color: #003366;
-      line-height: 1.1;
-    }
-
-    .calendar-day.deadline-day .day-note {
-      color: white;
-      background: #003366;
-      border-radius: 3px;
-      padding: 1px 3px;
-    }
-
     .blank-day {
       background: white;
     }
 
-    /* ==============================
+    /* =========================
        SCHOOL CALENDAR COLORS
-       ============================== */
+       ========================= */
 
     .calendar-day.new-teachers {
       background: #ffff00;
@@ -247,13 +235,34 @@
       background: #f585ed;
     }
 
-    /* ==============================
-       DECEMBER 2 NJHS MEETING
-       ============================== */
+    /* =========================
+       NJHS MEETING DAYS
+       ========================= */
 
     .calendar-day.meeting-day {
       background: #d8ecff;
     }
+
+    /* Keep special school colors
+       when a meeting overlaps */
+
+    .calendar-day.meeting-day.early-release {
+      background: #f585ed;
+    }
+
+    .calendar-day.meeting-day.planning {
+      background: #08c4e8;
+    }
+
+    .calendar-day.meeting-day.holiday {
+      background: #8bcc4c;
+    }
+
+    .calendar-day.meeting-day.recess {
+      background: #ffbf00;
+    }
+
+    /* WATERMARK FOR NJHS MEETINGS */
 
     .calendar-day.watermark-day {
       position: relative;
@@ -281,9 +290,24 @@
       z-index: 1;
     }
 
-    /* ==============================
-       GRADING PERIOD SUMMARY
-       ============================== */
+    /* NJHS AND DUE LABELS */
+
+    .calendar-day .day-note {
+      font: 800 9px Arial, sans-serif;
+      color: #003366;
+      line-height: 1.1;
+    }
+
+    .calendar-day.deadline-day .day-note {
+      color: white;
+      background: #003366;
+      border-radius: 3px;
+      padding: 1px 3px;
+    }
+
+    /* =========================
+       GRADING SUMMARY
+       ========================= */
 
     .grading-summary {
       border: 5px solid #111;
@@ -309,9 +333,9 @@
       display: none;
     }
 
-    /* ==============================
+    /* =========================
        CALENDAR COLOR KEY
-       ============================== */
+       ========================= */
 
     .calendar-key {
       margin-top: 28px;
@@ -389,9 +413,9 @@
       margin: 14px 0 0;
     }
 
-    /* ==============================
-       CLICKABLE DATE DETAILS
-       ============================== */
+    /* =========================
+       SELECTED DATE DETAILS
+       ========================= */
 
     .selected-info {
       margin-top: 24px;
@@ -411,11 +435,12 @@
       margin: 5px 0 0;
     }
 
-    /* ==============================
+    /* =========================
        TABLET
-       ============================== */
+       ========================= */
 
     @media (max-width: 1150px) {
+
       .school-months,
       .school-months.three-months {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -423,15 +448,16 @@
     }
 
     @media (max-width: 820px) {
+
       .school-months,
       .school-months.three-months {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    /* ==============================
+    /* =========================
        MOBILE
-       ============================== */
+       ========================= */
 
     @media (max-width: 570px) {
 
@@ -500,12 +526,14 @@
 <body class="njhs-calendar-page">
 
   <header>
+
     <nav class="top-nav">
       <a href="index.html">Home</a>
     </nav>
 
     <h1>Calendar</h1>
     <p>Doral Academy NJHS · 2026–2027</p>
+
   </header>
 
   <main>
@@ -530,7 +558,8 @@
             3 Months
           </button>
 
-          <div class="window-controls" id="window-controls">
+          <div class="window-controls"
+               id="window-controls">
 
             <button id="prev-month"
                     type="button"
@@ -553,9 +582,11 @@
       </div>
 
       <p class="calendar-intro">
-        Select any school day to see details.
-        Blue marks the December 2 NJHS meeting.
-        January 14A is the NJHS events and fundraisers deadline.
+        NJHS meetings are marked with the NJHS logo.
+        October's meeting is on October 14.
+        There is no June NJHS meeting.
+        January 14A is the events and fundraisers deadline.
+        Select a date for more information.
       </p>
 
       <div class="school-months"
@@ -617,7 +648,7 @@
 
           <div class="key-item">
             <span class="key-color meeting-day"></span>
-            NJHS Meeting
+            NJHS Meeting / Watermark
           </div>
 
           <div class="key-item">
@@ -641,7 +672,9 @@
 
   <script>
 
-    /* A/B SCHOOL SCHEDULE */
+    /* =========================
+       A/B SCHOOL SCHEDULE
+       ========================= */
 
     const abByMonth = {
 
@@ -698,7 +731,9 @@
 
     });
 
-    /* SCHOOL HOLIDAYS AND SPECIAL DATES */
+    /* =========================
+       SCHOOL HOLIDAYS
+       ========================= */
 
     const markedDays = {};
 
@@ -795,15 +830,34 @@
     addDays(2027, 6, [4],
       'planning', 'Teacher Planning Day');
 
-    /* NJHS EVENTS */
+    /* =========================
+       NJHS MEETING DATES
+       ========================= */
+
+    const meetingDates = [
+      '2026-09-02',
+      '2026-10-14',
+      '2026-11-04',
+      '2026-12-02',
+      '2027-01-06',
+      '2027-02-03',
+      '2027-03-03',
+      '2027-04-07',
+      '2027-05-05'
+    ];
 
     const njhsEvents = {
-      '2026-12-02': 'NJHS Monthly Meeting',
       '2027-01-14':
         'NJHS deadline: Complete 2 events and 2 fundraisers'
     };
 
-    /* CALENDAR SETUP */
+    meetingDates.forEach(date => {
+      njhsEvents[date] = 'NJHS Monthly Meeting';
+    });
+
+    /* =========================
+       CALENDAR SETUP
+       ========================= */
 
     const months = [
       'January', 'February', 'March',
@@ -869,7 +923,9 @@
 
     }
 
-    /* SELECT A DATE */
+    /* =========================
+       SELECT A DATE
+       ========================= */
 
     function showDate(date, year, month, day) {
 
@@ -897,11 +953,13 @@
       }
 
       if (!notes.length) {
+
         notes.push(
           schoolCodes[date]
             ? schoolCodes[date] + ' school day'
             : 'No activity listed'
         );
+
       }
 
       description.textContent = notes.join(' • ');
@@ -925,7 +983,9 @@
 
     }
 
-    /* CREATE A MONTH */
+    /* =========================
+       CREATE A MONTH
+       ========================= */
 
     function makeMonth(year, month) {
 
@@ -976,14 +1036,12 @@
       }
 
       const lastDate =
-        new Date(year, month + 1, 0).getDate();
+        (year === 2027 && month === 5)
+          ? 4
+          : new Date(year, month + 1, 0).getDate();
 
-      let weeks =
+      const weeks =
         Math.ceil((lastDate - firstMonday + 1) / 7);
-
-      if (year === 2027 && month === 5) {
-        weeks = Math.max(weeks, 5);
-      }
 
       for (let week = 0; week < weeks; week++) {
 
@@ -992,11 +1050,7 @@
           const day =
             firstMonday + week * 7 + weekday;
 
-          if (
-            day < 1 ||
-            day > lastDate ||
-            (year === 2027 && month === 5 && day > 4)
-          ) {
+          if (day < 1 || day > lastDate) {
 
             const empty = document.createElement('div');
 
@@ -1032,13 +1086,17 @@
             button.classList.add(markedDays[date].type);
           }
 
-          /* DECEMBER 2 NJHS MEETING + WATERMARK */
+          /* NJHS MEETING + WATERMARK */
 
-          if (date === '2026-12-02') {
+          const isMeeting = meetingDates.includes(date);
+
+          if (isMeeting) {
+
             button.classList.add(
               'meeting-day',
               'watermark-day'
             );
+
           }
 
           /* JANUARY 14 DEADLINE */
@@ -1068,19 +1126,27 @@
 
           button.appendChild(dateLabel);
 
-          if (
-            date === '2026-12-02' ||
-            date === '2027-01-14'
-          ) {
+          /* NJHS LABEL */
+
+          if (isMeeting) {
 
             const note = document.createElement('span');
 
             note.className = 'day-note';
+            note.textContent = 'NJHS';
 
-            note.textContent =
-              date === '2026-12-02'
-                ? 'NJHS'
-                : 'DUE';
+            button.appendChild(note);
+
+          }
+
+          /* DUE LABEL */
+
+          if (date === '2027-01-14') {
+
+            const note = document.createElement('span');
+
+            note.className = 'day-note';
+            note.textContent = 'DUE';
 
             button.appendChild(note);
 
@@ -1101,7 +1167,9 @@
       return wrapper;
     }
 
-    /* GRADING PERIOD SUMMARY */
+    /* =========================
+       GRADING PERIOD SUMMARY
+       ========================= */
 
     function makeGradingSummary() {
 
@@ -1116,7 +1184,9 @@
       return box;
     }
 
-    /* DISPLAY CALENDAR */
+    /* =========================
+       DISPLAY CALENDAR
+       ========================= */
 
     function render() {
 
@@ -1188,12 +1258,13 @@
       }
     }
 
-    /* VIEW CONTROLS */
+    /* =========================
+       VIEW CONTROLS
+       ========================= */
 
     allYearButton.addEventListener('click', () => {
 
       viewMode = 'year';
-
       render();
 
     });
@@ -1201,7 +1272,6 @@
     threeButton.addEventListener('click', () => {
 
       viewMode = 'three';
-
       render();
 
     });
@@ -1211,10 +1281,10 @@
       if (windowStart > firstSchoolMonth) {
 
         windowStart = shiftMonth(windowStart, -1);
-
         render();
 
       }
+
     });
 
     nextButton.addEventListener('click', () => {
@@ -1222,10 +1292,10 @@
       if (windowStart < lastWindowStart) {
 
         windowStart = shiftMonth(windowStart, 1);
-
         render();
 
       }
+
     });
 
     render();
