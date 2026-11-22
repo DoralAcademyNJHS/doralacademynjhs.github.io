@@ -645,3 +645,24 @@ li {
   position: relative;
   z-index: 1;
 }
+.watermark-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.watermark-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("njhs-circle-logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 320px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.watermark-section > * {
+  position: relative;
+  z-index: 1;
+}
