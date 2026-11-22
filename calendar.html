@@ -11,22 +11,27 @@
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
 
   <style>
-    /* MAIN CALENDAR PAGE */
+
+    /* ==============================
+       CALENDAR PAGE
+       ============================== */
 
     .njhs-calendar-page {
       overflow-x: hidden;
     }
 
     .njhs-calendar-page .calendar-content {
-      max-width: 1580px;
+      max-width: 1220px;
       width: calc(100% - 36px);
       box-sizing: border-box;
-      padding: 26px;
+      padding: 22px;
       margin: 26px auto;
       background: rgba(255, 255, 255, 0.96);
     }
 
-    /* NAVIGATION */
+    /* ==============================
+       CALENDAR HEADER AND BUTTONS
+       ============================== */
 
     .calendar-top {
       display: flex;
@@ -49,18 +54,24 @@
 
     .calendar-actions button {
       font: 700 14px Arial, sans-serif;
-      background: #003366;
-      color: white;
+      background: #e5f0fc;
+      color: #003366;
       padding: 10px 13px;
       border: 1px solid #003366;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.2s ease,
+                  color 0.2s ease;
     }
 
+    /* Active button is dark */
+
     .calendar-actions button[aria-pressed="true"] {
-      background: #e5f0fc;
-      color: #003366;
+      background: #003366;
+      color: white;
     }
+
+    /* Hover is always darker */
 
     .calendar-actions button:hover:not(:disabled) {
       background: #001a36;
@@ -89,7 +100,7 @@
     }
 
     #visible-range {
-      min-width: 152px;
+      min-width: 145px;
       text-align: center;
       color: #003366;
       font: 700 13px Arial, sans-serif;
@@ -100,12 +111,14 @@
       margin: 13px 0 21px;
     }
 
-    /* FULL YEAR AND THREE MONTH LAYOUT */
+    /* ==============================
+       MONTH GRID
+       ============================== */
 
     .school-months {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
       align-items: start;
     }
 
@@ -122,9 +135,9 @@
     }
 
     .month-title {
-      padding: 9px 3px;
+      padding: 8px 3px;
       text-align: center;
-      font: 800 clamp(16px, 1.55vw, 24px) Arial, sans-serif;
+      font: 800 clamp(14px, 1.3vw, 20px) Arial, sans-serif;
       color: white;
       background: #828282;
       border-bottom: 2px solid #171717;
@@ -154,13 +167,13 @@
     .weekday {
       display: grid;
       place-items: center;
-      min-height: 36px;
-      font: 800 19px Arial, sans-serif;
+      min-height: 32px;
+      font: 800 16px Arial, sans-serif;
     }
 
     .calendar-day,
     .blank-day {
-      min-height: 48px;
+      min-height: 42px;
     }
 
     .calendar-day {
@@ -170,11 +183,11 @@
       align-items: center;
       gap: 1px;
       width: 100%;
-      padding: 3px 1px;
+      padding: 2px 1px;
       border-left: 0;
       border-top: 0;
       background: white;
-      font: 800 clamp(16px, 1.55vw, 23px) Arial, sans-serif;
+      font: 800 clamp(14px, 1.25vw, 19px) Arial, sans-serif;
       color: #080808;
       cursor: pointer;
     }
@@ -202,7 +215,9 @@
       background: white;
     }
 
-    /* SCHOOL CALENDAR COLORS */
+    /* ==============================
+       SCHOOL CALENDAR COLORS
+       ============================== */
 
     .calendar-day.new-teachers {
       background: #ffff00;
@@ -232,11 +247,13 @@
       background: #f585ed;
     }
 
+    /* ==============================
+       DECEMBER 2 NJHS MEETING
+       ============================== */
+
     .calendar-day.meeting-day {
       background: #d8ecff;
     }
-
-    /* DECEMBER 2 NJHS LOGO WATERMARK */
 
     .calendar-day.watermark-day {
       position: relative;
@@ -264,7 +281,9 @@
       z-index: 1;
     }
 
-    /* GRADING PERIOD SUMMARY */
+    /* ==============================
+       GRADING PERIOD SUMMARY
+       ============================== */
 
     .grading-summary {
       border: 5px solid #111;
@@ -290,7 +309,9 @@
       display: none;
     }
 
-    /* CALENDAR COLOR KEY */
+    /* ==============================
+       CALENDAR COLOR KEY
+       ============================== */
 
     .calendar-key {
       margin-top: 28px;
@@ -368,7 +389,9 @@
       margin: 14px 0 0;
     }
 
-    /* CLICKABLE DATE DETAILS */
+    /* ==============================
+       CLICKABLE DATE DETAILS
+       ============================== */
 
     .selected-info {
       margin-top: 24px;
@@ -388,7 +411,9 @@
       margin: 5px 0 0;
     }
 
-    /* TABLET */
+    /* ==============================
+       TABLET
+       ============================== */
 
     @media (max-width: 1150px) {
       .school-months,
@@ -404,7 +429,9 @@
       }
     }
 
-    /* MOBILE */
+    /* ==============================
+       MOBILE
+       ============================== */
 
     @media (max-width: 570px) {
 
@@ -466,6 +493,7 @@
         font-size: 13px;
       }
     }
+
   </style>
 </head>
 
@@ -544,7 +572,7 @@
 
       </div>
 
-      <!-- COLOR KEY -->
+      <!-- CALENDAR COLOR KEY -->
 
       <div class="calendar-key">
 
@@ -649,6 +677,7 @@
 
       '2027-06':
         '1B 2A 3B'
+
     };
 
     const schoolCodes = {};
