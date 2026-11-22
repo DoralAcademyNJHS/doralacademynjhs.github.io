@@ -4,69 +4,381 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Doral Academy NJHS</title>
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
+
+  <style>
+
+    /* HOMEPAGE ONLY */
+
+    .home-page .title-text h1 span {
+      display: inline;
+    }
+
+    /* LARGE NJHS WATERMARK IN HEADER */
+
+    .home-page .home-header {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .home-page .home-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-image: url("njhs-circle-logo.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 570px auto;
+
+      opacity: 0.22;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .home-page .home-header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-page .home-header .top-nav {
+      position: absolute;
+    }
+
+    /* WATERMARK BEHIND HOMEPAGE SECTIONS */
+
+    .home-page .watermark-section {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .home-page .watermark-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-image: url("njhs-circle-logo.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 500px auto;
+
+      opacity: 0.09;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .home-page .watermark-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ANNOUNCEMENT BULLETS */
+
+    .home-page .announcement-list {
+      padding-left: 26px;
+      margin: 18px 0 16px;
+    }
+
+    .home-page .announcement-list li {
+      margin-bottom: 13px;
+      padding-left: 4px;
+      line-height: 1.7;
+    }
+
+    .home-page .announcement-list strong {
+      color: #003366;
+    }
+
+    .home-page .announcement-list a,
+    .home-page .calendar-link {
+      color: #004b91;
+      font-weight: 600;
+    }
+
+    /* MOBILE LAYOUT */
+
+    @media (max-width: 700px) {
+
+      .home-page .home-header {
+        padding: 22px 16px 36px;
+        min-height: 0;
+        box-sizing: border-box;
+      }
+
+      .home-page .home-header::before {
+        background-size: 330px auto;
+      }
+
+      .home-page .watermark-section::before {
+        background-size: 310px auto;
+      }
+
+      /* NAVIGATION: 3 LINKS THEN 2 LINKS */
+
+      .home-page .home-header .top-nav {
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        transform: none;
+
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 7px;
+
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+
+      .home-page .home-header .top-nav a {
+        grid-column: span 2;
+        padding: 9px 3px;
+        font-size: clamp(11px, 3vw, 13px);
+        line-height: 1.3;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .home-page .home-header .top-nav a:nth-child(4),
+      .home-page .home-header .top-nav a:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      /* LOGOS ABOVE TITLE ON MOBILE */
+
+      .home-page .home-header .hero-title-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "njhs doral"
+          "title title";
+
+        align-items: center;
+        justify-items: center;
+        column-gap: 10px;
+        row-gap: 14px;
+
+        width: 100%;
+        margin: 28px auto 0;
+      }
+
+      .home-page .home-header .njhs-logo {
+        grid-area: njhs;
+        width: 68px;
+        height: 68px;
+        padding: 5px;
+      }
+
+      .home-page .home-header .doral-logo {
+        grid-area: doral;
+        width: auto;
+        height: 68px;
+        max-width: 100px;
+      }
+
+      .home-page .home-header .title-text {
+        grid-area: title;
+        width: 100%;
+        text-align: center;
+      }
+
+      .home-page .home-header h1 {
+        font-size: clamp(29px, 8vw, 39px);
+        line-height: 1.2;
+        margin: 0 0 10px;
+        letter-spacing: 0;
+      }
+
+      .home-page .title-text h1 span {
+        display: block;
+      }
+
+      .home-page .home-header .title-text p {
+        font-size: 13px;
+        line-height: 1.65;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* MOBILE CONTENT BOXES */
+
+      .home-page section {
+        box-sizing: border-box;
+        margin: 16px 12px;
+        padding: 22px 18px;
+      }
+
+      .home-page section h2 {
+        font-size: 27px;
+      }
+
+      .home-page .announcement-list {
+        padding-left: 22px;
+      }
+
+      .home-page .announcement-list li {
+        font-size: 15px;
+        margin-bottom: 12px;
+      }
+
+    }
+
+  </style>
 </head>
 
-<body>
+<body class="home-page">
 
-  <header>
-    <nav class="top-nav">
+  <!-- HEADER -->
+
+  <header class="home-header">
+
+    <nav class="top-nav" aria-label="Main navigation">
+
       <a href="board.html">Board</a>
       <a href="about.html">About Us</a>
       <a href="powerpoints.html">Powerpoints</a>
       <a href="contact.html">Contact Us</a>
       <a href="calendar.html">Calendar</a>
+
     </nav>
 
     <div class="hero-title-row">
-      <img src="njhs-logo-clean.png"
-           alt="NJHS Logo"
-           class="home-logo njhs-logo">
+
+      <img
+        src="njhs-logo-clean.png"
+        alt="NJHS Logo"
+        class="home-logo njhs-logo"
+      >
 
       <div class="title-text">
-        <h1>Doral Academy NJHS</h1>
+
+        <h1>
+          Doral Academy <span>NJHS</span>
+        </h1>
+
         <p>
-          Scholarship • Leadership • Service •
-          Character • Citizenship
+          Scholarship • Leadership • Service • Character • Citizenship
         </p>
+
       </div>
 
-      <img src="doral-logo-clean.png"
-           alt="Doral Academy Logo"
-           class="home-logo doral-logo">
+      <img
+        src="doral-logo-clean.png"
+        alt="Doral Academy Logo"
+        class="home-logo doral-logo"
+      >
+
     </div>
+
   </header>
 
-  <section>
-    <h2>Welcome</h2>
-    <p>
-      Welcome to the Doral Academy National Junior Honor Society
-      website. This site is designed to share chapter announcements,
-      upcoming events, service opportunities, leadership updates,
-      and important information for members and families.
-    </p>
-  </section>
+  <!-- MAIN CONTENT -->
 
-  <section>
-    <h2>Announcements</h2>
-    <ul>
-      <li>Website coming soon!</li>
-      <li>More updates will be added soon.</li>
-      <li>Service project information will be posted here.</li>
-    </ul>
-  </section>
+  <main>
 
-  <section>
-    <h2>Contact</h2>
-    <p>
-      Email:
-      <a href="mailto:njhsdoralacademy@gmail.com">
-        njhsdoralacademy@gmail.com
-      </a>
-    </p>
-  </section>
+    <!-- WELCOME -->
+
+    <section class="watermark-section">
+
+      <h2>Welcome</h2>
+
+      <p>
+        Welcome to the Doral Academy National Junior Honor Society
+        website. This site shares chapter announcements, upcoming
+        meetings, service opportunities, leadership updates, and
+        important information for members and families.
+      </p>
+
+    </section>
+
+    <!-- ANNOUNCEMENTS -->
+
+    <section class="watermark-section">
+
+      <h2>Announcements</h2>
+
+      <p>
+        Important reminders for the 2026–2027 school year:
+      </p>
+
+      <ul class="announcement-list">
+
+        <li>
+          <strong>$15 NJHS Club Fee:</strong>
+          Payment was due
+          <strong>November 14, 2026</strong>,
+          and the deadline has passed. If you have not paid,
+          please contact the NJHS sponsor about next steps.
+        </li>
+
+        <li>
+          <strong>2 Service Events Required:</strong>
+          Every member must complete
+          <strong>two NJHS events</strong>
+          by
+          <strong>January 14, 2027 (14A)</strong>.
+        </li>
+
+        <li>
+          <strong>2 Fundraisers Required:</strong>
+          Every member must complete
+          <strong>two fundraisers</strong>
+          by
+          <strong>January 14, 2027 (14A)</strong>.
+        </li>
+
+        <li>
+          <strong>Upcoming NJHS Meeting:</strong>
+          Our next monthly meeting is
+          <strong>Wednesday, December 2, 2026 (2A)</strong>.
+        </li>
+
+        <li>
+          <strong>Monthly Meeting Schedule:</strong>
+          NJHS meetings are generally held on the first
+          Wednesday of each month from September through May.
+          The October meeting was held on
+          <strong>October 14</strong>
+          instead, and there is
+          <strong>no June meeting</strong>.
+        </li>
+
+      </ul>
+
+      <p>
+        Check the
+        <a class="calendar-link" href="calendar.html">
+          NJHS Calendar
+        </a>
+        for meeting dates, A/B schedules, and school holidays.
+      </p>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="watermark-section">
+
+      <h2>Contact</h2>
+
+      <p>
+        Email:
+        <a href="mailto:njhsdoralacademy@gmail.com">
+          njhsdoralacademy@gmail.com
+        </a>
+      </p>
+
+    </section>
+
+  </main>
 
 </body>
 </html>
