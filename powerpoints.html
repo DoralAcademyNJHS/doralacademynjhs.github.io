@@ -13,9 +13,12 @@
 
   <style>
 
-    /* PAGE TITLE */
+    /* ==============================
+       PAGE TITLE
+       ============================== */
 
     .presentations-page .responsive-page-title {
+      display: block;
       max-width: 100%;
       overflow: hidden;
       white-space: nowrap;
@@ -23,22 +26,29 @@
       box-sizing: border-box;
     }
 
-    /* LEFT AND RIGHT COLUMNS */
+    /* ==============================
+       TWO-COLUMN LAYOUT
+       ============================== */
 
     .presentations-page .materials-layout {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       align-items: start;
       gap: 26px;
+
       width: min(1200px, calc(100% - 36px));
+      max-width: 1200px;
       margin: 30px auto 55px;
+      padding: 0;
     }
 
-    .presentations-page .materials-column {
+    .presentations-page section.materials-column {
       min-width: 0;
       max-width: none;
+      width: auto;
       margin: 0;
       padding: 0;
+
       background: transparent;
       border: none;
       box-shadow: none;
@@ -47,9 +57,9 @@
     .presentations-page .column-heading {
       color: #003366;
       font-size: 29px;
-      border-bottom: 3px solid #003366;
-      padding-bottom: 12px;
       margin: 0 0 12px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #003366;
     }
 
     .presentations-page .column-intro {
@@ -58,7 +68,9 @@
       margin: 0 0 22px;
     }
 
-    /* DOCUMENT LISTS */
+    /* ==============================
+       DOCUMENT LISTS
+       ============================== */
 
     .presentations-page .material-list {
       display: flex;
@@ -66,19 +78,26 @@
       gap: 20px;
     }
 
-    /* INDIVIDUAL DOCUMENT CARDS */
+    /* ==============================
+       INDIVIDUAL CARDS
+       ============================== */
 
     .presentations-page .material-card {
       display: grid;
       grid-template-columns: 170px minmax(0, 1fr);
+
       min-width: 0;
       overflow: hidden;
+
       background: white;
       border: 1px solid #dbe5f0;
       border-radius: 16px;
+
       box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
-      transition: transform 0.2s ease,
-                  box-shadow 0.2s ease;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .presentations-page .material-card:hover {
@@ -86,23 +105,28 @@
       box-shadow: 0 10px 24px rgba(0, 35, 70, 0.14);
     }
 
-    /* PRESENTATION IMAGES */
+    /* ==============================
+       PDF COVER IMAGES
+       ============================== */
 
     .presentations-page .material-preview {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 215px;
+
+      min-width: 0;
+      min-height: 230px;
       padding: 10px;
-      background: #edf3f9;
+
       box-sizing: border-box;
+      background: #edf3f9;
       text-decoration: none;
     }
 
     .presentations-page .material-preview img {
       display: block;
       width: 100%;
-      height: 190px;
+      height: 210px;
       max-width: 100%;
       object-fit: contain;
       border-radius: 5px;
@@ -110,56 +134,24 @@
 
     /* NEWSLETTER COVERS */
 
-    .presentations-page .newsletter-cover {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      min-height: 190px;
-      padding: 16px 8px;
-      box-sizing: border-box;
-      border-radius: 5px;
-      text-align: center;
-      font-family: Georgia, serif;
+    .presentations-page .newsletter-preview {
+      background: #f8eee9;
     }
 
-    .presentations-page .newsletter-cover.october {
-      background: #fce3ca;
-      border: 2px solid #db853f;
-      color: #823d18;
+    .presentations-page .newsletter-preview img {
+      height: 230px;
+      object-fit: contain;
     }
 
-    .presentations-page .newsletter-cover.november {
-      background: #edbdb5;
-      border: 2px solid #ad746a;
-      color: #703b38;
-    }
-
-    .presentations-page .newsletter-cover .cover-month {
-      font-size: 22px;
-      font-weight: bold;
-      line-height: 1.1;
-    }
-
-    .presentations-page .newsletter-cover .cover-name {
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-
-    .presentations-page .newsletter-cover .cover-year {
-      font-size: 21px;
-      font-weight: bold;
-    }
-
-    /* DOCUMENT INFORMATION */
+    /* ==============================
+       DOCUMENT INFORMATION
+       ============================== */
 
     .presentations-page .material-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
       min-width: 0;
       padding: 18px;
     }
@@ -188,27 +180,39 @@
       margin: 0 0 17px;
     }
 
-    /* OPEN PDF BUTTON */
+    /* ==============================
+       OPEN PDF BUTTONS
+       ============================== */
 
     .presentations-page .material-button {
       display: inline-block;
       margin-top: auto;
-      padding: 10px 15px;
+      padding: 11px 15px;
+
       background: #003366;
-      color: white;
+      color: white !important;
       border-radius: 8px;
+
       text-decoration: none;
       font: 700 13px Arial, sans-serif;
       text-align: center;
+
       transition: background-color 0.2s ease;
     }
 
     .presentations-page .material-button:hover {
       background: #001a36;
-      color: white;
+      color: white !important;
     }
 
-    /* TABLET */
+    .presentations-page a:focus-visible {
+      outline: 3px solid #1872ba;
+      outline-offset: 3px;
+    }
+
+    /* ==============================
+       TABLET
+       ============================== */
 
     @media (min-width: 761px) and (max-width: 1050px) {
 
@@ -217,20 +221,27 @@
       }
 
       .presentations-page .material-preview {
-        min-height: 180px;
+        min-height: 190px;
+      }
+
+      .presentations-page .material-preview img {
+        height: 180px;
       }
 
     }
 
-    /* PHONE */
+    /* ==============================
+       MOBILE
+       ============================== */
 
     @media (max-width: 760px) {
 
       .presentations-page .materials-layout {
         grid-template-columns: 1fr;
         gap: 35px;
+
         width: min(570px, calc(100% - 24px));
-        margin-top: 20px;
+        margin: 20px auto 40px;
       }
 
       .presentations-page .responsive-page-title {
@@ -243,6 +254,8 @@
 
     }
 
+    /* SMALL PHONES */
+
     @media (max-width: 440px) {
 
       .presentations-page .material-card {
@@ -254,25 +267,9 @@
         padding: 7px;
       }
 
-      .presentations-page .material-preview img {
+      .presentations-page .material-preview img,
+      .presentations-page .newsletter-preview img {
         height: 165px;
-      }
-
-      .presentations-page .newsletter-cover {
-        min-height: 165px;
-        padding: 10px 4px;
-      }
-
-      .presentations-page .newsletter-cover .cover-month {
-        font-size: 19px;
-      }
-
-      .presentations-page .newsletter-cover .cover-name {
-        font-size: 11px;
-      }
-
-      .presentations-page .newsletter-cover .cover-year {
-        font-size: 17px;
       }
 
       .presentations-page .material-content {
@@ -300,10 +297,14 @@
 
 <body class="presentations-page">
 
+  <!-- PAGE HEADER -->
+
   <header>
 
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Main navigation">
+
       <a href="index.html">Home</a>
+
     </nav>
 
     <h1
@@ -316,16 +317,22 @@
 
   </header>
 
+  <!-- MAIN TWO-COLUMN LAYOUT -->
+
   <main class="materials-layout">
 
-    <!-- LEFT COLUMN: PRESENTATIONS -->
+    <!-- =========================
+         LEFT: PRESENTATIONS
+         ========================= -->
 
     <section class="materials-column">
 
-      <h2 class="column-heading">Presentations</h2>
+      <h2 class="column-heading">
+        Presentations
+      </h2>
 
       <p class="column-intro">
-        Meeting presentations, ordered by date.
+        NJHS meeting presentations, ordered by date.
       </p>
 
       <div class="material-list">
@@ -338,11 +345,13 @@
             class="material-preview"
             href="NJHS%20Interest%20Meeting%2026-27%20PowerPoint.pdf"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            aria-label="Open NJHS Interest Meeting presentation">
 
             <img
               src="njhs-interest-cover.png"
-              alt="Interest Meeting cover">
+              alt="NJHS Interest Meeting presentation cover"
+              loading="lazy">
 
           </a>
 
@@ -355,8 +364,8 @@
             <h3>Interest Meeting 26–27</h3>
 
             <p class="material-description">
-              Introduction to NJHS, membership,
-              and chapter information.
+              Introduction to NJHS membership,
+              expectations, and chapter information.
             </p>
 
             <a
@@ -379,11 +388,13 @@
             class="material-preview"
             href="njhs-october-2026.pdf"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            aria-label="Open October NJHS Meeting presentation">
 
             <img
               src="njhs-october-cover.png"
-              alt="October Meeting cover">
+              alt="October NJHS Meeting presentation cover"
+              loading="lazy">
 
           </a>
 
@@ -396,8 +407,8 @@
             <h3>October Meeting</h3>
 
             <p class="material-description">
-              October chapter meeting,
-              requirements, and updates.
+              October meeting information,
+              chapter requirements, and updates.
             </p>
 
             <a
@@ -420,11 +431,13 @@
             class="material-preview"
             href="njhs-november-2026.pdf"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            aria-label="Open November NJHS Meeting presentation">
 
             <img
               src="njhs-november-cover.png"
-              alt="November Meeting cover">
+              alt="November NJHS Meeting presentation cover"
+              loading="lazy">
 
           </a>
 
@@ -438,8 +451,8 @@
 
             <p class="material-description">
               November chapter updates,
-              service opportunities,
-              and reminders.
+              service opportunities, fundraisers,
+              and important reminders.
             </p>
 
             <a
@@ -458,14 +471,18 @@
 
     </section>
 
-    <!-- RIGHT COLUMN: NEWSLETTERS -->
+    <!-- =========================
+         RIGHT: NEWSLETTERS
+         ========================= -->
 
     <section class="materials-column">
 
-      <h2 class="column-heading">Newsletters</h2>
+      <h2 class="column-heading">
+        Newsletters
+      </h2>
 
       <p class="column-intro">
-        Monthly newsletters, ordered by date.
+        NJHS monthly newsletters, ordered by date.
       </p>
 
       <div class="material-list">
@@ -475,27 +492,16 @@
         <article class="material-card">
 
           <a
-            class="material-preview"
+            class="material-preview newsletter-preview"
             href="October%20Newsletter%202026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open October Newsletter">
+            aria-label="Open October 2026 NJHS Newsletter">
 
-            <div class="newsletter-cover october">
-
-              <span class="cover-month">
-                October
-              </span>
-
-              <span class="cover-name">
-                NJHS Newsletter
-              </span>
-
-              <span class="cover-year">
-                2026
-              </span>
-
-            </div>
+            <img
+              src="njhs-october-newsletter-cover.png"
+              alt="Actual October 2026 NJHS Newsletter cover"
+              loading="lazy">
 
           </a>
 
@@ -508,9 +514,9 @@
             <h3>October Newsletter</h3>
 
             <p class="material-description">
-              Service opportunities, community
-              events, fundraisers, and club
-              announcements.
+              Community service opportunities,
+              October activities, email etiquette,
+              and fundraising information.
             </p>
 
             <a
@@ -530,27 +536,16 @@
         <article class="material-card">
 
           <a
-            class="material-preview"
+            class="material-preview newsletter-preview"
             href="November%20Newsletter%202026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open November Newsletter">
+            aria-label="Open November 2026 NJHS Newsletter">
 
-            <div class="newsletter-cover november">
-
-              <span class="cover-month">
-                November
-              </span>
-
-              <span class="cover-name">
-                NJHS Newsletter
-              </span>
-
-              <span class="cover-year">
-                2026
-              </span>
-
-            </div>
+            <img
+              src="njhs-november-newsletter-cover.png"
+              alt="Actual November 2026 NJHS Newsletter cover"
+              loading="lazy">
 
           </a>
 
@@ -566,7 +561,7 @@
               November service events,
               volunteer opportunities,
               fundraising information,
-              and important reminders.
+              and chapter announcements.
             </p>
 
             <a
