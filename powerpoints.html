@@ -13,69 +13,83 @@
 
   <style>
 
-    /* PAGE TITLE */
+    /* =====================================
+       PAGE TITLE
+       ===================================== */
 
     .presentations-page .responsive-page-title {
       display: block;
       max-width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    /* TWO-COLUMN LAYOUT */
+    /* =====================================
+       TWO-COLUMN LAYOUT
+       ===================================== */
 
-    .presentations-page .materials-layout {
+    .presentations-page main.materials-layout {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       align-items: start;
-      gap: 26px;
+      gap: 24px;
 
       width: min(1200px, calc(100% - 36px));
       max-width: 1200px;
-      margin: 30px auto 55px;
+      margin: 32px auto 52px;
       padding: 0;
     }
 
     .presentations-page section.materials-column {
       min-width: 0;
-      max-width: none;
       width: auto;
+      max-width: none;
       margin: 0;
       padding: 0;
+
       background: transparent;
       border: none;
       box-shadow: none;
     }
 
+    /* =====================================
+       COLUMN HEADINGS
+       ===================================== */
+
     .presentations-page .column-heading {
       color: #003366;
-      font-size: 29px;
-      margin: 0 0 12px;
-      padding-bottom: 12px;
+      font-size: clamp(23px, 2.3vw, 30px);
+      margin: 0 0 18px;
+      padding-bottom: 11px;
       border-bottom: 3px solid #003366;
     }
 
     .presentations-page .column-intro {
+      color: #536478;
       font-size: 14px;
-      color: #526578;
-      margin: 0 0 22px;
+      margin: -4px 0 22px;
     }
 
-    /* DOCUMENT LISTS */
+    /* =====================================
+       DOCUMENT LISTS
+       ===================================== */
 
     .presentations-page .material-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
-    /* DOCUMENT CARDS */
+    /* =====================================
+       DOCUMENT CARDS
+       ===================================== */
 
     .presentations-page .material-card {
       display: grid;
-      grid-template-columns: 170px minmax(0, 1fr);
+      grid-template-columns: minmax(0, 175px) minmax(0, 1fr);
+
       min-width: 0;
       overflow: hidden;
 
@@ -86,128 +100,115 @@
       box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
 
       transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
     }
 
     .presentations-page .material-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(0, 35, 70, 0.14);
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 10px 24px rgba(0, 35, 70, 0.13);
     }
 
-    /* PDF COVER IMAGES */
+    /* =====================================
+       DOCUMENT COVER IMAGES
+       ===================================== */
 
     .presentations-page .material-preview {
       display: flex;
       align-items: center;
       justify-content: center;
+
       min-width: 0;
-      min-height: 230px;
-      padding: 10px;
+      min-height: 220px;
+      padding: 11px;
 
       box-sizing: border-box;
-      background: #edf3f9;
+      background: #eef3f8;
       text-decoration: none;
     }
 
     .presentations-page .material-preview img {
       display: block;
+
       width: 100%;
-      height: 210px;
       max-width: 100%;
+      height: 198px;
+
       object-fit: contain;
-      border-radius: 5px;
+      border-radius: 4px;
     }
 
-    /* NEWSLETTER COVERS */
+    /* NEWSLETTER COVER BACKGROUND */
 
     .presentations-page .newsletter-preview {
-      background: #f8eee9;
+      background: #f9f1eb;
     }
 
-    .presentations-page .newsletter-preview img {
-      height: 230px;
-      object-fit: contain;
-    }
-
-    /* SEPTEMBER N/A COVER */
-
-    .presentations-page .placeholder-preview {
-      background: #eef0f3;
-      cursor: default;
-    }
-
-    .presentations-page .na-cover {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 100%;
-      height: 210px;
-
-      background: #e0e3e8;
-      border: 2px dashed #afb7c2;
-      border-radius: 8px;
-
-      color: #7b8491;
-      font: 800 37px Arial, sans-serif;
-      letter-spacing: 2px;
-
-      user-select: none;
-    }
-
-    /* DOCUMENT CONTENT */
+    /* =====================================
+       DOCUMENT CONTENT
+       ===================================== */
 
     .presentations-page .material-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
       min-width: 0;
-      padding: 18px;
+      padding: 17px 17px 18px;
     }
 
     .presentations-page .material-date {
+      color: #5a6c81;
       font: 700 12px Arial, sans-serif;
+
+      letter-spacing: 0.055em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #62738a;
-      margin: 0 0 8px;
+
+      margin: 0 0 7px;
     }
 
-    .presentations-page .material-content h3 {
-      font-family: Georgia, serif;
+    .presentations-page .material-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 20px;
-      line-height: 1.3;
+      line-height: 1.25;
+
       color: #003366;
-      margin: 0 0 10px;
+      margin: 0 0 9px;
+
       overflow-wrap: anywhere;
     }
 
     .presentations-page .material-description {
+      color: #35465a;
       font-size: 14px;
       line-height: 1.5;
-      color: #35465a;
-      margin: 0 0 17px;
+
+      margin: 0 0 16px;
     }
 
-    /* OPEN DOCUMENT BUTTONS */
+    /* =====================================
+       OPEN PDF BUTTONS
+       ===================================== */
 
     .presentations-page .material-button {
       display: inline-block;
-      margin-top: auto;
-      padding: 11px 15px;
 
-      background: #003366;
-      color: white !important;
+      margin-top: auto;
+      padding: 10px 15px;
+
       border: none;
       border-radius: 8px;
 
-      text-decoration: none;
+      background: #003366;
+      color: white !important;
+
       font: 700 13px Arial, sans-serif;
       text-align: center;
-      cursor: pointer;
+      text-decoration: none;
 
-      transition: background-color 0.2s ease;
+      transition: background-color 0.18s ease;
     }
 
     .presentations-page a.material-button:hover {
@@ -215,31 +216,59 @@
       color: white !important;
     }
 
-    /* SEPTEMBER DISABLED BUTTON */
-
-    .presentations-page .unavailable-button,
-    .presentations-page .unavailable-button:disabled {
-      background: #c5cbd3;
-      color: #596372 !important;
-      border: 1px solid #afb7c2;
-      cursor: not-allowed;
-      opacity: 1;
-      pointer-events: none;
-    }
-
-    /* NO HOVER ANIMATION ON UNAVAILABLE CARD */
-
-    .presentations-page .unavailable-card:hover {
-      transform: none;
-      box-shadow: 0 6px 18px rgba(0, 35, 70, 0.08);
-    }
-
     .presentations-page a:focus-visible {
       outline: 3px solid #1872ba;
       outline-offset: 3px;
     }
 
-    /* TABLET */
+    /* =====================================
+       SEPTEMBER NEWSLETTER - UNAVAILABLE
+       ===================================== */
+
+    .presentations-page .unavailable-card:hover {
+      transform: none;
+
+      box-shadow:
+        0 6px 18px rgba(0, 35, 70, 0.08);
+    }
+
+    .presentations-page .placeholder-preview {
+      background: #eef1f5;
+      cursor: default;
+    }
+
+    .presentations-page .na-cover {
+      display: grid;
+      place-items: center;
+
+      width: 100%;
+      min-height: 195px;
+
+      border: 2px dashed #b5bec9;
+      border-radius: 7px;
+
+      background: #e3e7ec;
+      color: #75808d;
+
+      font: 800 38px Arial, sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .presentations-page button.unavailable-button,
+    .presentations-page button.unavailable-button:disabled {
+      cursor: not-allowed;
+
+      opacity: 1;
+
+      border: 1px solid #b7c0ca;
+      background: #cdd3db;
+
+      color: #5e6772 !important;
+    }
+
+    /* =====================================
+       TABLET
+       ===================================== */
 
     @media (min-width: 761px) and (max-width: 1050px) {
 
@@ -248,23 +277,30 @@
       }
 
       .presentations-page .material-preview {
-        min-height: 190px;
+        min-height: 175px;
       }
 
-      .presentations-page .material-preview img,
+      .presentations-page .material-preview img {
+        height: 160px;
+      }
+
       .presentations-page .na-cover {
-        height: 180px;
+        min-height: 155px;
       }
 
     }
 
-    /* MOBILE */
+    /* =====================================
+       MOBILE
+       ===================================== */
 
     @media (max-width: 760px) {
 
-      .presentations-page .materials-layout {
-        grid-template-columns: 1fr;
-        gap: 35px;
+      .presentations-page main.materials-layout {
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 38px;
+
         width: min(570px, calc(100% - 24px));
         margin: 20px auto 40px;
       }
@@ -273,40 +309,38 @@
         font-size: clamp(22px, 6.9vw, 35px);
       }
 
-      .presentations-page .column-heading {
-        font-size: 26px;
-      }
-
     }
 
-    /* SMALL PHONES */
+    /* =====================================
+       SMALL PHONES
+       ===================================== */
 
     @media (max-width: 440px) {
 
       .presentations-page .material-card {
-        grid-template-columns: 125px minmax(0, 1fr);
+        grid-template-columns:
+          minmax(0, 135px) minmax(0, 1fr);
       }
 
       .presentations-page .material-preview {
-        min-height: 185px;
-        padding: 7px;
+        min-height: 198px;
+        padding: 8px;
       }
 
-      .presentations-page .material-preview img,
-      .presentations-page .newsletter-preview img,
-      .presentations-page .na-cover {
-        height: 165px;
+      .presentations-page .material-preview img {
+        height: 170px;
       }
 
       .presentations-page .na-cover {
+        min-height: 155px;
         font-size: 28px;
       }
 
       .presentations-page .material-content {
-        padding: 12px;
+        padding: 13px 11px;
       }
 
-      .presentations-page .material-content h3 {
+      .presentations-page .material-card h3 {
         font-size: 17px;
       }
 
@@ -315,50 +349,67 @@
       }
 
       .presentations-page .material-button {
-        padding: 9px 10px;
         font-size: 12px;
+        padding: 9px 11px;
       }
 
     }
 
   </style>
+
 </head>
 
 <body class="presentations-page">
 
-  <!-- PAGE HEADER -->
+  <!-- =====================================
+       PAGE HEADER
+       ===================================== -->
 
   <header>
 
     <nav class="top-nav" aria-label="Main navigation">
+
       <a href="index.html">Home</a>
+
     </nav>
 
     <h1
       class="responsive-page-title"
       title="Presentations and Newsletters">
+
       Presentations and Newsletters
+
     </h1>
 
-    <p>Doral Academy National Junior Honor Society</p>
+    <p>
+      Doral Academy National Junior Honor Society
+    </p>
 
   </header>
 
+  <!-- =====================================
+       MAIN CONTENT
+       ===================================== -->
+
   <main class="materials-layout">
 
-    <!-- LEFT COLUMN: PRESENTATIONS -->
+    <!-- =====================================
+         LEFT COLUMN: PRESENTATIONS
+         ===================================== -->
 
     <section class="materials-column">
 
-      <h2 class="column-heading">Presentations</h2>
+      <h2 class="column-heading">
+        Presentations
+      </h2>
 
       <p class="column-intro">
-        NJHS meeting presentations, ordered by date.
+        Meeting presentations, ordered by date.
       </p>
 
       <div class="material-list">
 
-        <!-- INTEREST MEETING -->
+        <!-- INTEREST MEETING PRESENTATION -->
 
         <article class="material-card">
 
@@ -371,7 +422,7 @@
 
             <img
               src="njhs-interest-cover.png"
-              alt="NJHS Interest Meeting presentation cover"
+              alt="NJHS Interest Meeting cover"
               loading="lazy">
 
           </a>
@@ -382,11 +433,14 @@
               2026–2027 School Year
             </p>
 
-            <h3>Interest Meeting 26–27</h3>
+            <h3>
+              Interest Meeting 26–27
+            </h3>
 
             <p class="material-description">
-              Introduction to NJHS membership,
-              expectations, and chapter information.
+              Introduction to the chapter,
+              membership expectations, and
+              important NJHS information.
             </p>
 
             <a
@@ -394,7 +448,9 @@
               href="NJHS%20Interest%20Meeting%2026-27%20PowerPoint.pdf"
               target="_blank"
               rel="noopener noreferrer">
+
               Open Presentation
+
             </a>
 
           </div>
@@ -421,13 +477,18 @@
 
           <div class="material-content">
 
-            <p class="material-date">October 14, 2026</p>
+            <p class="material-date">
+              October 14, 2026
+            </p>
 
-            <h3>October Meeting</h3>
+            <h3>
+              October Meeting
+            </h3>
 
             <p class="material-description">
-              October meeting information,
-              chapter requirements, and updates.
+              October meeting slides,
+              chapter requirements,
+              and announcements.
             </p>
 
             <a
@@ -435,7 +496,9 @@
               href="njhs-october-2026.pdf"
               target="_blank"
               rel="noopener noreferrer">
+
               Open Presentation
+
             </a>
 
           </div>
@@ -462,13 +525,17 @@
 
           <div class="material-content">
 
-            <p class="material-date">November 4, 2026</p>
+            <p class="material-date">
+              November 4, 2026
+            </p>
 
-            <h3>November Meeting</h3>
+            <h3>
+              November Meeting
+            </h3>
 
             <p class="material-description">
-              November chapter updates,
-              service opportunities, fundraisers,
+              November slides, service
+              opportunities, fundraisers,
               and important reminders.
             </p>
 
@@ -477,7 +544,9 @@
               href="njhs-november-2026.pdf"
               target="_blank"
               rel="noopener noreferrer">
+
               Open Presentation
+
             </a>
 
           </div>
@@ -488,57 +557,73 @@
 
     </section>
 
-    <!-- RIGHT COLUMN: NEWSLETTERS -->
+    <!-- =====================================
+         RIGHT COLUMN: NEWSLETTERS
+         ===================================== -->
 
     <section class="materials-column">
 
-      <h2 class="column-heading">Newsletters</h2>
+      <h2 class="column-heading">
+        Newsletters
+      </h2>
 
       <p class="column-intro">
-        NJHS monthly newsletters, ordered by date.
+        Monthly newsletters, ordered by date.
       </p>
 
       <div class="material-list">
 
-        <!-- SEPTEMBER NEWSLETTER: UNAVAILABLE -->
+        <!-- SEPTEMBER NEWSLETTER: N/A -->
 
         <article class="material-card unavailable-card">
 
-          <!-- NOT A LINK: NO PDF TO OPEN -->
+          <!-- No clickable image -->
 
           <div class="material-preview placeholder-preview">
 
-            <div class="na-cover" aria-label="No cover available">
+            <div
+              class="na-cover"
+              aria-label="September newsletter not available">
+
               N/A
+
             </div>
 
           </div>
 
           <div class="material-content">
 
-            <p class="material-date">September 2026</p>
+            <p class="material-date">
+              September 2026
+            </p>
 
-            <h3>September Newsletter</h3>
+            <h3>
+              September Newsletter
+            </h3>
 
             <p class="material-description">
               Not available.
             </p>
 
-            <!-- DISABLED BUTTON: CANNOT BE CLICKED -->
+            <!-- Truly disabled, no PDF link -->
 
             <button
               class="material-button unavailable-button"
               type="button"
-              disabled
-              aria-label="September newsletter unavailable">
+              disabled>
+
               Unavailable
+
             </button>
 
           </div>
 
         </article>
 
-        <!-- OCTOBER NEWSLETTER -->
+        <!-- =====================================
+             OCTOBER NEWSLETTER
+             ORIGINAL PDF + NEW COVER IMAGE
+             ===================================== -->
 
         <article class="material-card">
 
@@ -547,40 +632,54 @@
             href="October%20Newsletter%202026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open October 2026 NJHS Newsletter">
+            aria-label="Open original October 2026 NJHS Newsletter">
+
+            <!-- YOUR ORANGE OCTOBER COLLAGE -->
 
             <img
-              src="njhs-october-newsletter-cover.png"
-              alt="October 2026 NJHS Newsletter cover"
+              src="njhs-oct-2026-original-collage.png"
+              alt="October 2026 NJHS Newsletter service collage"
               loading="lazy">
 
           </a>
 
           <div class="material-content">
 
-            <p class="material-date">October 2026</p>
+            <p class="material-date">
+              October 2026
+            </p>
 
-            <h3>October Newsletter</h3>
+            <h3>
+              October Newsletter
+            </h3>
 
             <p class="material-description">
-              Community service opportunities,
-              October activities, email etiquette,
-              and fundraising information.
+              October service events,
+              fundraising opportunities,
+              email etiquette,
+              and chapter reminders.
             </p>
+
+            <!-- OPENS THE ORIGINAL OCTOBER PDF -->
 
             <a
               class="material-button"
               href="October%20Newsletter%202026.pdf"
               target="_blank"
               rel="noopener noreferrer">
+
               Open Newsletter
+
             </a>
 
           </div>
 
         </article>
 
-        <!-- NOVEMBER NEWSLETTER -->
+        <!-- =====================================
+             NOVEMBER NEWSLETTER
+             ORIGINAL PDF + NEW COVER IMAGE
+             ===================================== -->
 
         <article class="material-card">
 
@@ -589,34 +688,43 @@
             href="November%20Newsletter%202026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open November 2026 NJHS Newsletter">
+            aria-label="Open original November 2026 NJHS Newsletter">
+
+            <!-- YOUR BROWN NOVEMBER COLLAGE -->
 
             <img
-              src="njhs-november-newsletter-cover.png"
-              alt="November 2026 NJHS Newsletter cover"
+              src="njhs-nov-2026-original-collage.png"
+              alt="November 2026 NJHS Newsletter service collage"
               loading="lazy">
 
           </a>
 
           <div class="material-content">
 
-            <p class="material-date">November 2026</p>
+            <p class="material-date">
+              November 2026
+            </p>
 
-            <h3>November Newsletter</h3>
+            <h3>
+              November Newsletter
+            </h3>
 
             <p class="material-description">
-              November service events,
-              volunteer opportunities,
-              fundraising information,
-              and chapter announcements.
+              November volunteer activities,
+              service projects, fundraising
+              information, and announcements.
             </p>
+
+            <!-- OPENS THE ORIGINAL NOVEMBER PDF -->
 
             <a
               class="material-button"
               href="November%20Newsletter%202026.pdf"
               target="_blank"
               rel="noopener noreferrer">
+
               Open Newsletter
+
             </a>
 
           </div>
