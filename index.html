@@ -4,21 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Doral Academy NJHS</title>
-
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
 
   <style>
 
-    /* HOMEPAGE DESIGN */
+    /* RESPONSIVE PRESENTATIONS NAVIGATION */
+
+    .home-page .top-nav a.nav-presentations {
+      min-width: 0;
+      max-width: min(260px, 25vw);
+      box-sizing: border-box;
+    }
+
+    .home-page .top-nav .nav-presentations .nav-label {
+      display: block;
+      min-width: 0;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* HOMEPAGE TITLE */
 
     .home-page .title-text h1 span {
       display: inline;
     }
 
-    /* REMOVE ALL OLD REPEATED WATERMARKS */
+    /* REMOVE REPEATED WATERMARKS */
 
     .home-page .home-header::before,
     .home-page .watermark-section::before {
@@ -37,31 +52,25 @@
       content: "";
       position: absolute;
       inset: 0;
-
-      background-image: url("njhs-circle-logo.png");
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: 760px auto;
-
+      background: url("njhs-circle-logo.png")
+                  center center / 760px auto no-repeat;
       opacity: 0.065;
       pointer-events: none;
       z-index: 1;
     }
-
-    /* KEEP TEXT READABLE ABOVE WATERMARK */
 
     .home-page main > section > * {
       position: relative;
       z-index: 2;
     }
 
-    /* PRESERVE DESKTOP NAVIGATION */
+    /* DESKTOP NAVIGATION */
 
     .home-page .home-header .top-nav {
       position: absolute;
     }
 
-    /* ANNOUNCEMENT BULLETS */
+    /* ANNOUNCEMENTS */
 
     .home-page .announcement-list {
       padding-left: 26px;
@@ -78,6 +87,7 @@
       color: #003366;
     }
 
+    .home-page .announcement-list a,
     .home-page .calendar-link {
       color: #004b91;
       font-weight: 600;
@@ -93,13 +103,11 @@
         box-sizing: border-box;
       }
 
-      /* SAME SINGLE WATERMARK, SMALLER ON PHONES */
-
       .home-page main::before {
         background-size: 360px auto;
       }
 
-      /* NAVIGATION */
+      /* MOBILE NAVIGATION */
 
       .home-page .home-header .top-nav {
         position: relative;
@@ -126,12 +134,21 @@
         text-align: center;
       }
 
+      /* AUTOMATIC ... ON SMALL SCREENS */
+
+      .home-page .home-header .top-nav a.nav-presentations {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+      }
+
       .home-page .home-header .top-nav a:nth-child(4),
       .home-page .home-header .top-nav a:nth-child(5) {
         grid-column: span 3;
       }
 
-      /* LOGOS ABOVE TITLE ON MOBILE */
+      /* MOBILE HEADER LOGOS AND TITLE */
 
       .home-page .home-header .hero-title-row {
         display: grid;
@@ -187,7 +204,7 @@
         margin: 0 auto;
       }
 
-      /* CONTENT SECTIONS */
+      /* MOBILE CONTENT SECTIONS */
 
       .home-page section {
         box-sizing: border-box;
@@ -215,16 +232,27 @@
 
 <body class="home-page">
 
-  <!-- HEADER - NO WATERMARK -->
+  <!-- HEADER -->
 
   <header class="home-header">
 
     <nav class="top-nav" aria-label="Main navigation">
 
       <a href="board.html">Board</a>
+
       <a href="about.html">About Us</a>
-      <a href="powerpoints.html">Powerpoints</a>
+
+      <a href="powerpoints.html"
+         class="nav-presentations"
+         title="Presentations and Newsletters"
+         aria-label="Presentations and Newsletters">
+        <span class="nav-label">
+          Presentations and Newsletters
+        </span>
+      </a>
+
       <a href="contact.html">Contact Us</a>
+
       <a href="calendar.html">Calendar</a>
 
     </nav>
@@ -239,7 +267,9 @@
 
       <div class="title-text">
 
-        <h1>Doral Academy <span>NJHS</span></h1>
+        <h1>
+          Doral Academy <span>NJHS</span>
+        </h1>
 
         <p>
           Scholarship • Leadership • Service • Character • Citizenship
@@ -257,13 +287,13 @@
 
   </header>
 
-  <!-- MAIN CONTENT - ONE BACKGROUND WATERMARK -->
+  <!-- MAIN CONTENT -->
 
   <main>
 
     <!-- WELCOME -->
 
-    <section>
+    <section class="watermark-section">
 
       <h2>Welcome</h2>
 
@@ -278,7 +308,7 @@
 
     <!-- ANNOUNCEMENTS -->
 
-    <section>
+    <section class="watermark-section">
 
       <h2>Announcements</h2>
 
@@ -289,39 +319,44 @@
       <ul class="announcement-list">
 
         <li>
-          <strong>$15 NJHS Club Fee:</strong>
-          Payment was due <strong>November 14, 2026</strong>,
-          and the deadline has passed. If you have not paid,
-          please contact the NJHS sponsor about next steps.
+          <strong>$15 NJHS club fee:</strong>
+          Payment was due
+          <strong>November 14, 2026</strong>,
+          and the deadline has passed.
+          If you have not paid, please contact
+          the NJHS sponsor about next steps.
         </li>
 
         <li>
-          <strong>2 Service Events Required:</strong>
+          <strong>2 service events required:</strong>
           Every member must complete
           <strong>two NJHS events</strong>
-          by <strong>January 14, 2027 (14A)</strong>.
+          by
+          <strong>January 14, 2027 (14A)</strong>.
         </li>
 
         <li>
-          <strong>2 Fundraisers Required:</strong>
+          <strong>2 fundraisers required:</strong>
           Every member must complete
           <strong>two fundraisers</strong>
-          by <strong>January 14, 2027 (14A)</strong>.
+          by
+          <strong>January 14, 2027 (14A)</strong>.
         </li>
 
         <li>
-          <strong>Upcoming NJHS Meeting:</strong>
+          <strong>Upcoming NJHS meeting:</strong>
           Our next monthly meeting is
           <strong>Wednesday, December 2, 2026 (2A)</strong>.
         </li>
 
         <li>
-          <strong>Monthly Meeting Schedule:</strong>
-          NJHS meetings are generally held on the first
-          Wednesday of each month from September through May.
+          <strong>Monthly meeting schedule:</strong>
+          NJHS meetings are generally held on the first Wednesday
+          of each month from September through May.
           The October meeting was held on
-          <strong>October 14</strong> instead,
-          and there is <strong>no June meeting</strong>.
+          <strong>October 14</strong>
+          instead, and there is
+          <strong>no June meeting</strong>.
         </li>
 
       </ul>
@@ -338,7 +373,7 @@
 
     <!-- CONTACT -->
 
-    <section>
+    <section class="watermark-section">
 
       <h2>Contact</h2>
 
