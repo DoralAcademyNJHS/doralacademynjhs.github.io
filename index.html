@@ -9,39 +9,12 @@
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
 
   <style>
-
-    /* RESPONSIVE PRESENTATIONS NAVIGATION */
-
-    .home-page .top-nav a.nav-presentations {
-      min-width: 0;
-      max-width: min(260px, 25vw);
-      box-sizing: border-box;
-    }
-
-    .home-page .top-nav .nav-presentations .nav-label {
-      display: block;
-      min-width: 0;
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* HOMEPAGE TITLE */
-
-    .home-page .title-text h1 span {
-      display: inline;
-    }
-
-    /* REMOVE REPEATED WATERMARKS */
-
+    /* SINGLE HOMEPAGE WATERMARK */
     .home-page .home-header::before,
     .home-page .watermark-section::before {
       content: none !important;
       display: none !important;
     }
-
-    /* ONE LARGE WATERMARK BEHIND MAIN CONTENT */
 
     .home-page main {
       position: relative;
@@ -53,10 +26,10 @@
       position: absolute;
       inset: 0;
       background: url("njhs-circle-logo.png")
-                  center center / 760px auto no-repeat;
-      opacity: 0.065;
-      pointer-events: none;
+        center / min(760px, 85vw) auto no-repeat;
+      opacity: 0.055;
       z-index: 1;
+      pointer-events: none;
     }
 
     .home-page main > section > * {
@@ -64,37 +37,99 @@
       z-index: 2;
     }
 
-    /* DESKTOP NAVIGATION */
+    .home-page .title-text h1 span {
+      display: inline;
+    }
 
     .home-page .home-header .top-nav {
       position: absolute;
     }
 
+    /* RESPONSIVE NAVIGATION */
+    .home-page .top-nav a.nav-presentations {
+      min-width: 0;
+      max-width: min(260px, 25vw);
+      box-sizing: border-box;
+    }
+
+    .home-page .nav-presentations .nav-label {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* ANNOUNCEMENTS */
-
-    .home-page .announcement-list {
-      padding-left: 26px;
-      margin: 18px 0 16px;
+    .home-page .announcement-lead {
+      color: #34475b;
+      margin-bottom: 14px;
     }
 
-    .home-page .announcement-list li {
-      margin-bottom: 13px;
-      padding-left: 4px;
-      line-height: 1.7;
+    .home-page .announcement-list,
+    .home-page .month-events {
+      padding-left: 24px;
+      margin: 12px 0 18px;
     }
 
-    .home-page .announcement-list strong {
+    .home-page .announcement-list li,
+    .home-page .month-events li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .home-page .announcement-list strong,
+    .home-page .month-events strong {
       color: #003366;
     }
 
-    .home-page .announcement-list a,
-    .home-page .calendar-link {
-      color: #004b91;
-      font-weight: 600;
+    .home-page .month-heading {
+      color: #003366;
+      margin: 22px 0 10px;
+      font-size: 22px;
     }
 
-    /* MOBILE DESIGN */
+    .home-page .deadline-text {
+      font-weight: bold;
+      color: #a52121;
+    }
 
+    .home-page .announcement-details {
+      margin-top: 14px;
+      border: 1px solid #dce5ee;
+      border-radius: 10px;
+      background: rgba(244,248,253,0.8);
+      padding: 12px 15px;
+    }
+
+    .home-page .announcement-details summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .home-page .announcement-details li {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .home-page .notice {
+      padding: 12px 14px;
+      border-left: 4px solid #c48715;
+      background: #fff8e8;
+      border-radius: 7px;
+      line-height: 1.5;
+    }
+
+    .home-page .calendar-link {
+      color: #004b91;
+      font-weight: 700;
+    }
+
+    .home-page a {
+      overflow-wrap: anywhere;
+    }
+
+    /* MOBILE */
     @media (max-width: 700px) {
 
       .home-page .home-header {
@@ -104,22 +139,18 @@
       }
 
       .home-page main::before {
-        background-size: 360px auto;
+        background-size: 350px auto;
       }
-
-      /* MOBILE NAVIGATION */
 
       .home-page .home-header .top-nav {
         position: relative;
         top: auto;
-        right: auto;
         left: auto;
+        right: auto;
         transform: none;
-
         display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0,1fr));
         gap: 7px;
-
         width: 100%;
         max-width: 450px;
         margin: 0 auto;
@@ -127,19 +158,16 @@
 
       .home-page .home-header .top-nav a {
         grid-column: span 2;
+        min-width: 0;
         padding: 9px 3px;
-        font-size: clamp(11px, 3vw, 13px);
-        line-height: 1.3;
-        white-space: nowrap;
+        font-size: clamp(11px,3vw,13px);
         text-align: center;
+        white-space: nowrap;
       }
-
-      /* AUTOMATIC ... ON SMALL SCREENS */
 
       .home-page .home-header .top-nav a.nav-presentations {
         width: 100%;
         max-width: 100%;
-        min-width: 0;
         overflow: hidden;
       }
 
@@ -148,20 +176,15 @@
         grid-column: span 3;
       }
 
-      /* MOBILE HEADER LOGOS AND TITLE */
-
       .home-page .home-header .hero-title-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
           "njhs doral"
           "title title";
-
-        align-items: center;
         justify-items: center;
-        column-gap: 10px;
-        row-gap: 14px;
-
+        align-items: center;
+        gap: 14px 10px;
         width: 100%;
         margin: 28px auto 0;
       }
@@ -187,10 +210,9 @@
       }
 
       .home-page .home-header h1 {
-        font-size: clamp(29px, 8vw, 39px);
+        font-size: clamp(29px,8vw,39px);
         line-height: 1.2;
         margin: 0 0 10px;
-        letter-spacing: 0;
       }
 
       .home-page .title-text h1 span {
@@ -204,8 +226,6 @@
         margin: 0 auto;
       }
 
-      /* MOBILE CONTENT SECTIONS */
-
       .home-page section {
         box-sizing: border-box;
         margin: 16px 12px;
@@ -216,174 +236,291 @@
         font-size: 27px;
       }
 
-      .home-page .announcement-list {
-        padding-left: 22px;
+      .home-page .month-heading {
+        font-size: 20px;
       }
 
+      .home-page .month-events li,
       .home-page .announcement-list li {
         font-size: 15px;
-        margin-bottom: 12px;
       }
-
     }
-
   </style>
 </head>
 
 <body class="home-page">
 
-  <!-- HEADER -->
-
   <header class="home-header">
 
     <nav class="top-nav" aria-label="Main navigation">
-
       <a href="board.html">Board</a>
-
       <a href="about.html">About Us</a>
 
       <a href="powerpoints.html"
          class="nav-presentations"
-         title="Presentations and Newsletters"
-         aria-label="Presentations and Newsletters">
-        <span class="nav-label">
-          Presentations and Newsletters
-        </span>
+         aria-label="Presentations and Newsletters"
+         title="Presentations and Newsletters">
+        <span class="nav-label">Presentations and Newsletters</span>
       </a>
 
       <a href="contact.html">Contact Us</a>
-
       <a href="calendar.html">Calendar</a>
-
     </nav>
 
     <div class="hero-title-row">
-
-      <img
-        src="njhs-logo-clean.png"
-        alt="NJHS Logo"
-        class="home-logo njhs-logo"
-      >
+      <img src="njhs-logo-clean.png"
+           alt="NJHS logo"
+           class="home-logo njhs-logo">
 
       <div class="title-text">
-
-        <h1>
-          Doral Academy <span>NJHS</span>
-        </h1>
-
+        <h1>Doral Academy <span>NJHS</span></h1>
         <p>
-          Scholarship • Leadership • Service • Character • Citizenship
+          Scholarship • Leadership • Service •
+          Character • Citizenship
         </p>
-
       </div>
 
-      <img
-        src="doral-logo-clean.png"
-        alt="Doral Academy Logo"
-        class="home-logo doral-logo"
-      >
-
+      <img src="doral-logo-clean.png"
+           alt="Doral Academy logo"
+           class="home-logo doral-logo">
     </div>
-
   </header>
-
-  <!-- MAIN CONTENT -->
 
   <main>
 
-    <!-- WELCOME -->
-
-    <section class="watermark-section">
-
+    <section>
       <h2>Welcome</h2>
-
       <p>
-        Welcome to the Doral Academy National Junior Honor
-        Society website. This site shares chapter announcements,
-        upcoming meetings, service opportunities, leadership
-        updates, and important information for members and families.
+        Welcome to the Doral Academy National Junior Honor Society
+        website. Find chapter announcements, meeting dates,
+        service events, fundraising opportunities, and
+        information for members and families.
       </p>
-
     </section>
 
-    <!-- ANNOUNCEMENTS -->
-
-    <section class="watermark-section">
-
+    <section>
       <h2>Announcements</h2>
 
-      <p>
-        Important reminders for the 2026–2027 school year:
-      </p>
-
-      <ul class="announcement-list">
-
-        <li>
-          <strong>$15 NJHS club fee:</strong>
-          Payment was due
-          <strong>November 14, 2026</strong>,
-          and the deadline has passed.
-          If you have not paid, please contact
-          the NJHS sponsor about next steps.
-        </li>
-
-        <li>
-          <strong>2 service events required:</strong>
-          Every member must complete
-          <strong>two NJHS events</strong>
-          by
-          <strong>January 14, 2027 (14A)</strong>.
-        </li>
-
-        <li>
-          <strong>2 fundraisers required:</strong>
-          Every member must complete
-          <strong>two fundraisers</strong>
-          by
-          <strong>January 14, 2027 (14A)</strong>.
-        </li>
-
-        <li>
-          <strong>Upcoming NJHS meeting:</strong>
-          Our next monthly meeting is
-          <strong>Wednesday, December 2, 2026 (2A)</strong>.
-        </li>
-
-        <li>
-          <strong>Monthly meeting schedule:</strong>
-          NJHS meetings are generally held on the first Wednesday
-          of each month from September through May.
-          The October meeting was held on
-          <strong>October 14</strong>
-          instead, and there is
-          <strong>no June meeting</strong>.
-        </li>
-
-      </ul>
-
-      <p>
-        Check the
+      <p class="announcement-lead">
+        Important deadlines and activities for the 2026–2027
+        school year, organized by month. Click a date on the
         <a class="calendar-link" href="calendar.html">
           NJHS Calendar
         </a>
-        for meeting dates, A/B schedules, and school holidays.
+        for more details.
       </p>
 
+      <h3 class="month-heading">Membership Reminders</h3>
+
+      <ul class="announcement-list">
+        <li>
+          <strong>$15 NJHS club fee:</strong>
+          Payment was due <strong>November 14, 2026</strong>.
+          Members with unpaid fees should contact the NJHS sponsor.
+        </li>
+
+        <li>
+          <strong>Semester requirement:</strong>
+          Complete <strong>2 service events and 2 fundraisers</strong>
+          by <span class="deadline-text">
+            January 14, 2027 (14A) — DUE
+          </span>.
+        </li>
+
+        <li>
+          <strong>Meetings:</strong>
+          Generally the first Wednesday of September–May,
+          except <strong>October 14</strong>.
+          There is <strong>no June meeting</strong>.
+        </li>
+
+        <li>
+          <strong>Submitting proof:</strong>
+          Send event photos and details to
+          <a href="mailto:njhsdoralacademy@gmail.com">
+            njhsdoralacademy@gmail.com
+          </a>.
+          Include your name, grade, event name, and date.
+          Fundraiser proof must be submitted using the
+          designated form when available.
+        </li>
+      </ul>
+
+      <h3 class="month-heading">October 2026</h3>
+
+      <ul class="month-events">
+        <li>
+          <strong>October 14:</strong>
+          NJHS monthly meeting.
+        </li>
+
+        <li>
+          <strong>October 17, 9 AM–12 PM:</strong>
+          Klean Street Klean Minds community street cleanup,
+          5801 NE 2nd Avenue, Miami.
+        </li>
+
+        <li>
+          <strong>October 19, 3:30–4:30 PM:</strong>
+          Trivia Fun for new members, Orgill's Room 102A
+          (25 spaces).
+          <a href="https://forms.gle/LJaqfLmsAAzRFNNAA"
+             target="_blank" rel="noopener noreferrer">
+            Sign-up form
+          </a>.
+        </li>
+
+        <li>
+          <span class="deadline-text">
+            October 21, 11:59 PM — DUE:
+          </span>
+          Halloween Cards for Hospitalized Kids;
+          <strong>3 cards = 1 event credit</strong>,
+          with no multipliers.
+          Email addressed-envelope and mailing proof.
+        </li>
+
+        <li>
+          <strong>Fundraisers:</strong>
+          Global Empowerment Mission and Mia's Miracles.
+          Each requires a <strong>$7 donation for 1 credit</strong>;
+          no multipliers.
+        </li>
+      </ul>
+
+      <details class="announcement-details">
+        <summary>October Fundraiser Links and Proof Forms</summary>
+        <ul>
+          <li>
+            <strong>Global Empowerment Mission:</strong>
+            <a href="https://give.gem.org/campaign/735778/donate"
+               target="_blank" rel="noopener noreferrer">Donate</a>
+            ·
+            <a href="https://forms.gle/nMfaBUAVE4X3Z4fW6"
+               target="_blank" rel="noopener noreferrer">Submit proof</a>
+          </li>
+
+          <li>
+            <strong>Mia's Miracles:</strong>
+            <a href="https://mias-miracles.org/donate/"
+               target="_blank" rel="noopener noreferrer">Donate</a>
+            ·
+            <a href="https://forms.gle/xfF3gVF7sdRYBU6Y8"
+               target="_blank" rel="noopener noreferrer">Submit proof</a>
+          </li>
+        </ul>
+      </details>
+
+      <h3 class="month-heading">November 2026</h3>
+
+      <ul class="month-events">
+        <li><strong>November 4:</strong> NJHS monthly meeting.</li>
+
+        <li>
+          <span class="deadline-text">
+            November 20, 11:59 PM — DUE:
+          </span>
+          Thanksgiving Cards for Hospitalized Kids;
+          <strong>3 cards = 1 event credit</strong>,
+          no multipliers. Email proof of addressed cards and mailing.
+        </li>
+
+        <li>
+          <strong>November 21, 9 AM–12 PM:</strong>
+          Klean Streets Klean Minds cleanup,
+          5801 NE 2nd Avenue, Miami.
+        </li>
+
+        <li>
+          <strong>November 21, 22, 28 &amp; 29:</strong>
+          Box of Joy volunteering at 2260 NW 114th Avenue,
+          Miami. Sign-up information and available shifts
+          are in the November newsletter.
+        </li>
+
+        <li>
+          <strong>Fundraiser:</strong>
+          Wounded Warrior Project.
+          <strong>$7 = 1 credit</strong>, no multipliers.
+          <a href="https://support.woundedwarriorproject.org/Default.aspx?tsid=37977"
+             target="_blank" rel="noopener noreferrer">Donation page</a>
+          ·
+          <a href="https://forms.gle/F6t3YPgR1nLFfQQY8"
+             target="_blank" rel="noopener noreferrer">Submit proof</a>.
+          Indicate the donation is on behalf of
+          <strong>Doral Academy NJHS</strong>.
+        </li>
+      </ul>
+
+      <h3 class="month-heading">December 2026</h3>
+
+      <ul class="month-events">
+        <li>
+          <strong>December 2:</strong>
+          NJHS monthly meeting.
+        </li>
+
+        <li>
+          <strong>December 2, 4–5 PM:</strong>
+          <strong>Teen Art for Seniors (Community Action Days)</strong>.
+          Make cards for seniors at 401 Westward Drive,
+          Miami Springs, FL 33166.
+          No organization RSVP required; check the NJHS
+          club sign-up information.
+        </li>
+
+        <li>
+          <strong>December 12:</strong>
+          Holiday Toy and Meal Distribution at Mana Wynwood,
+          320 NW 23rd Street, Miami.
+          Time depends on the chosen shift.
+        </li>
+
+        <li>
+          <span class="deadline-text">
+            December 17, 2026, 11:59 PM — DUE:
+          </span>
+          Holiday Cards for Hospitalized Kids.
+          <strong>3 cards = 1 event credit</strong>.
+          Members can earn a maximum of
+          <strong>2 event credits from card events</strong>.
+          Email proof of addressed, enveloped cards.
+        </li>
+
+        <li>
+          <strong>Fundraisers:</strong>
+          Cristina's Academy and Box of Joy /
+          Cross Catholic Outreach.
+          <strong>$7 = 1 credit</strong>, no multipliers.
+          Donation and proof-form URLs have not been provided.
+        </li>
+      </ul>
+
+      <p class="notice">
+        <strong>December reminder:</strong>
+        Use the NJHS club sign-up instructions for events
+        and the designated proof forms for donations.
+        The December fundraiser links have not yet been provided.
+      </p>
+
+      <p>
+        See
+        <a class="calendar-link" href="calendar.html">
+          the interactive calendar
+        </a>
+        for times, addresses, proof requirements,
+        and event details.
+      </p>
     </section>
 
-    <!-- CONTACT -->
-
-    <section class="watermark-section">
-
+    <section>
       <h2>Contact</h2>
-
       <p>
         Email:
         <a href="mailto:njhsdoralacademy@gmail.com">
           njhsdoralacademy@gmail.com
         </a>
       </p>
-
     </section>
 
   </main>
