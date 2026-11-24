@@ -11,28 +11,27 @@
   <link rel="icon" type="image/png" href="njhs-logo-clean.png">
 
   <style>
-
-    /* PAGE AND CALENDAR CONTROLS */
+    /* CALENDAR LAYOUT */
 
     .njhs-calendar-page {
       overflow-x: hidden;
     }
 
     .njhs-calendar-page .calendar-content {
-      box-sizing: border-box;
-      width: calc(100% - 36px);
       max-width: 1220px;
+      width: calc(100% - 36px);
+      box-sizing: border-box;
       padding: 22px;
       margin: 26px auto;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255,255,255,.97);
     }
 
     .calendar-top {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 15px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
     }
 
     .calendar-top h2 {
@@ -41,12 +40,10 @@
 
     .calendar-actions {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
     }
-
-    /* LIGHT INACTIVE BUTTONS */
 
     .calendar-actions button {
       padding: 10px 13px;
@@ -54,14 +51,10 @@
       color: #003366;
       border: 1px solid #003366;
       border-radius: 6px;
-      font: 700 14px Arial, sans-serif;
       cursor: pointer;
-      transition:
-        background-color 0.18s ease,
-        color 0.18s ease;
+      font: 700 14px Arial, sans-serif;
+      transition: background .18s, color .18s;
     }
-
-    /* DARK SELECTED BUTTONS */
 
     .calendar-actions button[aria-pressed="true"] {
       background: #003366;
@@ -74,14 +67,15 @@
     }
 
     .calendar-actions button:disabled {
-      opacity: 0.4;
+      opacity: .4;
       cursor: not-allowed;
     }
 
     .calendar-actions button:focus-visible,
     .calendar-day:focus-visible,
+    .weekend-button:focus-visible,
     .day-popup-close:focus-visible {
-      outline: 3px solid #2485d8;
+      outline: 3px solid #2585d9;
       outline-offset: 2px;
     }
 
@@ -104,48 +98,47 @@
 
     .calendar-intro {
       font-size: 15px;
-      margin: 14px 0 22px;
+      margin: 15px 0 22px;
     }
 
-    /* MONTH GRID */
+    /* MONTH BOXES */
 
     .school-months {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4,minmax(0,1fr));
       gap: 16px;
       align-items: start;
     }
 
     .school-months.three-months {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3,minmax(0,1fr));
     }
 
     .month-panel {
       min-width: 0;
       border: 2px solid #171717;
       background: white;
-      font-family: Arial, Helvetica, sans-serif;
-      box-shadow: 0 2px 7px rgba(0, 35, 70, 0.05);
+      font-family: Arial, sans-serif;
     }
 
     .month-title {
       padding: 8px 3px;
-      color: white;
       background: #828282;
-      border-bottom: 2px solid #171717;
+      color: white;
       text-align: center;
       text-transform: uppercase;
-      font: 800 clamp(14px, 1.3vw, 20px) Arial, sans-serif;
+      border-bottom: 2px solid #171717;
+      font: 800 clamp(14px,1.3vw,20px) Arial,sans-serif;
     }
 
     .day-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(5,minmax(0,1fr));
     }
 
     .day-grid > * {
-      box-sizing: border-box;
       min-width: 0;
+      box-sizing: border-box;
       border-right: 1px solid #171717;
       border-bottom: 1px solid #171717;
     }
@@ -154,7 +147,7 @@
       border-right: 0;
     }
 
-    .day-grid > :nth-last-child(-n + 5) {
+    .day-grid > :nth-last-child(-n+5) {
       border-bottom: 0;
     }
 
@@ -162,7 +155,7 @@
       display: grid;
       place-items: center;
       min-height: 32px;
-      font: 800 16px Arial, sans-serif;
+      font: 800 16px Arial,sans-serif;
     }
 
     .calendar-day,
@@ -178,19 +171,14 @@
       gap: 1px;
       width: 100%;
       padding: 2px 1px;
-
       border-left: 0;
       border-top: 0;
       border-radius: 0;
-
       background: white;
       color: #080808;
-
-      font: 800 clamp(14px, 1.25vw, 19px) Arial, sans-serif;
       cursor: pointer;
+      font: 800 clamp(14px,1.25vw,19px) Arial,sans-serif;
     }
-
-    /* HOVER AND SELECTION */
 
     .calendar-day:hover {
       outline: 2px solid #2875b9;
@@ -208,54 +196,39 @@
 
     .calendar-day .day-note {
       color: #003366;
-      font: 800 9px Arial, sans-serif;
+      font: 800 9px Arial,sans-serif;
       line-height: 1.1;
+    }
+
+    /* SCHOOL COLORS */
+
+    .calendar-day.new-teachers { background: #ffff00; }
+    .calendar-day.planning { background: #08c4e8; }
+    .calendar-day.planning-no-opt { background: #bb96d3; }
+    .calendar-day.holiday { background: #8bcc4c; }
+    .calendar-day.recess { background: #ffbf00; }
+    .calendar-day.semester { background: #f91111; }
+    .calendar-day.early-release { background: #f585ed; }
+    .calendar-day.meeting-day { background: #d8ecff; }
+
+    /* EVENTS AND DEADLINES */
+
+    .calendar-day.event-day:not(.deadline-day) {
+      box-shadow: inset 0 0 0 2px #2875b9;
+    }
+
+    .calendar-day.deadline-day {
+      box-shadow: inset 0 0 0 4px #111 !important;
     }
 
     .calendar-day.deadline-day .day-note {
       color: white;
       background: #003366;
       border-radius: 3px;
-      padding: 1px 3px;
+      padding: 1px 4px;
     }
 
-    /* SCHOOL CALENDAR COLORS */
-
-    .calendar-day.new-teachers {
-      background: #ffff00;
-    }
-
-    .calendar-day.planning {
-      background: #08c4e8;
-    }
-
-    .calendar-day.planning-no-opt {
-      background: #bb96d3;
-    }
-
-    .calendar-day.holiday {
-      background: #8bcc4c;
-    }
-
-    .calendar-day.recess {
-      background: #ffbf00;
-    }
-
-    /* RED IS NOW FOR SEMESTERS ONLY */
-
-    .calendar-day.semester {
-      background: #f91111;
-    }
-
-    .calendar-day.early-release {
-      background: #f585ed;
-    }
-
-    .calendar-day.meeting-day {
-      background: #d8ecff;
-    }
-
-    /* NJHS WATERMARKS ON MEETING DATES ONLY */
+    /* NJHS WATERMARKS */
 
     .calendar-day.watermark-day {
       position: relative;
@@ -267,11 +240,10 @@
       content: "";
       position: absolute;
       inset: 0;
-
-      background: url("njhs-circle-logo.png")
-                  center / 90% auto no-repeat;
-
-      opacity: 0.22;
+      background:
+        url("njhs-circle-logo.png")
+        center / 90% auto no-repeat;
+      opacity: .22;
       pointer-events: none;
       z-index: 0;
     }
@@ -284,32 +256,126 @@
     /* SEMESTER SUMMARY */
 
     .semester-summary {
-      align-self: stretch;
       border: 5px solid #111;
-      background: #fffecb;
+      align-self: stretch;
       padding: 17px 12px;
       text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
+      background: #fffecb;
+      font-family: Arial,sans-serif;
     }
 
     .semester-summary h3 {
       margin: 0 0 22px;
-      font: 800 24px/1.18 Arial, sans-serif;
       color: #111;
+      font: 800 24px/1.18 Arial,sans-serif;
     }
 
     .semester-summary p {
       margin: 0;
-      font: 22px/1.5 Arial, sans-serif;
+      font: 22px/1.5 Arial,sans-serif;
     }
 
     .three-months .semester-summary {
       display: none;
     }
 
-    /* ===================================
-       NEW FLOATING DATE DETAILS POPUP
-       =================================== */
+    /* WEEKEND EVENTS */
+
+    .weekend-section,
+    .fundraising-section {
+      margin-top: 29px;
+      border-top: 1px solid #d6e0e9;
+      padding-top: 20px;
+    }
+
+    .weekend-section h3,
+    .fundraising-section h3 {
+      margin: 0 0 11px;
+      color: #003366;
+      font-size: 23px;
+    }
+
+    .helper-text {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: #526578;
+    }
+
+    .weekend-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .weekend-button {
+      padding: 9px 12px;
+      background: #eef5ff;
+      color: #003366;
+      border: 1px solid #b0cbe4;
+      border-radius: 8px;
+      cursor: pointer;
+      font: 700 13px Arial,sans-serif;
+    }
+
+    .weekend-button:hover,
+    .weekend-button.selected {
+      background: #003366;
+      color: white;
+    }
+
+    .weekend-button.deadline-day {
+      box-shadow: inset 0 0 0 3px #111;
+    }
+
+    /* FUNDRAISERS */
+
+    .fundraiser-grid {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .fundraiser-month {
+      min-width: 0;
+      border: 1px solid #dbe5f0;
+      background: #f7faff;
+      border-radius: 11px;
+      padding: 15px;
+    }
+
+    .fundraiser-month h4 {
+      margin: 0 0 10px;
+      color: #003366;
+      font-size: 18px;
+    }
+
+    .fundraiser-month ul {
+      padding-left: 19px;
+      margin: 0;
+    }
+
+    .fundraiser-month li {
+      line-height: 1.5;
+      margin: 0 0 12px;
+      font-size: 14px;
+    }
+
+    .fundraiser-month li:last-child {
+      margin-bottom: 0;
+    }
+
+    .fundraiser-month a {
+      color: #004b91;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .fundraiser-month .link-row {
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* DATE POPUP */
 
     .day-popup[hidden] {
       display: none !important;
@@ -318,57 +384,32 @@
     .day-popup {
       position: fixed;
       z-index: 1000;
-
       box-sizing: border-box;
-      width: min(385px, calc(100vw - 28px));
-      max-height: min(320px, calc(100dvh - 28px));
+      width: min(430px,calc(100vw - 28px));
+      max-height: min(75dvh,560px);
       overflow-y: auto;
-
-      padding: 22px 23px 20px;
-
+      padding: 20px 22px;
       border: 1px solid #c1d8ec;
       border-top: 5px solid #003366;
       border-radius: 17px;
-
       background: #f2f8ff;
-      box-shadow: 0 15px 42px rgba(0, 25, 60, 0.24);
-
       color: #142b44;
-
-      animation: popIn 0.16s ease-out;
+      box-shadow: 0 15px 42px rgba(0,25,60,.24);
     }
-
-    @keyframes popIn {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* CLOSE BUTTON */
 
     .day-popup-close {
       position: absolute;
       top: 10px;
       right: 11px;
-
       display: grid;
       place-items: center;
-
       width: 33px;
       height: 33px;
-
       border: 0;
       border-radius: 50%;
       background: transparent;
       color: #003366;
-
-      font: 26px/1 Arial, sans-serif;
+      font: 26px/1 Arial,sans-serif;
       cursor: pointer;
     }
 
@@ -376,20 +417,18 @@
       background: #dcecfb;
     }
 
-    /* POPUP TEXT */
-
     .day-popup-eyebrow {
-      margin: 0 32px 6px 0;
+      margin: 0 35px 6px 0;
       color: #487297;
-      font: 700 11px Arial, sans-serif;
-      letter-spacing: 0.08em;
+      font: 700 11px Arial,sans-serif;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
     .day-popup h3 {
-      margin: 0 32px 13px 0;
+      margin: 0 30px 13px 0;
       color: #003366;
-      font: 700 24px/1.2 Georgia, serif;
+      font: 700 23px/1.25 Georgia,serif;
     }
 
     .day-popup-code {
@@ -397,34 +436,56 @@
       margin-left: 5px;
       padding: 4px 8px;
       vertical-align: middle;
-
       border-radius: 6px;
       background: #dbeaf9;
       color: #003366;
-
-      font: 800 13px Arial, sans-serif;
+      font: 800 13px Arial,sans-serif;
     }
 
-    .day-popup-notes {
-      margin: 0;
-      padding-left: 19px;
+    .popup-entry {
+      margin-top: 13px;
+      padding-top: 12px;
+      border-top: 1px solid #d2e3f4;
     }
 
-    .day-popup-notes li {
+    .popup-entry h4 {
+      margin: 0 0 7px;
+      color: #003366;
+      font-size: 16px;
+    }
+
+    .popup-entry p {
+      margin: 6px 0;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .popup-entry ul {
       margin: 7px 0;
-      font-size: 15px;
-      line-height: 1.45;
+      padding-left: 20px;
+    }
+
+    .popup-entry li {
+      line-height: 1.5;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .popup-entry a {
+      display: inline-block;
+      margin: 5px 9px 3px 0;
+      color: #004b91;
+      font-weight: 700;
+      overflow-wrap: anywhere;
     }
 
     .day-popup-hint {
-      margin: 14px 0 0;
-      color: #6b7f93;
-      font: 12px Arial, sans-serif;
+      margin: 15px 0 0;
+      color: #667f96;
+      font: 12px Arial,sans-serif;
     }
 
-    /* ===================================
-       CALENDAR COLOR KEY
-       =================================== */
+    /* COLOR KEY */
 
     .calendar-key {
       margin-top: 29px;
@@ -435,7 +496,7 @@
     .calendar-key h3 {
       margin: 0 0 13px;
       color: #003366;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: Georgia,serif;
       font-size: 24px;
     }
 
@@ -449,52 +510,34 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font: 600 14px Arial, sans-serif;
+      font: 600 14px Arial,sans-serif;
     }
 
     .key-color {
       display: inline-block;
+      flex-shrink: 0;
       width: 23px;
       height: 23px;
-      flex-shrink: 0;
       border: 2px solid #111;
     }
 
-    .key-color.new-teachers {
-      background: #ffff00;
-    }
-
-    .key-color.planning {
-      background: #08c4e8;
-    }
-
-    .key-color.planning-no-opt {
-      background: #bb96d3;
-    }
-
-    .key-color.holiday {
-      background: #8bcc4c;
-    }
-
-    .key-color.recess {
-      background: #ffbf00;
-    }
-
-    .key-color.semester {
-      background: #f91111;
-    }
-
-    .key-color.early-release {
-      background: #f585ed;
-    }
-
-    .key-color.meeting-day {
-      background: #d8ecff;
-    }
+    .key-color.new-teachers { background: #ffff00; }
+    .key-color.planning { background: #08c4e8; }
+    .key-color.planning-no-opt { background: #bb96d3; }
+    .key-color.holiday { background: #8bcc4c; }
+    .key-color.recess { background: #ffbf00; }
+    .key-color.semester { background: #f91111; }
+    .key-color.early-release { background: #f585ed; }
+    .key-color.meeting-day { background: #d8ecff; }
 
     .key-color.deadline-day {
-      background: #f91111;
-      box-shadow: inset 0 0 0 3px #003366;
+      background: white;
+      box-shadow: inset 0 0 0 3px #111;
+    }
+
+    .key-color.event-day {
+      background: white;
+      box-shadow: inset 0 0 0 2px #2875b9;
     }
 
     .ab-explanation {
@@ -502,30 +545,27 @@
       font-size: 14px;
     }
 
-    /* TABLETS */
+    /* RESPONSIVE DESIGN */
 
     @media (max-width: 1150px) {
-
       .school-months,
       .school-months.three-months {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3,minmax(0,1fr));
       }
-
     }
 
     @media (max-width: 820px) {
-
       .school-months,
       .school-months.three-months {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,minmax(0,1fr));
       }
 
+      .fundraiser-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* PHONES */
-
     @media (max-width: 570px) {
-
       .njhs-calendar-page .calendar-content {
         width: calc(100% - 16px);
         padding: 16px 11px;
@@ -584,222 +624,280 @@
         font-size: 13px;
       }
 
-      /* ON PHONES, POPUP FLOATS AT BOTTOM */
-
       .day-popup {
         top: auto !important;
-        bottom: max(14px, env(safe-area-inset-bottom)) !important;
+        bottom: max(14px,env(safe-area-inset-bottom)) !important;
         left: 50% !important;
-
         transform: translateX(-50%);
-        max-height: min(280px, 55dvh);
-        animation: none;
+        max-height: min(65dvh,460px);
       }
-
     }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .day-popup {
-        animation: none;
-      }
-
-    }
-
   </style>
 </head>
 
 <body class="njhs-calendar-page">
 
-  <!-- HEADER -->
-
   <header>
-
     <nav class="top-nav">
       <a href="index.html">Home</a>
     </nav>
 
     <h1>Calendar</h1>
-
     <p>Doral Academy NJHS · 2026–2027</p>
-
   </header>
 
-  <!-- MAIN CALENDAR -->
-
   <main>
-
     <section class="calendar-content">
 
       <div class="calendar-top">
-
         <h2>2026–2027 School Calendar</h2>
 
         <div class="calendar-actions">
-
-          <button
-            id="all-year"
-            type="button"
-            aria-pressed="true">
+          <button id="all-year"
+                  type="button"
+                  aria-pressed="true">
             Full Year
           </button>
 
-          <button
-            id="three-at-once"
-            type="button"
-            aria-pressed="false">
+          <button id="three-at-once"
+                  type="button"
+                  aria-pressed="false">
             3 Months
           </button>
 
           <div class="window-controls" id="window-controls">
-
-            <button
-              id="prev-month"
-              type="button"
-              aria-label="Previous month">
-              ←
-            </button>
+            <button id="prev-month"
+                    type="button"
+                    aria-label="Previous month">←</button>
 
             <span id="visible-range"></span>
 
-            <button
-              id="next-month"
-              type="button"
-              aria-label="Next month">
-              →
-            </button>
-
+            <button id="next-month"
+                    type="button"
+                    aria-label="Next month">→</button>
           </div>
-
         </div>
-
       </div>
 
       <p class="calendar-intro">
-        Click any date to open its details. Click the same date
-        again to close them. NJHS meetings are marked with the
-        NJHS logo; October's is on October 14, and there is no
-        June meeting. The two-events and two-fundraisers deadline
-        is January 14, 2027.
+        Click a date for event information;
+        click it again to close.
+        <strong>DUE</strong> dates have thick black outlines.
+        School calendars show weekdays only, so weekend
+        events are listed below.
       </p>
 
-      <div
-        class="school-months"
-        id="school-months">
+      <div class="school-months" id="school-months"></div>
+
+      <!-- WEEKEND EVENTS -->
+
+      <div class="weekend-section">
+        <h3>Weekend Events</h3>
+
+        <p class="helper-text">
+          These events are on Saturdays or Sundays,
+          outside the Monday–Friday school grid.
+          Click a date for the full details.
+        </p>
+
+        <div class="weekend-buttons" id="weekend-buttons"></div>
+      </div>
+
+      <!-- MONTHLY FUNDRAISERS -->
+
+      <div class="fundraising-section">
+        <h3>Monthly Fundraisers</h3>
+
+        <p class="helper-text">
+          No individual donation deadlines were provided.
+          Each $7 donation earns one credit; donating $14
+          does not earn two credits. Complete two fundraiser
+          credits by January 14, 2027.
+        </p>
+
+        <div class="fundraiser-grid">
+
+          <div class="fundraiser-month">
+            <h4>October 2026</h4>
+
+            <ul>
+              <li>
+                <strong>Global Empowerment Mission:</strong>
+                Disaster-relief and recovery work.
+
+                <span class="link-row">
+                  <a href="https://give.gem.org/campaign/735778/donate"
+                     target="_blank"
+                     rel="noopener noreferrer">Donate</a>
+                  ·
+                  <a href="https://forms.gle/nMfaBUAVE4X3Z4fW6"
+                     target="_blank"
+                     rel="noopener noreferrer">Submit proof</a>
+                </span>
+              </li>
+
+              <li>
+                <strong>Mia's Miracles:</strong>
+                Support for families facing
+                serious childhood illnesses.
+
+                <span class="link-row">
+                  <a href="https://mias-miracles.org/donate/"
+                     target="_blank"
+                     rel="noopener noreferrer">Donate</a>
+                  ·
+                  <a href="https://forms.gle/xfF3gVF7sdRYBU6Y8"
+                     target="_blank"
+                     rel="noopener noreferrer">Submit proof</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fundraiser-month">
+            <h4>November 2026</h4>
+
+            <ul>
+              <li>
+                <strong>Wounded Warrior Project:</strong>
+                Choose the option indicating the donation
+                is on behalf of a company and enter
+                <strong>Doral Academy NJHS</strong>.
+
+                <span class="link-row">
+                  <a href="https://support.woundedwarriorproject.org/Default.aspx?tsid=37977"
+                     target="_blank"
+                     rel="noopener noreferrer">Donate</a>
+                  ·
+                  <a href="https://forms.gle/F6t3YPgR1nLFfQQY8"
+                     target="_blank"
+                     rel="noopener noreferrer">Submit proof</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fundraiser-month">
+            <h4>December 2026</h4>
+
+            <ul>
+              <li>
+                <strong>Cristina's Academy:</strong>
+                Add a donation note indicating it is on behalf
+                of <strong>Doral Academy NJHS</strong>.
+                <em>Donation and proof-form URLs not provided.</em>
+              </li>
+
+              <li>
+                <strong>Box of Joy /
+                Cross Catholic Outreach:</strong>
+                In optional comments enter
+                <strong>Doral Academy NJHS</strong>.
+                <em>Donation and proof-form URLs not provided.</em>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
 
       <!-- COLOR KEY -->
 
       <div class="calendar-key">
-
         <h3>Calendar Color Key</h3>
 
         <div class="key-items">
-
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color new-teachers"></span>
             New Teachers Report
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color planning"></span>
             Teacher Planning Day
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color planning-no-opt"></span>
             Teacher Planning Day NO OPT
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color holiday"></span>
             Legal Holiday
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color recess"></span>
             Recess Day
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color semester"></span>
             Beginning/End of Semester
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color early-release"></span>
             Early Release Day
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
             <span class="key-color meeting-day"></span>
             NJHS Meeting / Watermark
-          </div>
+          </span>
 
-          <div class="key-item">
+          <span class="key-item">
+            <span class="key-color event-day"></span>
+            Event
+          </span>
+
+          <span class="key-item">
             <span class="key-color deadline-day"></span>
-            NJHS Deadline
-          </div>
-
+            DUE (Thick Black Outline)
+          </span>
         </div>
 
         <p class="ab-explanation">
-          <strong>A/B schedule:</strong>
-          A letter after the date, such as 2A or 3B,
+          <strong>A/B labels:</strong>
+          The letter after a date (such as 2A or 3B)
           indicates the school-day schedule.
-          Red semester markers appear only on the first
-          or last day of each semester.
         </p>
-
       </div>
 
     </section>
-
   </main>
 
   <!-- FLOATING POPUP -->
 
-  <aside
-    class="day-popup"
-    id="day-popup"
-    role="dialog"
-    aria-modal="false"
-    aria-labelledby="day-popup-title"
-    hidden>
+  <aside class="day-popup"
+         id="day-popup"
+         role="dialog"
+         aria-modal="false"
+         aria-labelledby="day-popup-title"
+         hidden>
 
-    <button
-      class="day-popup-close"
-      id="day-popup-close"
-      type="button"
-      aria-label="Close date details">
-      ×
-    </button>
+    <button class="day-popup-close"
+            id="day-popup-close"
+            type="button"
+            aria-label="Close date details">×</button>
 
-    <p class="day-popup-eyebrow">
-      School Calendar Details
-    </p>
+    <p class="day-popup-eyebrow">School Calendar Details</p>
 
     <h3 id="day-popup-title"></h3>
 
-    <ul
-      class="day-popup-notes"
-      id="day-popup-notes">
-    </ul>
+    <div id="day-popup-content"></div>
 
     <p class="day-popup-hint">
-      Click the date again, click outside, or press Esc to close.
+      Click the date again, click outside,
+      or press Esc to close.
     </p>
-
   </aside>
 
   <script>
-
-    /* ===================================
-       A/B SCHOOL SCHEDULE
-       =================================== */
+    /* A/B SCHOOL DAY LABELS */
 
     const abByMonth = {
-
       '2026-08':
         '13A 14B 17A 18B 19A 20B 21A 24B 25A 26B 27A 28B 31A',
 
@@ -832,210 +930,335 @@
 
       '2027-06':
         '1B 2A 3B'
-
     };
 
     const schoolCodes = {};
 
     Object.entries(abByMonth).forEach(([month, codes]) => {
-
-      codes.split(' ').forEach(item => {
-
-        const parts = item.match(/^(\d+)([AB])$/);
+      codes.split(' ').forEach(code => {
+        const parts = code.match(/^(\d+)([AB])$/);
 
         if (parts) {
-
           schoolCodes[
-            month + '-' + parts[1].padStart(2, '0')
+            month + '-' + parts[1].padStart(2,'0')
           ] = parts[2];
-
         }
-
       });
-
     });
 
-    /* ===================================
-       SCHOOL SPECIAL DAYS
-       =================================== */
+    /* SCHOOL HOLIDAYS AND SEMESTERS */
 
     const markedDays = {};
 
     function addDays(year, month, days, type, description) {
-
       days.forEach(day => {
-
         const key =
-          `${year}-` +
-          `${String(month).padStart(2, '0')}-` +
-          `${String(day).padStart(2, '0')}`;
+          `${year}-${String(month).padStart(2,'0')}-` +
+          `${String(day).padStart(2,'0')}`;
 
-        markedDays[key] = {
-          type,
-          description
-        };
-
+        markedDays[key] = { type, description };
       });
-
     }
 
-    /* AUGUST */
+    addDays(2026,8,[3,4,5],
+      'new-teachers','New Teachers Report');
 
-    addDays(2026, 8, [3, 4, 5],
-      'new-teachers', 'New Teachers Report');
+    addDays(2026,8,[6,7,10,11,12],
+      'planning-no-opt','Teacher Planning Day NO OPT');
 
-    addDays(2026, 8, [6, 7, 10, 11, 12],
-      'planning-no-opt', 'Teacher Planning Day NO OPT');
+    addDays(2026,9,[7],
+      'holiday','Legal Holiday');
 
-    /* SEPTEMBER */
+    addDays(2026,9,[21],
+      'planning','Teacher Planning Day');
 
-    addDays(2026, 9, [7],
-      'holiday', 'Legal Holiday');
+    addDays(2026,10,[7],
+      'early-release','Early Release Day');
 
-    addDays(2026, 9, [21],
-      'planning', 'Teacher Planning Day');
+    addDays(2026,11,[3],
+      'planning-no-opt','Teacher Planning Day NO OPT');
 
-    /* OCTOBER */
+    addDays(2026,11,[11,26],
+      'holiday','Legal Holiday');
 
-    addDays(2026, 10, [7],
-      'early-release', 'Early Release Day');
+    addDays(2026,11,[23,24,25,27],
+      'recess','Recess Day');
 
-    /* NOVEMBER */
+    addDays(2026,12,[18],
+      'planning','Teacher Planning Day');
 
-    addDays(2026, 11, [3],
-      'planning-no-opt', 'Teacher Planning Day NO OPT');
+    addDays(2026,12,[21,22,23,24,25,28,29,30,31],
+      'recess','Recess Day');
 
-    addDays(2026, 11, [11, 26],
-      'holiday', 'Legal Holiday');
+    addDays(2027,1,[1],
+      'recess','Recess Day');
 
-    addDays(2026, 11, [23, 24, 25, 27],
-      'recess', 'Recess Day');
+    addDays(2027,1,[15],
+      'planning','Teacher Planning Day');
 
-    /* DECEMBER */
+    addDays(2027,1,[18],
+      'holiday','Legal Holiday');
 
-    addDays(2026, 12, [18],
-      'planning', 'Teacher Planning Day');
+    addDays(2027,2,[15],
+      'holiday','Legal Holiday');
 
-    addDays(2026, 12,
-      [21, 22, 23, 24, 25, 28, 29, 30, 31],
-      'recess', 'Recess Day');
+    addDays(2027,3,[10,29],
+      'planning','Teacher Planning Day');
 
-    /* JANUARY */
+    addDays(2027,3,[22,23,24,25,26],
+      'recess','Recess Day');
 
-    addDays(2027, 1, [1],
-      'recess', 'Recess Day');
+    addDays(2027,4,[22],
+      'early-release','Early Release Day');
 
-    addDays(2027, 1, [15],
-      'planning', 'Teacher Planning Day');
+    addDays(2027,5,[31],
+      'holiday','Legal Holiday');
 
-    addDays(2027, 1, [18],
-      'holiday', 'Legal Holiday');
+    addDays(2027,6,[1,2],
+      'early-release','Early Release Day');
 
-    /* FEBRUARY */
+    addDays(2027,6,[4],
+      'planning','Teacher Planning Day');
 
-    addDays(2027, 2, [15],
-      'holiday', 'Legal Holiday');
-
-    /* MARCH */
-
-    addDays(2027, 3, [10, 29],
-      'planning', 'Teacher Planning Day');
-
-    addDays(2027, 3, [22, 23, 24, 25, 26],
-      'recess', 'Recess Day');
-
-    /* APRIL */
-
-    addDays(2027, 4, [22],
-      'early-release', 'Early Release Day');
-
-    /* MAY */
-
-    addDays(2027, 5, [31],
-      'holiday', 'Legal Holiday');
-
-    /* JUNE */
-
-    addDays(2027, 6, [1, 2],
-      'early-release', 'Early Release Day');
-
-    addDays(2027, 6, [4],
-      'planning', 'Teacher Planning Day');
-
-    /* ===================================
-       SEMESTER BEGINNING AND END DATES
-
-       OLD QUARTER MARKERS REMOVED
-       =================================== */
+    /* SEMESTER MARKERS */
 
     markedDays['2026-08-13'] = {
-      type: 'semester',
-      description: 'First Day of Semester 1'
+      type:'semester',
+      description:'First Day of Semester 1'
     };
 
     markedDays['2027-01-14'] = {
-      type: 'semester',
-      description: 'Last Day of Semester 1'
+      type:'semester',
+      description:'Last Day of Semester 1'
     };
 
     markedDays['2027-01-19'] = {
-      type: 'semester',
-      description: 'First Day of Semester 2'
+      type:'semester',
+      description:'First Day of Semester 2'
     };
 
     markedDays['2027-06-03'] = {
-      type: 'semester',
-      description: 'Last Day of Semester 2'
+      type:'semester',
+      description:'Last Day of Semester 2'
     };
 
-    /* ===================================
-       NJHS MEETINGS
-       =================================== */
+    /* NJHS MEETINGS — NO JUNE MEETING */
 
     const meetingDates = [
-
       '2026-09-02',
       '2026-10-14',
       '2026-11-04',
       '2026-12-02',
-
       '2027-01-06',
       '2027-02-03',
       '2027-03-03',
       '2027-04-07',
       '2027-05-05'
-
     ];
 
     const meetingSet = new Set(meetingDates);
 
-    /* NJHS DEADLINES */
+    /* EVENTS AND DEADLINES */
 
-    const njhsEvents = {
+    const eventDetails = {};
 
-      '2027-01-14':
-        'NJHS deadline: Complete 2 events and 2 fundraisers'
-
-    };
+    function addEvent(date, data) {
+      if (!eventDetails[date]) {
+        eventDetails[date] = [];
+      }
+      eventDetails[date].push(data);
+    }
 
     meetingDates.forEach(date => {
-
-      njhsEvents[date] = 'NJHS Monthly Meeting';
-
+      addEvent(date, {
+        type:'meeting',
+        title:'NJHS Monthly Meeting',
+        details:[
+          'Check chapter announcements for time and location.'
+        ]
+      });
     });
 
-    /* ===================================
-       CALENDAR SETUP
-       =================================== */
+    /* OCTOBER */
+
+    addEvent('2026-10-17', {
+      type:'event',
+      title:'Klean Street Klean Minds',
+      time:'9:00 AM–12:00 PM',
+      location:'5801 Northeast 2nd Avenue, Miami, FL 33137',
+      details:[
+        'Street-cleanup service event. Meet next to the church; look for the City of Miami truck.',
+        'Wear closed-toe shoes and comfortable, breathable, sun-protective clothing.',
+        'Parking: lot next to church (do not block gate), grass behind building, or side/church lot if space allows.',
+        'Sign up through both the official site and club Google Form; their exact URLs were not supplied.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ]
+    });
+
+    addEvent('2026-10-19', {
+      type:'event',
+      title:'Trivia Fun',
+      time:'3:30–4:30 PM',
+      location:"Orgill's Room, 102A",
+      details:[
+        'Activity for new members to meet and have fun.',
+        '25 spots available.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ],
+      links:[
+        {
+          label:'Sign-up form',
+          url:'https://forms.gle/LJaqfLmsAAzRFNNAA'
+        }
+      ]
+    });
+
+    addEvent('2026-10-21', {
+      type:'deadline',
+      title:'DUE: Halloween Cards for Hospitalized Kids',
+      time:'By 11:59 PM',
+      location:'At home / mail to Cards for Hospitalized Kids, 7290 W. Devon, Chicago, IL 60631',
+      details:[
+        'Make thoughtful, festive Halloween cards. Three cards earn one event credit; no multipliers.',
+        'Send photo proof of the addressed envelope and mailing to njhsdoralacademy@gmail.com.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ],
+      links:[
+        {
+          label:'Card-making ideas',
+          url:'https://www.cardsforhospitalizedkids.com/make-general-cards.html'
+        }
+      ]
+    });
+
+    /* NOVEMBER */
+
+    addEvent('2026-11-14', {
+      type:'deadline',
+      title:'DUE: $15 NJHS Club Fee',
+      details:[
+        'The $15 membership fee was due November 14, 2026.',
+        'If it has not been paid, contact the NJHS sponsor about next steps.'
+      ]
+    });
+
+    addEvent('2026-11-20', {
+      type:'deadline',
+      title:'DUE: Thanksgiving Cards for Hospitalized Kids',
+      time:'By 11:59 PM',
+      location:'At home / mail to Cards for Hospitalized Kids, 7290 W. Devon, Chicago, IL 60631',
+      details:[
+        'Make festive Thanksgiving cards. Three cards earn one event credit; no multipliers.',
+        'Email photo proof of addressed envelopes and mailing to njhsdoralacademy@gmail.com.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ],
+      links:[
+        {
+          label:'Card-making ideas',
+          url:'https://www.cardsforhospitalizedkids.com/make-general-cards.html'
+        }
+      ]
+    });
+
+    addEvent('2026-11-21', {
+      type:'event',
+      title:'Klean Streets Klean Minds',
+      time:'9:00 AM–12:00 PM',
+      location:'5801 Northeast 2nd Avenue, Miami, FL 33137',
+      details:[
+        'Street cleanup. Meet next to the church; look for the City of Miami truck.',
+        'Closed-toe shoes, comfortable breathable clothes and sun protection recommended.',
+        'Parking: neighboring lot (do not block gate), rear grass, or side/church lots if available.',
+        'Official RSVP and club Google Form are mentioned, but their URLs were not supplied.',
+        'Email picture proof to njhsdoralacademy@gmail.com; include event name, date, full name, and grade.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ]
+    });
+
+    [
+      '2026-11-21',
+      '2026-11-22',
+      '2026-11-28',
+      '2026-11-29'
+    ].forEach(date => {
+      addEvent(date, {
+        type:'event',
+        title:'Box of Joy Volunteer Event',
+        location:'2260 NW 114th Avenue, Miami, FL',
+        time:'Listed shifts: 8:30 AM–11:30 PM, 11:00 AM–2:00 PM, or 1:30–4:30 PM',
+        details:[
+          'Weekend volunteering; register with Cross Catholic Outreach and the club form. Exact sign-up URLs were not supplied.',
+          'The first shift ends at 11:30 PM in the supplied information; please verify the time.',
+          'Email picture proof to njhsdoralacademy@gmail.com with event name, full name, and grade.',
+          'Coordinators: Gia Makhija and Lucas Montealegre.'
+        ]
+      });
+    });
+
+    /* DECEMBER — CORRECTED EVENTS */
+
+    addEvent('2026-12-02', {
+      type:'event',
+      title:'Teen Art for Seniors (Community Action Days)',
+      time:'4:00–5:00 PM',
+      location:'401 Westward Drive, Miami Springs, FL 33166',
+      details:[
+        'Make cheerful cards for seniors as part of a community art activity.',
+        'RSVP noted as not required; an information page and club Google Form were mentioned but URLs were not supplied.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ]
+    });
+
+    addEvent('2026-12-12', {
+      type:'event',
+      title:'Holiday Toy and Meal Distribution',
+      location:'Mana Wynwood, 320 NW 23rd Street, Miami, FL 33127',
+      time:'Depends on chosen time slot',
+      details:[
+        'Volunteer role and responsibilities depend on the shift selected.',
+        'Wear closed-toe shoes and comfortable clothes; some roles may be outdoors.',
+        'Organization RSVP and club Google Form were mentioned, but their URLs were not supplied.',
+        'Send picture proof to njhsdoralacademy@gmail.com; include event name, date, full name, and grade.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ]
+    });
+
+    addEvent('2026-12-17', {
+      type:'deadline',
+      title:'DUE: Holiday Cards for Hospitalized Kids',
+      time:'By 11:59 PM on December 17, 2026',
+      location:'At home / mail to Cards for Hospitalized Kids, 7290 W. Devon, Chicago, IL 60631',
+      details:[
+        'Three cards earn one event credit. Maximum of two event credits may come from card events.',
+        'Email photo proof of addressed and enveloped cards to njhsdoralacademy@gmail.com; late submissions may not be accepted.',
+        'Coordinators: Gia Makhija and Lucas Montealegre.'
+      ],
+      links:[
+        {
+          label:'Card-making ideas',
+          url:'https://www.cardsforhospitalizedkids.com/make-general-cards.html'
+        }
+      ]
+    });
+
+    /* JANUARY SEMESTER DEADLINE */
+
+    addEvent('2027-01-14', {
+      type:'deadline',
+      title:'DUE: NJHS Semester Requirements',
+      details:[
+        'All members must complete 2 service events and 2 fundraiser credits by January 14, 2027 (14A).',
+        'The $15 club fee was due November 14, 2026; contact the sponsor if unpaid.'
+      ]
+    });
+
+    /* CALENDAR ELEMENTS */
 
     const months = [
-
-      'January', 'February', 'March',
-      'April', 'May', 'June',
-
-      'July', 'August', 'September',
-      'October', 'November', 'December'
-
+      'January','February','March',
+      'April','May','June',
+      'July','August','September',
+      'October','November','December'
     ];
 
     const root =
@@ -1047,11 +1270,8 @@
     const popupTitle =
       document.getElementById('day-popup-title');
 
-    const popupNotes =
-      document.getElementById('day-popup-notes');
-
-    const popupClose =
-      document.getElementById('day-popup-close');
+    const popupContent =
+      document.getElementById('day-popup-content');
 
     const rangeLabel =
       document.getElementById('visible-range');
@@ -1071,90 +1291,73 @@
     const controls =
       document.getElementById('window-controls');
 
-    const firstSchoolMonth = new Date(2026, 7, 1);
+    const weekendContainer =
+      document.getElementById('weekend-buttons');
 
-    const lastWindowStart = new Date(2027, 3, 1);
+    const firstSchoolMonth = new Date(2026,7,1);
+    const lastWindowStart = new Date(2027,3,1);
 
-    let windowStart = new Date(2026, 10, 1);
+    let windowStart = new Date(2026,10,1);
 
     let viewMode =
-      window.matchMedia('(max-width: 570px)').matches
+      window.matchMedia('(max-width:570px)').matches
         ? 'three'
         : 'year';
 
-    /* NO DATE SELECTED BY DEFAULT */
-
     let selectedDate = null;
-
     let activeButton = null;
 
-    /* ===================================
-       DATE HELPERS
-       =================================== */
+    /* DATE HELPERS */
 
     function dateKey(year, month, day) {
-
-      return (
-        `${year}-` +
-        `${String(month + 1).padStart(2, '0')}-` +
-        `${String(day).padStart(2, '0')}`
-      );
-
+      return `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     }
 
     function shiftMonth(date, amount) {
-
       return new Date(
         date.getFullYear(),
         date.getMonth() + amount,
         1
       );
-
     }
 
-    /* ===================================
-       CLOSE THE POPUP
-       =================================== */
+    function dateParts(key) {
+      const [year, month, day] = key.split('-').map(Number);
+      return {
+        year,
+        month: month - 1,
+        day
+      };
+    }
+
+    /* CLOSE POPUP */
 
     function closePopup(returnFocus = false) {
-
       const previous = activeButton;
 
       selectedDate = null;
       activeButton = null;
-
       popup.hidden = true;
 
-      root.querySelectorAll('.calendar-day.selected')
-        .forEach(button => {
-
-          button.classList.remove('selected');
-
-          button.setAttribute(
-            'aria-expanded',
-            'false'
-          );
-
-        });
+      document.querySelectorAll(
+        '.calendar-day.selected,.weekend-button.selected'
+      ).forEach(button => {
+        button.classList.remove('selected');
+        button.setAttribute('aria-expanded','false');
+      });
 
       if (
         returnFocus &&
         previous &&
         previous.isConnected
       ) {
-
         previous.focus();
-
       }
-
     }
 
-    /* ===================================
-       POSITION THE FLOATING POPUP
-       =================================== */
+    /* POSITION POPUP */
 
     function positionPopup() {
-
       if (
         popup.hidden ||
         !activeButton ||
@@ -1163,415 +1366,310 @@
         return;
       }
 
-      /* MOBILE POSITION IS HANDLED BY CSS */
-
       if (window.innerWidth <= 570) {
-
         popup.style.removeProperty('top');
         popup.style.removeProperty('left');
-
         return;
-
       }
 
-      const anchor =
-        activeButton.getBoundingClientRect();
+      const r = activeButton.getBoundingClientRect();
 
       const width = popup.offsetWidth;
       const height = popup.offsetHeight;
 
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      /* CENTER NEAR SELECTED DATE */
-
       const left = Math.max(
         14,
         Math.min(
-          anchor.left + anchor.width / 2 - width / 2,
-          vw - width - 14
+          r.left + r.width/2 - width/2,
+          window.innerWidth - width - 14
         )
       );
 
-      /* PLACE BELOW OR ABOVE THE DATE */
-
-      const below = anchor.bottom + 12;
-
-      const above = anchor.top - height - 12;
+      const below = r.bottom + 12;
+      const above = r.top - height - 12;
 
       const top =
-        below + height <= vh - 14
+        below + height <= window.innerHeight - 14
           ? below
           : above >= 14
             ? above
             : Math.max(
                 14,
                 Math.min(
-                  (vh - height) / 2,
-                  vh - height - 14
+                  (window.innerHeight - height)/2,
+                  window.innerHeight - height - 14
                 )
               );
 
       popup.style.left = `${left}px`;
       popup.style.top = `${top}px`;
-
     }
 
-    /* ===================================
-       CLICK ON A DATE
+    /* ADD SAFE TEXT ELEMENT */
 
-       FIRST CLICK = SELECT
-       SECOND CLICK = UNSELECT
-       =================================== */
+    function addText(container, tag, content, className) {
+      const el = document.createElement(tag);
+      el.textContent = content;
 
-    function toggleDate(button, date, year, month, day) {
-
-      /* SAME DATE CLICKED TWICE */
-
-      if (selectedDate === date) {
-
-        closePopup();
-
-        return;
-
+      if (className) {
+        el.className = className;
       }
 
-      /* REMOVE OLD SELECTION */
+      container.appendChild(el);
+      return el;
+    }
+
+    /* SELECT AND UNSELECT DATES */
+
+    function toggleDate(button, key) {
+      if (selectedDate === key) {
+        closePopup();
+        return;
+      }
 
       if (activeButton) {
-
         activeButton.classList.remove('selected');
-
-        activeButton.setAttribute(
-          'aria-expanded',
-          'false'
-        );
-
+        activeButton.setAttribute('aria-expanded','false');
       }
 
-      /* SELECT NEW DATE */
-
-      selectedDate = date;
+      selectedDate = key;
       activeButton = button;
 
       button.classList.add('selected');
+      button.setAttribute('aria-expanded','true');
 
-      button.setAttribute(
-        'aria-expanded',
-        'true'
-      );
+      const {year,month,day} = dateParts(key);
 
-      /* DATE TITLE */
+      popupTitle.replaceChildren();
 
-      popupTitle.replaceChildren(
+      popupTitle.appendChild(
         document.createTextNode(
           `${months[month]} ${day}, ${year}`
         )
       );
 
-      /* A/B SCHEDULE BADGE */
-
-      if (schoolCodes[date]) {
-
-        const badge = document.createElement('span');
-
-        badge.className = 'day-popup-code';
-
-        badge.textContent =
-          `${schoolCodes[date]} Day`;
-
-        popupTitle.appendChild(badge);
-
-      }
-
-      /* EVENT DETAILS */
-
-      const notes = [];
-
-      if (njhsEvents[date]) {
-
-        notes.push(njhsEvents[date]);
-
-      }
-
-      if (markedDays[date]) {
-
-        notes.push(markedDays[date].description);
-
-      }
-
-      if (!notes.length) {
-
-        notes.push(
-          schoolCodes[date]
-            ? `${schoolCodes[date]} school day`
-            : 'No scheduled activity listed'
+      if (schoolCodes[key]) {
+        addText(
+          popupTitle,
+          'span',
+          `${schoolCodes[key]} Day`,
+          'day-popup-code'
         );
-
       }
 
-      popupNotes.replaceChildren();
+      popupContent.replaceChildren();
 
-      notes.forEach(note => {
+      const items = eventDetails[key] || [];
 
-        const li = document.createElement('li');
+      items.forEach(item => {
+        const entry = document.createElement('section');
+        entry.className = 'popup-entry';
 
-        li.textContent = note;
+        addText(entry,'h4',item.title);
 
-        popupNotes.appendChild(li);
+        if (item.time) {
+          addText(entry,'p',`Time: ${item.time}`);
+        }
 
+        if (item.location) {
+          addText(entry,'p',`Location: ${item.location}`);
+        }
+
+        if (item.details && item.details.length) {
+          const ul = document.createElement('ul');
+
+          item.details.forEach(detail => {
+            addText(ul,'li',detail);
+          });
+
+          entry.appendChild(ul);
+        }
+
+        if (item.links && item.links.length) {
+          item.links.forEach(link => {
+            const a = document.createElement('a');
+
+            a.textContent = link.label;
+            a.href = link.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+
+            entry.appendChild(a);
+          });
+        }
+
+        popupContent.appendChild(entry);
       });
 
-      /* DISPLAY POPUP */
+      /* SHOW SCHOOL-DAY INFORMATION */
+
+      if (markedDays[key]) {
+        const school = document.createElement('section');
+        school.className = 'popup-entry';
+
+        addText(school,'h4','School Calendar');
+        addText(school,'p',markedDays[key].description);
+
+        popupContent.appendChild(school);
+      }
+
+      if (items.length === 0 && !markedDays[key]) {
+        const text = schoolCodes[key]
+          ? `${schoolCodes[key]} school day; no other activity listed.`
+          : 'No activity listed.';
+
+        addText(popupContent,'p',text);
+      }
 
       popup.hidden = false;
-
       positionPopup();
-
     }
 
-    /* ===================================
-       CREATE ONE MONTH
-       =================================== */
+    /* BUILD MONTH GRID */
 
-    function makeMonth(year, month) {
-
+    function makeMonth(year,month) {
       const panel = document.createElement('article');
-
       panel.className = 'month-panel';
 
-      const title = document.createElement('div');
-
-      title.className = 'month-title';
-
-      title.textContent = `${months[month]} ${year}`;
-
-      panel.appendChild(title);
+      addText(
+        panel,
+        'div',
+        `${months[month]} ${year}`,
+        'month-title'
+      );
 
       const grid = document.createElement('div');
-
       grid.className = 'day-grid';
 
-      /* WEEKDAY HEADERS */
-
       [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday'
+        'Monday','Tuesday','Wednesday','Thursday','Friday'
       ].forEach(name => {
-
-        const label = document.createElement('div');
-
-        label.className = 'weekday';
-
-        label.textContent = name[0];
-
-        label.setAttribute(
-          'aria-label',
-          name
+        const label = addText(
+          grid,'div',name[0],'weekday'
         );
-
-        grid.appendChild(label);
-
+        label.setAttribute('aria-label',name);
       });
 
-      /* MONTH ALIGNMENT */
-
       const firstWeekday =
-        (new Date(year, month, 1).getDay() + 6) % 7;
+        (new Date(year,month,1).getDay() + 6) % 7;
 
       let firstMonday = 1 - firstWeekday;
 
       if (firstMonday + 4 < 1) {
-
         firstMonday += 7;
-
       }
-
-      /* JUNE ENDS AT JUNE 4 */
 
       const lastDate =
         (year === 2027 && month === 5)
           ? 4
-          : new Date(year, month + 1, 0).getDate();
+          : new Date(year,month+1,0).getDate();
 
       let weeks =
-        Math.ceil((lastDate - firstMonday + 1) / 7);
+        Math.ceil((lastDate - firstMonday + 1)/7);
 
       if (year === 2027 && month === 5) {
-
-        weeks = Math.max(weeks, 5);
-
+        weeks = Math.max(weeks,5);
       }
 
-      /* BUILD THE GRID */
-
-      for (let week = 0; week < weeks; week++) {
-
-        for (let weekday = 0; weekday < 5; weekday++) {
+      for (let week=0; week<weeks; week++) {
+        for (let weekday=0; weekday<5; weekday++) {
 
           const day =
-            firstMonday + week * 7 + weekday;
-
-          /* EMPTY CELLS */
+            firstMonday + week*7 + weekday;
 
           if (day < 1 || day > lastDate) {
-
             const blank = document.createElement('div');
-
             blank.className = 'blank-day';
-
-            blank.setAttribute(
-              'aria-hidden',
-              'true'
-            );
-
+            blank.setAttribute('aria-hidden','true');
             grid.appendChild(blank);
-
             continue;
-
           }
 
-          const key = dateKey(year, month, day);
-
-          /* CLICKABLE DATE BUTTON */
+          const key = dateKey(year,month,day);
 
           const button = document.createElement('button');
 
           button.type = 'button';
-
           button.className = 'calendar-day';
-
           button.dataset.date = key;
 
-          button.setAttribute(
-            'aria-controls',
-            'day-popup'
-          );
-
-          button.setAttribute(
-            'aria-expanded',
-            'false'
-          );
-
-          /* SCHOOL COLORS */
+          button.setAttribute('aria-controls','day-popup');
+          button.setAttribute('aria-expanded','false');
 
           if (markedDays[key]) {
-
             button.classList.add(markedDays[key].type);
-
           }
 
-          /* NJHS MEETING WATERMARKS */
-
+          const items = eventDetails[key] || [];
           const isMeeting = meetingSet.has(key);
 
-          if (isMeeting) {
+          const isDeadline = items.some(
+            item => item.type === 'deadline'
+          );
 
+          const hasEvent = items.some(
+            item => item.type === 'event'
+          );
+
+          if (isMeeting) {
             button.classList.add(
               'meeting-day',
               'watermark-day'
             );
-
           }
 
-          /* JANUARY 14 DEADLINE */
+          if (hasEvent) {
+            button.classList.add('event-day');
+          }
 
-          if (key === '2027-01-14') {
-
+          if (isDeadline) {
             button.classList.add('deadline-day');
-
           }
-
-          /* ACCESSIBLE DATE DESCRIPTION */
 
           button.setAttribute(
             'aria-label',
-
             `${months[month]} ${day}, ${year}` +
-
-            (
-              schoolCodes[key]
-                ? `, ${schoolCodes[key]} day`
-                : ''
-            ) +
-
-            (
-              njhsEvents[key]
-                ? `, ${njhsEvents[key]}`
-                : ''
-            ) +
-
-            (
-              markedDays[key]
-                ? `, ${markedDays[key].description}`
-                : ''
-            )
+            (schoolCodes[key]
+              ? `, ${schoolCodes[key]} day`
+              : '') +
+            (items.length
+              ? `, ${items.map(item => item.title).join('; ')}`
+              : '') +
+            (markedDays[key]
+              ? `, ${markedDays[key].description}`
+              : '')
           );
 
-          /* DATE NUMBER */
+          addText(
+            button,
+            'span',
+            day + (schoolCodes[key] || '')
+          );
 
-          const number = document.createElement('span');
+          if (isDeadline || isMeeting || hasEvent) {
+            const note = isDeadline
+              ? 'DUE'
+              : (isMeeting ? 'NJHS' : 'EVENT');
 
-          number.textContent =
-            day + (schoolCodes[key] || '');
-
-          button.appendChild(number);
-
-          /* MEETING / DEADLINE LABEL */
-
-          if (
-            isMeeting ||
-            key === '2027-01-14'
-          ) {
-
-            const note = document.createElement('span');
-
-            note.className = 'day-note';
-
-            note.textContent =
-              isMeeting ? 'NJHS' : 'DUE';
-
-            button.appendChild(note);
-
+            addText(button,'span',note,'day-note');
           }
 
-          /* CLICK INTERACTION */
-
-          button.addEventListener('click', () => {
-
-            toggleDate(
-              button,
-              key,
-              year,
-              month,
-              day
-            );
-
+          button.addEventListener('click',() => {
+            toggleDate(button,key);
           });
 
           grid.appendChild(button);
-
         }
-
       }
 
       panel.appendChild(grid);
-
       return panel;
-
     }
 
-    /* ===================================
-       SEMESTER SUMMARY BOX
-       =================================== */
+    /* SEMESTER SUMMARY */
 
     function makeSemesterSummary() {
-
       const box = document.createElement('aside');
-
       box.className = 'semester-summary';
 
       box.innerHTML =
@@ -1579,27 +1677,18 @@
         '<p>1 - 91<br>2 - 89</p>';
 
       return box;
-
     }
 
-    /* ===================================
-       RENDER CALENDAR
-       =================================== */
+    /* RENDER CALENDAR */
 
     function render() {
-
-      /* CLOSE ANY OPEN POPUP */
-
       closePopup();
-
       root.replaceChildren();
 
       root.classList.toggle(
         'three-months',
         viewMode === 'three'
       );
-
-      /* UPDATE BUTTON APPEARANCE */
 
       allYearButton.setAttribute(
         'aria-pressed',
@@ -1616,183 +1705,142 @@
         viewMode === 'three'
       );
 
-      /* FULL YEAR */
-
       if (viewMode === 'year') {
-
-        for (let i = 0; i < 11; i++) {
-
-          const month = shiftMonth(
-            firstSchoolMonth,
-            i
-          );
+        for (let i=0; i<11; i++) {
+          const d = shiftMonth(firstSchoolMonth,i);
 
           root.appendChild(
-            makeMonth(
-              month.getFullYear(),
-              month.getMonth()
-            )
+            makeMonth(d.getFullYear(),d.getMonth())
           );
-
         }
 
         root.appendChild(makeSemesterSummary());
-
-      }
-
-      /* THREE MONTH VIEW */
-
-      else {
-
-        for (let i = 0; i < 3; i++) {
-
-          const month = shiftMonth(
-            windowStart,
-            i
-          );
+      } else {
+        for (let i=0; i<3; i++) {
+          const d = shiftMonth(windowStart,i);
 
           root.appendChild(
-            makeMonth(
-              month.getFullYear(),
-              month.getMonth()
-            )
+            makeMonth(d.getFullYear(),d.getMonth())
           );
-
         }
 
-        const end = shiftMonth(windowStart, 2);
+        const end = shiftMonth(windowStart,2);
 
         rangeLabel.textContent =
-          `${months[windowStart.getMonth()].slice(0, 3)} ` +
+          `${months[windowStart.getMonth()].slice(0,3)} ` +
           `${windowStart.getFullYear()} – ` +
-          `${months[end.getMonth()].slice(0, 3)} ` +
+          `${months[end.getMonth()].slice(0,3)} ` +
           `${end.getFullYear()}`;
 
         prevButton.disabled =
-          windowStart.getTime() <= firstSchoolMonth.getTime();
+          windowStart.getTime() <=
+          firstSchoolMonth.getTime();
 
         nextButton.disabled =
-          windowStart.getTime() >= lastWindowStart.getTime();
-
+          windowStart.getTime() >=
+          lastWindowStart.getTime();
       }
-
     }
 
-    /* ===================================
-       VIEW BUTTONS
-       =================================== */
+    /* WEEKEND EVENTS */
 
-    allYearButton.addEventListener('click', () => {
+    const weekendDates = [
+      '2026-10-17',
+      '2026-11-14',
+      '2026-11-21',
+      '2026-11-22',
+      '2026-11-28',
+      '2026-11-29',
+      '2026-12-12'
+    ];
 
+    weekendDates.forEach(key => {
+      const {year,month,day} = dateParts(key);
+
+      const titles = (eventDetails[key] || [])
+        .map(item => item.title);
+
+      const btn = document.createElement('button');
+
+      btn.type = 'button';
+      btn.className = 'weekend-button';
+      btn.dataset.date = key;
+
+      const due = (eventDetails[key] || [])
+        .some(item => item.type === 'deadline');
+
+      if (due) {
+        btn.classList.add('deadline-day');
+      }
+
+      btn.textContent =
+        `${due ? 'DUE · ' : ''}` +
+        `${months[month]} ${day} · ` +
+        `${titles.length > 1 ? '2 events' : titles[0]}`;
+
+      btn.setAttribute('aria-controls','day-popup');
+      btn.setAttribute('aria-expanded','false');
+
+      btn.addEventListener('click',() => {
+        toggleDate(btn,key);
+      });
+
+      weekendContainer.appendChild(btn);
+    });
+
+    /* VIEW CONTROLS */
+
+    allYearButton.addEventListener('click',() => {
       viewMode = 'year';
-
       render();
-
     });
 
-    threeButton.addEventListener('click', () => {
-
+    threeButton.addEventListener('click',() => {
       viewMode = 'three';
-
       render();
-
     });
 
-    /* PREVIOUS MONTH */
-
-    prevButton.addEventListener('click', () => {
-
+    prevButton.addEventListener('click',() => {
       if (windowStart > firstSchoolMonth) {
-
-        windowStart = shiftMonth(
-          windowStart,
-          -1
-        );
-
+        windowStart = shiftMonth(windowStart,-1);
         render();
-
       }
-
     });
 
-    /* NEXT MONTH */
-
-    nextButton.addEventListener('click', () => {
-
+    nextButton.addEventListener('click',() => {
       if (windowStart < lastWindowStart) {
-
-        windowStart = shiftMonth(
-          windowStart,
-          1
-        );
-
+        windowStart = shiftMonth(windowStart,1);
         render();
-
       }
-
     });
 
-    /* ===================================
-       POPUP CLOSING BEHAVIOR
-       =================================== */
+    /* POPUP CLOSING */
 
-    /* CLOSE BUTTON */
+    document.getElementById('day-popup-close')
+      .addEventListener('click',() => {
+        closePopup(true);
+      });
 
-    popupClose.addEventListener('click', () => {
-
-      closePopup(true);
-
-    });
-
-    /* CLICK OUTSIDE THE POPUP */
-
-    document.addEventListener('pointerdown', event => {
-
+    document.addEventListener('pointerdown',event => {
       if (
         !popup.hidden &&
         !popup.contains(event.target) &&
-        !event.target.closest('.calendar-day')
+        !event.target.closest('.calendar-day,.weekend-button')
       ) {
-
         closePopup();
-
       }
-
     });
 
-    /* ESCAPE KEY */
-
-    document.addEventListener('keydown', event => {
-
-      if (
-        event.key === 'Escape' &&
-        !popup.hidden
-      ) {
-
+    document.addEventListener('keydown',event => {
+      if (event.key === 'Escape' && !popup.hidden) {
         closePopup(true);
-
       }
-
     });
 
-    /* KEEP POPUP NEAR THE DATE */
-
-    window.addEventListener(
-      'resize',
-      positionPopup
-    );
-
-    window.addEventListener(
-      'scroll',
-      positionPopup,
-      { passive: true }
-    );
-
-    /* INITIAL DISPLAY */
+    window.addEventListener('resize',positionPopup);
+    window.addEventListener('scroll',positionPopup,{passive:true});
 
     render();
-
   </script>
-
 </body>
 </html>
